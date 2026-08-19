@@ -29,6 +29,7 @@ class Skill(StrEnum):
     RUNECRAFT = "runecraft"
     HUNTER = "hunter"
     CONSTRUCTION = "construction"
+    SAILING = "sailing"
 
 class AccountType(StrEnum):
     MAIN = "main"
