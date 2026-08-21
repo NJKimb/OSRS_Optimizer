@@ -1,0 +1,93 @@
+# ===============================
+# Environments & Secrets
+# ===============================
+.env
+.env.*
+!.env.example
+.venv/
+*/.venv/
+venv/
+ENV/
+env/
+
+# ===============================
+# Python & Bytecode
+# ===============================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ===============================
+# Testing & Coverage
+# ===============================
+.pytest_cache/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+htmlcov/
+.mypy_cache/
+.pyre/
+.pytype/
+.ruff_cache/
+
+# ===============================
+# Frontend (Node / Vite / React)
+# ===============================
+node_modules/
+*/node_modules/
+.npm
+.yarn/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+dist/
+*/dist/
+build/
+*/build/
+.next/
+.turbo/
+.out/
+
+# ===============================
+# Local Databases & Data
+# ===============================
+*.sqlite3
+*.db
+*.sqlite
+
+# ===============================
+# IDEs & System Files
+# ===============================
+.DS_Store
+Thumbs.db
+*.bak
+*.swp
+*.swo
+*~
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# VS Code / Antigravity
+.vscode/
+.history/
