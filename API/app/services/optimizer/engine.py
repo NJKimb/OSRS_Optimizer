@@ -107,10 +107,12 @@ async def generate_optimization_plan(request: OptimizationRequest) -> Optimizati
         )
         step_counter += 1
 
-        # Apply quest XP rewards to our simulation
-        for sk, xp in quest.xp_rewards.items():
-            simulated_xp[sk] += xp
-            quest_xp_awarded[sk] += xp
+        # Apply quest XP rewards to our simulation (ONLY for prerequisite quests, not the final goal itself!)
+        if quest.id != request.target_goal:
+            for sk, xp in quest.xp_rewards.items():
+                simulated_xp[sk] += xp
+                quest_xp_awarded[sk] += xp
+
 
     # 6. Build Skill Deficit summary breakdown
     skill_deficits: list[SkillDeficit] = []
