@@ -1,0 +1,171 @@
+[
+  {
+    "id": "cooks_assistant",
+    "name": "Cook's Assistant",
+    "quest_points": 1,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "cooking": 300
+    }
+  },
+  {
+    "id": "fishing_contest",
+    "name": "Fishing Contest",
+    "quest_points": 1,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {
+        "fishing": 10
+      },
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "fishing": 2437
+    }
+  },
+  {
+    "id": "the_knights_sword",
+    "name": "The Knight's Sword",
+    "quest_points": 1,
+    "difficulty": "Intermediate",
+    "requirements": {
+      "quests": [],
+      "skills": {
+        "mining": 10
+      },
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "smithing": 12725
+    }
+  },
+  {
+    "id": "waterfall_quest",
+    "name": "Waterfall Quest",
+    "quest_points": 1,
+    "difficulty": "Intermediate",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "attack": 13750,
+      "strength": 13750
+    }
+  },
+  {
+    "id": "recipe_for_disaster_dwarf",
+    "name": "Recipe for Disaster: Mountain Dwarf",
+    "quest_points": 1,
+    "difficulty": "Intermediate",
+    "requirements": {
+      "quests": [
+        "cooks_assistant",
+        "fishing_contest"
+      ],
+      "skills": {
+        "mining": 12
+      },
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "slayer": 1000,
+      "mining": 1000
+    }
+  },
+  {
+    "id": "roving_elves",
+    "name": "Roving Elves",
+    "quest_points": 1,
+    "difficulty": "Master",
+    "requirements": {
+      "quests": [
+        "waterfall_quest"
+      ],
+      "skills": {
+        "agility": 56
+      },
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "strength": 10000
+    }
+  },
+  {
+    "id": "mournings_end_part_1",
+    "name": "Mourning's End Part I",
+    "quest_points": 2,
+    "difficulty": "Master",
+    "requirements": {
+      "quests": [
+        "roving_elves"
+      ],
+      "skills": {
+        "ranged": 60,
+        "thieving": 50
+      },
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "hitpoints": 40000,
+      "thieving": 25000
+    }
+  },
+  {
+    "id": "mournings_end_part_2",
+    "name": "Mourning's End Part II",
+    "quest_points": 2,
+    "difficulty": "Master",
+    "requirements": {
+      "quests": [
+        "mournings_end_part_1"
+      ],
+      "skills": {
+        "agility": 70
+      },
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "agility": 20000
+    }
+  },
+  {
+    "id": "song_of_the_elves",
+    "name": "Song of the Elves",
+    "quest_points": 4,
+    "difficulty": "Grandmaster",
+    "requirements": {
+      "quests": [
+        "mournings_end_part_2"
+      ],
+      "skills": {
+        "agility": 70,
+        "construction": 70,
+        "farming": 70,
+        "herblore": 70,
+        "hunter": 70,
+        "mining": 70,
+        "smithing": 70,
+        "woodcutting": 70
+      },
+      "quest_points": 200
+    },
+    "xp_rewards": {
+      "agility": 20000,
+      "construction": 20000,
+      "farming": 20000,
+      "herblore": 20000,
+      "hunter": 20000,
+      "mining": 20000,
+      "smithing": 20000,
+      "woodcutting": 20000
+    }
+  }
+]
