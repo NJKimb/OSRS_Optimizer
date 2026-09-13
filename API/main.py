@@ -4,6 +4,7 @@ from app.models.player import PlayerProfile
 from app.services.hiscores import fetch_player_profile
 from app.models.plan import OptimizationRequest, OptimizationResponse
 from app.services.optimizer.engine import generate_optimization_plan
+from app.routers.quests import router as quests_router
 
 
 app = FastAPI(
@@ -11,6 +12,9 @@ app = FastAPI(
     description="API for optimizing questing, skill grinding, and unlock paths.",
     version="1.0.0"
 )
+
+app.include_router(quests_router)
+
 @app.get("/")
 def read_root():
     return {"message": "OSRS Account Optimizer API is running!"}
