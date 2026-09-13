@@ -30,15 +30,3 @@ def get_quest(quest_id: str):
         raise HTTPException(status_code=404, detail=f"Quest '{quest_id}' not found.")
     return QUEST_DB[quest_id]
 
-@router.post("/sync")
-def trigger_quest_sync():
-    """Triggers live synchronization of quest data from the OSRS Wiki."""
-    try:
-        synced_quests = sync_osrs_quests(save=True, reload_db=True)
-        return {
-            "status": "success",
-            "message": "Successfully synchronized quest data from OSRS Wiki.",
-            "total_quests": len(synced_quests)
-        }
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Synchronization failed: {str(e)}")
