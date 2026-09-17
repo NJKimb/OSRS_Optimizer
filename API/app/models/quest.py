@@ -7,7 +7,7 @@ class QuestRequirements(BaseModel):
     quest_points: int = 0
 
 class Quest(BaseModel):
-    id: str
+    id: str | None = None
     name: str
     quest_points: int
     difficulty: str

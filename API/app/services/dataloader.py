@@ -16,4 +16,4 @@ def reload_quests() -> dict[str, Quest]:
     fresh_quests = load_quests()
     QUEST_DB.clear()
     QUEST_DB.update(fresh_quests)
-    return QUEST_DB
+    return QUEST_DB

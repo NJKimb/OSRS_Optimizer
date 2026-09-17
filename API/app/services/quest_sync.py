@@ -3,16 +3,16 @@ import json
 import logging
 import re
 import urllib.parse
-import urllib.request
 from pathlib import Path
 from typing import Any
 
 from bs4 import BeautifulSoup
+import httpx2
 from slpp import slpp
 
 from app.core.skills import Skill
 from app.models.quest import Quest, QuestRequirements
-from app.services.dataloader import reload_quests
+from app.services.dataloader import reload_quests, QUEST_DB
 
 logger = logging.getLogger(__name__)
 
@@ -26,57 +26,152 @@ SKILL_NAME_MAP = {
     "hp": "hitpoints",
 }
 
-
-def slugify(title: str) -> str:
+def fetch_wiki_page_content(page_title: str = "", prop: str | None = None) -> Any:
     """
-    Converts a quest title into a normalized snake_case identifier.
-    Converts Roman numerals (I, II, III...) to Arabic digits (1, 2, 3...)
-    to maintain consistent quest IDs.
+    Fetches wikitext or parsed HTML from the OSRS Wiki API if prop is specified.
+    If prop is None, queries the Wiki Bucket API for all quest entries.
     """
-    s = title.strip()
-    s = re.sub(r'\bVIII\b', '8', s, flags=re.IGNORECASE)
-    s = re.sub(r'\bVII\b', '7', s, flags=re.IGNORECASE)
-    s = re.sub(r'\bVI\b', '6', s, flags=re.IGNORECASE)
-    s = re.sub(r'\bIV\b', '4', s, flags=re.IGNORECASE)
-    s = re.sub(r'\bV\b', '5', s, flags=re.IGNORECASE)
-    s = re.sub(r'\bIII\b', '3', s, flags=re.IGNORECASE)
-    s = re.sub(r'\bII\b', '2', s, flags=re.IGNORECASE)
-    s = re.sub(r'\bI\b', '1', s, flags=re.IGNORECASE)
-    s = s.replace("'", "")
-    s = re.sub(r'[^a-zA-Z0-9]+', '_', s)
-    return s.strip('_').lower()
+    if prop is not None:
+        params = {
+            "action": "parse",
+            "page": page_title,
+            "prop": prop,
+            "format": "json"
+        }
+        response = httpx2.get(WIKI_API_ENDPOINT, params=params, headers={"User-Agent": USER_AGENT}, timeout=30)
+        if response.status_code == 200:
+            data = response.json()
+            if "error" in data:
+                raise RuntimeError(f"OSRS Wiki API error for '{page_title}': {data['error'].get('info')}")
+            return data["parse"][prop]["*"]
+        else:
+            raise RuntimeError(f"OSRS Wiki API request failed with status {response.status_code}")
+    else:
+        query_string = "bucket('quest').select('page_name', 'official_difficulty', 'official_length', 'requirements').run()"
+        params = {
+            "action": "bucket",
+            "format": "json",
+            "query": query_string
+        }
+        response = httpx2.get(WIKI_API_ENDPOINT, params=params, headers={"User-Agent": USER_AGENT}, timeout=30)
+        if response.status_code == 200:
+            return response.json()
+        else:
+            raise RuntimeError(f"OSRS Wiki Bucket API request failed with status {response.status_code}")
 
 
-def fetch_wiki_page_content(page_title: str, prop: str = "wikitext") -> str:
-    """Fetches wikitext or parsed HTML from the OSRS Wiki API."""
-    params = {
-        "action": "parse",
-        "page": page_title,
-        "prop": prop,
-        "format": "json"
-    }
-    url = f"{WIKI_API_ENDPOINT}?{urllib.parse.urlencode(params)}"
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        data = json.loads(resp.read().decode("utf-8"))
-        if "error" in data:
-            raise RuntimeError(f"OSRS Wiki API error for '{page_title}': {data['error'].get('info')}")
-        return data["parse"][prop]["*"]
+def parse_bucket_requirements(req_text: str) -> dict[str, Any]:
+    """
+    Parses the `requirements` field from the Bucket quest table:
+      - Skill requirements from <span class="scp" data-skill="..." data-level="...">
+      - Quest points requirements from data-skill="Quest points" or text
+      - Prerequisite quests from wiki bullet links under quest completion sections
+    """
+    if not req_text or req_text.strip().lower() == "none":
+        return {"skills": {}, "quests": [], "quest_points": 0}
+
+    skills: dict[str, int] = {}
+    qp_req = 0
+    valid_skills = {s.value for s in Skill}
+
+    # 1. Extract skills and Quest points from data-skill / data-level tags
+    for match in re.finditer(r'data-skill="([^"]+)"\s+data-level="(\d+)"', req_text):
+        raw_skill = match.group(1).strip()
+        level = int(match.group(2))
+        raw_skill_lower = raw_skill.lower()
+        if raw_skill_lower in ("quest points", "quest point"):
+            qp_req = max(qp_req, level)
+        else:
+            canonical = SKILL_NAME_MAP.get(raw_skill_lower, raw_skill_lower)
+            if canonical in valid_skills:
+                skills[canonical] = level
+
+    if qp_req == 0:
+        qp_match = re.search(r'(\d+)\s+\[\[Quest points\]\]', req_text, re.IGNORECASE)
+        if qp_match:
+            qp_req = int(qp_match.group(1))
+
+    # 2. Extract prerequisite quests
+    subquests: list[str] = []
+    lines = req_text.splitlines()
+    in_quest_section = False
+    for line in lines:
+        line_clean = line.strip()
+        if "completion of the following quest" in line_clean.lower():
+            in_quest_section = True
+            continue
+
+        m = re.match(r'^\*{1,6}\s*\[\[([^\]|]+)(?:\|[^\]]+)?\]\]', line_clean)
+        if m:
+            q_candidate = m.group(1).strip()
+            if not any(q_candidate.startswith(p) for p in ("File:", "Image:", "Category:", "Quest point")):
+                if in_quest_section or line_clean.startswith("**"):
+                    if q_candidate not in subquests:
+                        subquests.append(q_candidate)
+        elif in_quest_section and not line_clean.startswith("*"):
+            in_quest_section = False
+
+    return {"skills": skills, "quests": subquests, "quest_points": qp_req}
+
+
+def parse_quest_xp_rewards(content: str) -> dict[str, dict[str, int]]:
+    """
+    Parses `Quest experience rewards` content to extract all skill experience rewards.
+    Supports both parsed HTML (prop="text") and raw wikitext (prop="wikitext").
+    Returns {quest_name: {skill: xp_amount}}.
+    """
+    valid_skills = {s.value for s in Skill}
+    xp_by_quest: dict[str, dict[str, int]] = {}
+
+    # Check if content is HTML
+    if "<table" in content:
+        soup = BeautifulSoup(content, "html.parser")
+        skills = [s.value for s in Skill]
+
+        for skill in skills:
+            h = soup.find(lambda tag: tag.name in ["h3", "h2"] and tag.get_text(strip=True).lower().startswith(skill))
+            if not h:
+                continue
+            table = h.find_next("table", class_="wikitable")
+            if not table:
+                continue
+            for row in table.find_all("tr", attrs={"data-rowid": True}):
+                qname = html.unescape(row["data-rowid"]).strip()
+                cells = row.find_all("td")
+                if len(cells) >= 3:
+                    xp_text = cells[2].get_text(strip=True).replace(",", "")
+                    m = re.search(r"(\d+(?:\.\d+)?)", xp_text)
+                    if m:
+                        xp_amt = int(float(m.group(1)))
+                        if qname not in xp_by_quest:
+                            xp_by_quest[qname] = {}
+                        xp_by_quest[qname][skill] = xp_amt
+    else:
+        # Fallback for wikitext format
+        matches = re.findall(r'data-rowid="([^"]+)"[\s\S]*?\{\{\+=\|([a-z]+)\|([0-9.,]+)', content)
+        for qname, raw_skill, raw_amt in matches:
+            clean_amt = int(float(raw_amt.replace(',', '')))
+            qname_clean = html.unescape(qname).strip()
+            skill = SKILL_NAME_MAP.get(raw_skill.lower(), raw_skill.lower())
+            if skill not in valid_skills:
+                continue
+            if qname_clean not in xp_by_quest:
+                xp_by_quest[qname_clean] = {}
+            xp_by_quest[qname_clean][skill] = clean_amt
+
+    return xp_by_quest
 
 
 def parse_quest_requirements(wikitext: str) -> dict[str, dict[str, Any]]:
     """
-    Parses `Module:Questreq/data` using `slpp` into a structured dictionary of quest requirements:
-      - 'quests': list of prerequisite quest title strings
-      - 'skills': dict of {skill_name: level}
-      - 'quest_points': int
+    Legacy parser for `Module:Questreq/data` using `slpp`.
+    Maintained for backwards compatibility and unit testing.
     """
     start = wikitext.find("local questReqs = {")
     end = wikitext.rfind("return questReqs")
     if start == -1 or end == -1:
         raise ValueError("Could not find questReqs table in Module:Questreq/data")
 
-    # Extract the table content for slpp to decode
     lua_code = wikitext[start + len("local questReqs = "):end].strip()
     decoded = slpp.decode(lua_code) or {}
 
@@ -115,40 +210,16 @@ def parse_quest_requirements(wikitext: str) -> dict[str, dict[str, Any]]:
     return results
 
 
-def parse_quest_xp_rewards(wikitext: str) -> dict[str, dict[str, int]]:
-    """
-    Parses `Quest experience rewards` wikitext to extract all set skill experience rewards.
-    Returns {quest_name: {skill: xp_amount}}.
-    """
-    valid_skills = {s.value for s in Skill}
-    matches = re.findall(r'data-rowid="([^"]+)"[\s\S]*?\{\{\+=\|([a-z]+)\|([0-9.,]+)', wikitext)
-    xp_by_quest: dict[str, dict[str, int]] = {}
-
-    for qname, raw_skill, raw_amt in matches:
-        clean_amt = int(float(raw_amt.replace(',', '')))
-        qname_clean = html.unescape(qname).strip()
-        skill = SKILL_NAME_MAP.get(raw_skill.lower(), raw_skill.lower())
-        if skill not in valid_skills:
-            continue
-
-        if qname_clean not in xp_by_quest:
-            xp_by_quest[qname_clean] = {}
-        xp_by_quest[qname_clean][skill] = clean_amt
-
-    return xp_by_quest
-
-
 def parse_quests_list(html_text: str) -> list[dict[str, Any]]:
     """
-    Parses `Quests/List` HTML using BeautifulSoup to extract quest metadata:
-    id, name, difficulty, quest_points. Excludes miniquests.
+    Legacy parser for `Quests/List` HTML using BeautifulSoup.
+    Maintained for backwards compatibility and unit testing.
     """
     soup = BeautifulSoup(html_text, "html.parser")
     quests = []
     seen_ids = set()
 
     for row in soup.find_all("tr", attrs={"data-rowid": True}):
-        # Ignore entries under the Miniquests section
         if row.find_previous(id="Miniquests"):
             continue
 
@@ -164,13 +235,12 @@ def parse_quests_list(html_text: str) -> list[dict[str, Any]]:
         except Exception:
             quest_points = 0
 
-        qid = slugify(qname)
-        if qid in seen_ids:
+        if qname in seen_ids:
             continue
-        seen_ids.add(qid)
+        seen_ids.add(qname)
 
         quests.append({
-            "id": qid,
+            "id": qname,
             "name": qname,
             "difficulty": difficulty,
             "quest_points": quest_points,
@@ -185,67 +255,68 @@ def sync_osrs_quests(
     reload_db: bool = True
 ) -> list[Quest]:
     """
-    Performs full automated synchronization of all OSRS quests from the Wiki API:
-    1. Fetches Quests/List (base quest metadata & QP via BeautifulSoup)
-    2. Fetches Quest experience rewards (skill XP rewards)
-    3. Fetches Module:Questreq/data (prerequisites, skills, QP requirements via slpp)
-    4. Merges and validates via Pydantic Quest models
-    5. Saves to quests.json if save=True
-    6. Reloads QUEST_DB in dataloader if reload_db=True
+    Performs automated synchronization of all OSRS quests using:
+    1. The Wiki Bucket API (JSON response from bucket('quest')) for quest metadata and requirements
+    2. The HTML response from `Quest_experience_rewards` (prop="text") for skill XP rewards
+    3. Merges and validates via Pydantic Quest models
+    4. Saves to quests.json if save=True
+    5. Reloads QUEST_DB in dataloader if reload_db=True
     """
-    logger.info("Fetching quest metadata from OSRS Wiki...")
+    logger.info("Fetching quest list for quest points from OSRS Wiki...")
     list_html = fetch_wiki_page_content("Quests/List", prop="text")
     base_quests = parse_quests_list(list_html)
+    qp_by_name = {q["name"]: q["quest_points"] for q in base_quests}
 
-    logger.info("Fetching quest experience rewards...")
-    xp_wikitext = fetch_wiki_page_content("Quest_experience_rewards", prop="wikitext")
-    xp_rewards_db = parse_quest_xp_rewards(xp_wikitext)
+    logger.info("Fetching quests from OSRS Wiki Bucket API...")
+    bucket_data = fetch_wiki_page_content(prop=None)
+    bucket_quests = bucket_data.get("bucket", [])
+    logger.info(f"Retrieved {len(bucket_quests)} quests from Bucket API.")
 
-    logger.info("Fetching quest requirements from Module:Questreq/data...")
-    req_wikitext = fetch_wiki_page_content("Module:Questreq/data", prop="wikitext")
-    reqs_db = parse_quest_requirements(req_wikitext)
+    logger.info("Fetching quest experience rewards HTML...")
+    xp_html = fetch_wiki_page_content("Quest_experience_rewards", prop="text")
+    xp_rewards_db = parse_quest_xp_rewards(xp_html)
+    logger.info(f"Parsed XP rewards for {len(xp_rewards_db)} quests.")
 
-    # Index helper maps for fast slug lookup
-    reqs_by_slug = {slugify(k): v for k, v in reqs_db.items()}
-    xp_by_slug = {slugify(k): v for k, v in xp_rewards_db.items()}
-
+    xp_by_lower = {k.lower(): v for k, v in xp_rewards_db.items()}
+    valid_skills = {s.value for s in Skill}
     validated_quests: list[Quest] = []
+    seen_names: set[str] = set()
 
-    for base in base_quests:
-        qid = base["id"]
-        qname = base["name"]
+    for item in bucket_quests:
+        qname = item.get("page_name")
+        if not qname:
+            continue
+        if qname in seen_names:
+            continue
+        seen_names.add(qname)
 
-        # Requirements lookup
-        req_entry = reqs_db.get(qname) or reqs_by_slug.get(qid) or {}
-        raw_subquests = req_entry.get("quests", [])
-        raw_skills = req_entry.get("skills", {})
-        qp_req = req_entry.get("quest_points", 0)
+        difficulty = item.get("official_difficulty") or "Novice"
+        raw_reqs = item.get("requirements", "")
+        req_data = parse_bucket_requirements(raw_reqs)
 
-        # Convert subquests to valid quest IDs
-        subquest_ids = [slugify(sq) for sq in raw_subquests]
-
-        # Convert skill strings to Skill enum
         typed_skills: dict[Skill, int] = {
-            Skill(s): lvl for s, lvl in raw_skills.items() if s in Skill
+            Skill(s): lvl for s, lvl in req_data["skills"].items() if s in valid_skills
         }
 
-        # XP rewards lookup
-        xp_entry = xp_rewards_db.get(qname) or xp_by_slug.get(qid) or {}
+        xp_entry = xp_rewards_db.get(qname) or xp_by_lower.get(qname.lower()) or {}
         typed_xp_rewards: dict[Skill, int] = {
-            Skill(s): xp for s, xp in xp_entry.items() if s in Skill
+            Skill(s): xp for s, xp in xp_entry.items() if s in valid_skills
         }
+
+        # Look up quest points from Quests/List, fallback to QUEST_DB
+        qp = qp_by_name.get(qname, 0) or (QUEST_DB[qname].quest_points if qname in QUEST_DB else 0)
 
         requirements = QuestRequirements(
-            quests=subquest_ids,
+            quests=req_data["quests"],
             skills=typed_skills,
-            quest_points=qp_req,
+            quest_points=req_data["quest_points"],
         )
 
         quest = Quest(
-            id=qid,
+            id=qname,
             name=qname,
-            quest_points=base["quest_points"],
-            difficulty=base["difficulty"],
+            quest_points=qp,
+            difficulty=difficulty,
             requirements=requirements,
             xp_rewards=typed_xp_rewards,
         )

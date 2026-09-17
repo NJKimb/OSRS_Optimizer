@@ -6,8 +6,8 @@ from app.core.skills import Skill
 from app.models.quest import Quest
 from app.services.dataloader import QUEST_DB
 from app.services.quest_sync import (
-    slugify,
     parse_quest_requirements,
+    parse_bucket_requirements,
     parse_quest_xp_rewards,
     parse_quests_list,
 )
@@ -18,18 +18,6 @@ class TestQuestSync(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.client = TestClient(app)
-
-    def test_slugify(self):
-        self.assertEqual(slugify("Cook's Assistant"), "cooks_assistant")
-        self.assertEqual(slugify("Dragon Slayer I"), "dragon_slayer_1")
-        self.assertEqual(slugify("Dragon Slayer II"), "dragon_slayer_2")
-        self.assertEqual(slugify("Mourning's End Part I"), "mournings_end_part_1")
-        self.assertEqual(slugify("Mourning's End Part II"), "mournings_end_part_2")
-        self.assertEqual(
-            slugify("Recipe for Disaster/Freeing the Mountain Dwarf"),
-            "recipe_for_disaster_freeing_the_mountain_dwarf"
-        )
-        self.assertEqual(slugify("Between a Rock..."), "between_a_rock")
 
     def test_parse_quest_requirements_mock(self):
         sample_lua = """
@@ -91,6 +79,42 @@ return questReqs
         self.assertIn("Waterfall Quest", xp)
         self.assertEqual(xp["Waterfall Quest"]["attack"], 13750)
 
+    def test_parse_quest_xp_rewards_html_mock(self):
+        sample_html = """
+        <h2>Agility</h2>
+        <table class="wikitable">
+        <tr data-rowid="Recruitment Drive">
+        <td>Recruitment Drive</td><td>Yes</td><td>1,000.5</td>
+        </tr>
+        </table>
+        <h2>Attack</h2>
+        <table class="wikitable">
+        <tr data-rowid="Waterfall Quest">
+        <td>Waterfall Quest</td><td>Yes</td><td>13,750</td>
+        </tr>
+        </table>
+        """
+        xp = parse_quest_xp_rewards(sample_html)
+        self.assertIn("Recruitment Drive", xp)
+        self.assertEqual(xp["Recruitment Drive"]["agility"], 1000)
+        self.assertIn("Waterfall Quest", xp)
+        self.assertEqual(xp["Waterfall Quest"]["attack"], 13750)
+
+    def test_parse_bucket_requirements(self):
+        sample_req = """
+        *<span class="scp" data-skill="Agility" data-level="70">70 Agility</span>
+        *<span class="scp" data-skill="Quest points" data-level="32">32 Quest points</span>
+        *Completion of the following quests:
+        **[[Mourning's End Part II]]
+        ***[[Mourning's End Part I]]
+        **[[Druidic Ritual]]
+        """
+        res = parse_bucket_requirements(sample_req)
+        self.assertEqual(res["skills"]["agility"], 70)
+        self.assertEqual(res["quest_points"], 32)
+        self.assertIn("Mourning's End Part II", res["quests"])
+        self.assertIn("Druidic Ritual", res["quests"])
+
     def test_parse_quests_list_mock(self):
         sample_html = """
 <table class="wikitable">
@@ -120,47 +144,47 @@ return questReqs
         """
         quests = parse_quests_list(sample_html)
         self.assertEqual(len(quests), 2)
-        self.assertEqual(quests[0]["id"], "cooks_assistant")
+        self.assertEqual(quests[0]["name"], "Cook's Assistant")
         self.assertEqual(quests[0]["difficulty"], "Novice")
         self.assertEqual(quests[0]["quest_points"], 1)
-        self.assertEqual(quests[1]["id"], "dragon_slayer_1")
+        self.assertEqual(quests[1]["name"], "Dragon Slayer I")
         self.assertEqual(quests[1]["difficulty"], "Experienced")
         self.assertEqual(quests[1]["quest_points"], 2)
 
     def test_quests_database_integrity(self):
         """Verifies that all synced quests in QUEST_DB are loaded and valid."""
         self.assertGreaterEqual(len(QUEST_DB), 190)
-        self.assertIn("song_of_the_elves", QUEST_DB)
-        self.assertIn("the_knights_sword", QUEST_DB)
-        self.assertIn("cooks_assistant", QUEST_DB)
+        self.assertIn("Song of the Elves", QUEST_DB)
+        self.assertIn("The Knight's Sword", QUEST_DB)
+        self.assertIn("Cook's Assistant", QUEST_DB)
 
-        sote = QUEST_DB["song_of_the_elves"]
+        sote = QUEST_DB["Song of the Elves"]
         self.assertEqual(sote.name, "Song of the Elves")
         self.assertEqual(sote.difficulty, "Grandmaster")
         self.assertEqual(sote.quest_points, 4)
         self.assertEqual(sote.requirements.skills[Skill.AGILITY], 70)
         self.assertEqual(sote.xp_rewards[Skill.AGILITY], 40000)
 
-        for qid, q in QUEST_DB.items():
+        for q_name, q in QUEST_DB.items():
             self.assertIsInstance(q, Quest)
-            self.assertEqual(q.id, qid)
+            self.assertEqual(q.name, q_name)
             self.assertTrue(bool(q.name))
             self.assertTrue(bool(q.difficulty))
             self.assertGreaterEqual(q.quest_points, 0)
 
     def test_optimizer_with_synced_quests(self):
         """Tests that the optimizer DFS engine can resolve prerequisite trees on the real database."""
-        missing_quests = get_missing_quests("song_of_the_elves", completed_quests=[])
+        missing_quests = get_missing_quests("Song of the Elves", completed_quests=[])
         self.assertGreater(len(missing_quests), 5)
-        self.assertTrue(any(q.id == "mournings_end_part_2" for q in missing_quests))
-        self.assertEqual(missing_quests[-1].id, "song_of_the_elves")
+        self.assertTrue(any(q.name == "Mourning's End Part II" for q in missing_quests))
+        self.assertEqual(missing_quests[-1].name, "Song of the Elves")
 
         req_skills = get_skill_requirements(missing_quests)
         self.assertEqual(req_skills[Skill.AGILITY], 70)
         self.assertEqual(req_skills[Skill.MINING], 70)
 
     def test_api_quests_endpoints(self):
-        """Tests the new /api/quests FastAPI endpoints."""
+        """Tests the /api/quests FastAPI endpoints."""
         # List all
         resp = self.client.get("/api/quests")
         self.assertEqual(resp.status_code, 200)
@@ -171,17 +195,17 @@ return questReqs
         resp = self.client.get("/api/quests?search=cook")
         self.assertEqual(resp.status_code, 200)
         filtered = resp.json()
-        self.assertTrue(any(q["id"] == "cooks_assistant" for q in filtered))
+        self.assertTrue(any(q["name"] == "Cook's Assistant" for q in filtered))
 
         # Difficulty filter
         resp = self.client.get("/api/quests?difficulty=Grandmaster")
         self.assertEqual(resp.status_code, 200)
         gm_quests = resp.json()
         self.assertTrue(all(q["difficulty"].lower() == "grandmaster" for q in gm_quests))
-        self.assertTrue(any(q["id"] == "song_of_the_elves" for q in gm_quests))
+        self.assertTrue(any(q["name"] == "Song of the Elves" for q in gm_quests))
 
         # Single quest
-        resp = self.client.get("/api/quests/the_knights_sword")
+        resp = self.client.get("/api/quests/The Knight's Sword")
         self.assertEqual(resp.status_code, 200)
         q = resp.json()
         self.assertEqual(q["name"], "The Knight's Sword")

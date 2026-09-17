@@ -1,311 +1,6 @@
 [
   {
-    "id": "the_ides_of_milk",
-    "name": "The Ides of Milk",
-    "quest_points": 1,
-    "difficulty": "Novice",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {}
-  },
-  {
-    "id": "learning_the_ropes",
-    "name": "Learning the Ropes",
-    "quest_points": 1,
-    "difficulty": "Novice",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {}
-  },
-  {
-    "id": "below_ice_mountain",
-    "name": "Below Ice Mountain",
-    "quest_points": 1,
-    "difficulty": "Novice",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 16
-    },
-    "xp_rewards": {}
-  },
-  {
-    "id": "x_marks_the_spot",
-    "name": "X Marks the Spot",
-    "quest_points": 1,
-    "difficulty": "Novice",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {}
-  },
-  {
-    "id": "the_corsair_curse",
-    "name": "The Corsair Curse",
-    "quest_points": 2,
-    "difficulty": "Intermediate",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {}
-  },
-  {
-    "id": "misthalin_mystery",
-    "name": "Misthalin Mystery",
-    "quest_points": 1,
-    "difficulty": "Novice",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {
-      "crafting": 600
-    }
-  },
-  {
-    "id": "rune_mysteries",
-    "name": "Rune Mysteries",
-    "quest_points": 1,
-    "difficulty": "Novice",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {}
-  },
-  {
-    "id": "dragon_slayer_1",
-    "name": "Dragon Slayer I",
-    "quest_points": 2,
-    "difficulty": "Experienced",
-    "requirements": {
-      "quests": [],
-      "skills": {
-        "crafting": 8
-      },
-      "quest_points": 32
-    },
-    "xp_rewards": {
-      "defence": 18650,
-      "strength": 18650
-    }
-  },
-  {
-    "id": "pirates_treasure",
-    "name": "Pirate's Treasure",
-    "quest_points": 2,
-    "difficulty": "Novice",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {}
-  },
-  {
-    "id": "goblin_diplomacy",
-    "name": "Goblin Diplomacy",
-    "quest_points": 5,
-    "difficulty": "Novice",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {
-      "crafting": 200
-    }
-  },
-  {
-    "id": "the_knights_sword",
-    "name": "The Knight's Sword",
-    "quest_points": 1,
-    "difficulty": "Intermediate",
-    "requirements": {
-      "quests": [],
-      "skills": {
-        "cooking": 10,
-        "mining": 15,
-        "smithing": 15
-      },
-      "quest_points": 0
-    },
-    "xp_rewards": {
-      "smithing": 12725
-    }
-  },
-  {
-    "id": "witchs_potion",
-    "name": "Witch's Potion",
-    "quest_points": 1,
-    "difficulty": "Novice",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {
-      "magic": 325
-    }
-  },
-  {
-    "id": "black_knights_fortress",
-    "name": "Black Knights' Fortress",
-    "quest_points": 3,
-    "difficulty": "Intermediate",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 12
-    },
-    "xp_rewards": {}
-  },
-  {
-    "id": "dorics_quest",
-    "name": "Doric's Quest",
-    "quest_points": 1,
-    "difficulty": "Novice",
-    "requirements": {
-      "quests": [],
-      "skills": {
-        "mining": 15
-      },
-      "quest_points": 0
-    },
-    "xp_rewards": {
-      "mining": 1300
-    }
-  },
-  {
-    "id": "prince_ali_rescue",
-    "name": "Prince Ali Rescue",
-    "quest_points": 3,
-    "difficulty": "Novice",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {}
-  },
-  {
-    "id": "imp_catcher",
-    "name": "Imp Catcher",
-    "quest_points": 1,
-    "difficulty": "Novice",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {
-      "magic": 875
-    }
-  },
-  {
-    "id": "vampyre_slayer",
-    "name": "Vampyre Slayer",
-    "quest_points": 3,
-    "difficulty": "Intermediate",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {
-      "attack": 4825
-    }
-  },
-  {
-    "id": "ernest_the_chicken",
-    "name": "Ernest the Chicken",
-    "quest_points": 4,
-    "difficulty": "Novice",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {}
-  },
-  {
-    "id": "the_restless_ghost",
-    "name": "The Restless Ghost",
-    "quest_points": 1,
-    "difficulty": "Novice",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {
-      "prayer": 1125
-    }
-  },
-  {
-    "id": "sheep_shearer",
-    "name": "Sheep Shearer",
-    "quest_points": 1,
-    "difficulty": "Novice",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {
-      "crafting": 150
-    }
-  },
-  {
-    "id": "shield_of_arrav",
-    "name": "Shield of Arrav",
-    "quest_points": 1,
-    "difficulty": "Novice",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {}
-  },
-  {
-    "id": "demon_slayer",
-    "name": "Demon Slayer",
-    "quest_points": 3,
-    "difficulty": "Novice",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {}
-  },
-  {
-    "id": "romeo_juliet",
-    "name": "Romeo & Juliet",
-    "quest_points": 5,
-    "difficulty": "Novice",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {}
-  },
-  {
-    "id": "cooks_assistant",
+    "id": "Cook's Assistant",
     "name": "Cook's Assistant",
     "quest_points": 1,
     "difficulty": "Novice",
@@ -319,7 +14,220 @@
     }
   },
   {
-    "id": "druidic_ritual",
+    "id": "Romeo & Juliet",
+    "name": "Romeo & Juliet",
+    "quest_points": 5,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Demon Slayer",
+    "name": "Demon Slayer",
+    "quest_points": 3,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Shield of Arrav",
+    "name": "Shield of Arrav",
+    "quest_points": 1,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Sheep Shearer",
+    "name": "Sheep Shearer",
+    "quest_points": 1,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "crafting": 150
+    }
+  },
+  {
+    "id": "The Restless Ghost",
+    "name": "The Restless Ghost",
+    "quest_points": 1,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "prayer": 1125
+    }
+  },
+  {
+    "id": "Ernest the Chicken",
+    "name": "Ernest the Chicken",
+    "quest_points": 4,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Vampyre Slayer",
+    "name": "Vampyre Slayer",
+    "quest_points": 3,
+    "difficulty": "Intermediate",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "attack": 4825
+    }
+  },
+  {
+    "id": "Imp Catcher",
+    "name": "Imp Catcher",
+    "quest_points": 1,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "magic": 875
+    }
+  },
+  {
+    "id": "Prince Ali Rescue",
+    "name": "Prince Ali Rescue",
+    "quest_points": 3,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Doric's Quest",
+    "name": "Doric's Quest",
+    "quest_points": 1,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "mining": 1300
+    }
+  },
+  {
+    "id": "Black Knights' Fortress",
+    "name": "Black Knights' Fortress",
+    "quest_points": 3,
+    "difficulty": "Intermediate",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 12
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Witch's Potion",
+    "name": "Witch's Potion",
+    "quest_points": 1,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "magic": 325
+    }
+  },
+  {
+    "id": "The Knight's Sword",
+    "name": "The Knight's Sword",
+    "quest_points": 1,
+    "difficulty": "Intermediate",
+    "requirements": {
+      "quests": [],
+      "skills": {
+        "mining": 10
+      },
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "smithing": 12725
+    }
+  },
+  {
+    "id": "Goblin Diplomacy",
+    "name": "Goblin Diplomacy",
+    "quest_points": 5,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "crafting": 200
+    }
+  },
+  {
+    "id": "Pirate's Treasure",
+    "name": "Pirate's Treasure",
+    "quest_points": 2,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Dragon Slayer I",
+    "name": "Dragon Slayer I",
+    "quest_points": 2,
+    "difficulty": "Experienced",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 32
+    },
+    "xp_rewards": {
+      "defence": 18650,
+      "strength": 18650
+    }
+  },
+  {
+    "id": "Druidic Ritual",
     "name": "Druidic Ritual",
     "quest_points": 4,
     "difficulty": "Novice",
@@ -333,7 +241,7 @@
     }
   },
   {
-    "id": "lost_city",
+    "id": "Lost City",
     "name": "Lost City",
     "quest_points": 3,
     "difficulty": "Intermediate",
@@ -348,7 +256,7 @@
     "xp_rewards": {}
   },
   {
-    "id": "witchs_house",
+    "id": "Witch's House",
     "name": "Witch's House",
     "quest_points": 4,
     "difficulty": "Intermediate",
@@ -362,7 +270,7 @@
     }
   },
   {
-    "id": "merlins_crystal",
+    "id": "Merlin's Crystal",
     "name": "Merlin's Crystal",
     "quest_points": 6,
     "difficulty": "Intermediate",
@@ -374,17 +282,16 @@
     "xp_rewards": {}
   },
   {
-    "id": "heroes_quest",
+    "id": "Heroes' Quest",
     "name": "Heroes' Quest",
     "quest_points": 1,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "dragon_slayer_1",
-        "druidic_ritual",
-        "lost_city",
-        "merlins_crystal",
-        "shield_of_arrav"
+        "Shield of Arrav",
+        "Lost City",
+        "Merlin's Crystal",
+        "Dragon Slayer I"
       ],
       "skills": {
         "cooking": 53,
@@ -396,28 +303,26 @@
     },
     "xp_rewards": {
       "attack": 3075,
-      "cooking": 2825,
       "defence": 3075,
-      "firemaking": 1575,
-      "fishing": 2725,
-      "herblore": 1325,
-      "hitpoints": 3075,
-      "mining": 2575,
-      "ranged": 2075,
-      "smithing": 2275,
       "strength": 3075,
-      "woodcutting": 1575
+      "hitpoints": 3075,
+      "ranged": 2075,
+      "cooking": 2825,
+      "woodcutting": 1575,
+      "fishing": 2725,
+      "firemaking": 1575,
+      "smithing": 2275,
+      "mining": 2575,
+      "herblore": 1325
     }
   },
   {
-    "id": "scorpion_catcher",
+    "id": "Scorpion Catcher",
     "name": "Scorpion Catcher",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
-      "quests": [
-        "alfred_grimhands_barcrawl"
-      ],
+      "quests": [],
       "skills": {
         "prayer": 31
       },
@@ -428,24 +333,24 @@
     }
   },
   {
-    "id": "family_crest",
+    "id": "Family Crest",
     "name": "Family Crest",
     "quest_points": 1,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [],
       "skills": {
-        "crafting": 40,
-        "magic": 59,
         "mining": 40,
-        "smithing": 40
+        "smithing": 40,
+        "magic": 59,
+        "crafting": 40
       },
       "quest_points": 0
     },
     "xp_rewards": {}
   },
   {
-    "id": "fishing_contest",
+    "id": "Fishing Contest",
     "name": "Fishing Contest",
     "quest_points": 1,
     "difficulty": "Novice",
@@ -461,7 +366,7 @@
     }
   },
   {
-    "id": "tribal_totem",
+    "id": "Tribal Totem",
     "name": "Tribal Totem",
     "quest_points": 1,
     "difficulty": "Intermediate",
@@ -477,7 +382,7 @@
     }
   },
   {
-    "id": "monks_friend",
+    "id": "Monk's Friend",
     "name": "Monk's Friend",
     "quest_points": 1,
     "difficulty": "Novice",
@@ -491,25 +396,25 @@
     }
   },
   {
-    "id": "temple_of_ikov",
+    "id": "Temple of Ikov",
     "name": "Temple of Ikov",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [],
       "skills": {
-        "ranged": 40,
-        "thieving": 42
+        "thieving": 42,
+        "ranged": 40
       },
       "quest_points": 0
     },
     "xp_rewards": {
-      "fletching": 8000,
-      "ranged": 10500
+      "ranged": 10500,
+      "fletching": 8000
     }
   },
   {
-    "id": "clock_tower",
+    "id": "Clock Tower",
     "name": "Clock Tower",
     "quest_points": 1,
     "difficulty": "Novice",
@@ -521,13 +426,13 @@
     "xp_rewards": {}
   },
   {
-    "id": "holy_grail",
+    "id": "Holy Grail",
     "name": "Holy Grail",
     "quest_points": 2,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "merlins_crystal"
+        "Merlin's Crystal"
       ],
       "skills": {
         "attack": 20
@@ -540,7 +445,7 @@
     }
   },
   {
-    "id": "tree_gnome_village",
+    "id": "Tree Gnome Village",
     "name": "Tree Gnome Village",
     "quest_points": 2,
     "difficulty": "Intermediate",
@@ -554,7 +459,7 @@
     }
   },
   {
-    "id": "fight_arena",
+    "id": "Fight Arena",
     "name": "Fight Arena",
     "quest_points": 2,
     "difficulty": "Intermediate",
@@ -569,7 +474,7 @@
     }
   },
   {
-    "id": "hazeel_cult",
+    "id": "Hazeel Cult",
     "name": "Hazeel Cult",
     "quest_points": 1,
     "difficulty": "Novice",
@@ -583,7 +488,7 @@
     }
   },
   {
-    "id": "sheep_herder",
+    "id": "Sheep Herder",
     "name": "Sheep Herder",
     "quest_points": 4,
     "difficulty": "Novice",
@@ -595,7 +500,7 @@
     "xp_rewards": {}
   },
   {
-    "id": "plague_city",
+    "id": "Plague City",
     "name": "Plague City",
     "quest_points": 1,
     "difficulty": "Novice",
@@ -609,7 +514,7 @@
     }
   },
   {
-    "id": "sea_slug",
+    "id": "Sea Slug",
     "name": "Sea Slug",
     "quest_points": 1,
     "difficulty": "Intermediate",
@@ -625,7 +530,7 @@
     }
   },
   {
-    "id": "waterfall_quest",
+    "id": "Waterfall Quest",
     "name": "Waterfall Quest",
     "quest_points": 1,
     "difficulty": "Intermediate",
@@ -640,14 +545,12 @@
     }
   },
   {
-    "id": "jungle_potion",
+    "id": "Jungle Potion",
     "name": "Jungle Potion",
     "quest_points": 1,
     "difficulty": "Novice",
     "requirements": {
-      "quests": [
-        "druidic_ritual"
-      ],
+      "quests": [],
       "skills": {
         "herblore": 3
       },
@@ -658,7 +561,7 @@
     }
   },
   {
-    "id": "the_grand_tree",
+    "id": "The Grand Tree",
     "name": "The Grand Tree",
     "quest_points": 5,
     "difficulty": "Intermediate",
@@ -670,19 +573,20 @@
       "quest_points": 0
     },
     "xp_rewards": {
-      "agility": 7900,
       "attack": 18400,
-      "magic": 2150
+      "magic": 2150,
+      "agility": 7900
     }
   },
   {
-    "id": "underground_pass",
+    "id": "Underground Pass",
     "name": "Underground Pass",
     "quest_points": 5,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "biohazard"
+        "Biohazard",
+        "Plague City"
       ],
       "skills": {
         "ranged": 25
@@ -690,12 +594,12 @@
       "quest_points": 0
     },
     "xp_rewards": {
-      "agility": 3000,
-      "attack": 3000
+      "attack": 3000,
+      "agility": 3000
     }
   },
   {
-    "id": "observatory_quest",
+    "id": "Observatory Quest",
     "name": "Observatory Quest",
     "quest_points": 2,
     "difficulty": "Intermediate",
@@ -709,7 +613,7 @@
     }
   },
   {
-    "id": "the_tourist_trap",
+    "id": "The Tourist Trap",
     "name": "The Tourist Trap",
     "quest_points": 2,
     "difficulty": "Intermediate",
@@ -724,20 +628,18 @@
     "xp_rewards": {}
   },
   {
-    "id": "watchtower",
+    "id": "Watchtower",
     "name": "Watchtower",
     "quest_points": 4,
     "difficulty": "Intermediate",
     "requirements": {
-      "quests": [
-        "druidic_ritual"
-      ],
+      "quests": [],
       "skills": {
+        "magic": 14,
+        "thieving": 15,
         "agility": 25,
         "herblore": 14,
-        "magic": 15,
-        "mining": 40,
-        "thieving": 15
+        "mining": 40
       },
       "quest_points": 0
     },
@@ -746,7 +648,7 @@
     }
   },
   {
-    "id": "dwarf_cannon",
+    "id": "Dwarf Cannon",
     "name": "Dwarf Cannon",
     "quest_points": 1,
     "difficulty": "Novice",
@@ -760,7 +662,7 @@
     }
   },
   {
-    "id": "murder_mystery",
+    "id": "Murder Mystery",
     "name": "Murder Mystery",
     "quest_points": 3,
     "difficulty": "Novice",
@@ -774,14 +676,12 @@
     }
   },
   {
-    "id": "the_dig_site",
+    "id": "The Dig Site",
     "name": "The Dig Site",
     "quest_points": 2,
     "difficulty": "Intermediate",
     "requirements": {
-      "quests": [
-        "druidic_ritual"
-      ],
+      "quests": [],
       "skills": {
         "agility": 10,
         "herblore": 10,
@@ -790,12 +690,12 @@
       "quest_points": 0
     },
     "xp_rewards": {
-      "herblore": 2000,
-      "mining": 15300
+      "mining": 15300,
+      "herblore": 2000
     }
   },
   {
-    "id": "gertrudes_cat",
+    "id": "Gertrude's Cat",
     "name": "Gertrude's Cat",
     "quest_points": 1,
     "difficulty": "Novice",
@@ -809,17 +709,25 @@
     }
   },
   {
-    "id": "legends_quest",
+    "id": "Legends' Quest",
     "name": "Legends' Quest",
     "quest_points": 4,
     "difficulty": "Master",
     "requirements": {
       "quests": [
-        "family_crest",
-        "heroes_quest",
-        "shilo_village",
-        "underground_pass",
-        "waterfall_quest"
+        "Family Crest",
+        "Heroes' Quest",
+        "Shield of Arrav",
+        "Lost City",
+        "Merlin's Crystal",
+        "Dragon Slayer I",
+        "Shilo Village",
+        "Jungle Potion",
+        "Druidic Ritual",
+        "Underground Pass",
+        "Biohazard",
+        "Plague City",
+        "Waterfall Quest"
       ],
       "skills": {
         "agility": 50,
@@ -838,7 +746,33 @@
     "xp_rewards": {}
   },
   {
-    "id": "death_plateau",
+    "id": "Rogue Trader",
+    "name": "Rogue Trader",
+    "quest_points": 0,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [
+        "Gertrude's Cat"
+      ],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Rune Mysteries",
+    "name": "Rune Mysteries",
+    "quest_points": 1,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Death Plateau",
     "name": "Death Plateau",
     "quest_points": 1,
     "difficulty": "Novice",
@@ -852,14 +786,15 @@
     }
   },
   {
-    "id": "eadgars_ruse",
+    "id": "Eadgar's Ruse",
     "name": "Eadgar's Ruse",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "druidic_ritual",
-        "troll_stronghold"
+        "Druidic Ritual",
+        "Troll Stronghold",
+        "Death Plateau"
       ],
       "skills": {
         "herblore": 31
@@ -871,36 +806,36 @@
     }
   },
   {
-    "id": "big_chompy_bird_hunting",
+    "id": "Big Chompy Bird Hunting",
     "name": "Big Chompy Bird Hunting",
     "quest_points": 2,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [],
       "skills": {
-        "cooking": 30,
         "fletching": 5,
+        "cooking": 30,
         "ranged": 30
       },
       "quest_points": 0
     },
     "xp_rewards": {
+      "ranged": 735,
       "cooking": 1470,
-      "fletching": 262,
-      "ranged": 735
+      "fletching": 262
     }
   },
   {
-    "id": "elemental_workshop_1",
+    "id": "Elemental Workshop I",
     "name": "Elemental Workshop I",
     "quest_points": 1,
     "difficulty": "Novice",
     "requirements": {
       "quests": [],
       "skills": {
-        "crafting": 20,
-        "mining": 30,
-        "smithing": 20
+        "mining": 20,
+        "smithing": 20,
+        "crafting": 20
       },
       "quest_points": 0
     },
@@ -910,28 +845,23 @@
     }
   },
   {
-    "id": "nature_spirit",
+    "id": "Nature Spirit",
     "name": "Nature Spirit",
     "quest_points": 2,
     "difficulty": "Intermediate",
     "requirements": {
-      "quests": [
-        "priest_in_peril",
-        "the_restless_ghost"
-      ],
-      "skills": {
-        "crafting": 18
-      },
+      "quests": [],
+      "skills": {},
       "quest_points": 0
     },
     "xp_rewards": {
-      "crafting": 3000,
       "defence": 2000,
-      "hitpoints": 2000
+      "hitpoints": 2000,
+      "crafting": 3000
     }
   },
   {
-    "id": "priest_in_peril",
+    "id": "Priest in Peril",
     "name": "Priest in Peril",
     "quest_points": 1,
     "difficulty": "Novice",
@@ -945,17 +875,19 @@
     }
   },
   {
-    "id": "regicide",
+    "id": "Regicide",
     "name": "Regicide",
     "quest_points": 3,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "underground_pass"
+        "Underground Pass",
+        "Biohazard",
+        "Plague City"
       ],
       "skills": {
-        "agility": 56,
-        "crafting": 10
+        "crafting": 10,
+        "agility": 56
       },
       "quest_points": 0
     },
@@ -964,38 +896,36 @@
     }
   },
   {
-    "id": "tai_bwo_wannai_trio",
+    "id": "Tai Bwo Wannai Trio",
     "name": "Tai Bwo Wannai Trio",
     "quest_points": 2,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "jungle_potion"
+        "Jungle Potion",
+        "Druidic Ritual"
       ],
       "skills": {
         "agility": 15,
         "cooking": 30,
-        "fishing": 65,
-        "herblore": 34
+        "fishing": 5
       },
       "quest_points": 0
     },
     "xp_rewards": {
       "attack": 2500,
+      "strength": 2500,
       "cooking": 5000,
-      "fishing": 5000,
-      "strength": 2500
+      "fishing": 5000
     }
   },
   {
-    "id": "troll_stronghold",
+    "id": "Troll Stronghold",
     "name": "Troll Stronghold",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
-      "quests": [
-        "death_plateau"
-      ],
+      "quests": [],
       "skills": {
         "agility": 15
       },
@@ -1004,19 +934,18 @@
     "xp_rewards": {}
   },
   {
-    "id": "shades_of_mortton",
+    "id": "Shades of Mort'ton",
     "name": "Shades of Mort'ton",
     "quest_points": 3,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "druidic_ritual",
-        "priest_in_peril"
+        "Priest in Peril"
       ],
       "skills": {
         "crafting": 20,
-        "firemaking": 5,
-        "herblore": 15
+        "herblore": 15,
+        "firemaking": 5
       },
       "quest_points": 0
     },
@@ -1026,7 +955,7 @@
     }
   },
   {
-    "id": "the_fremennik_trials",
+    "id": "The Fremennik Trials",
     "name": "The Fremennik Trials",
     "quest_points": 3,
     "difficulty": "Intermediate",
@@ -1036,47 +965,49 @@
       "quest_points": 0
     },
     "xp_rewards": {
-      "agility": 2812,
       "attack": 2812,
-      "crafting": 2812,
       "defence": 2812,
-      "fishing": 2812,
-      "fletching": 2812,
-      "hitpoints": 2812,
       "strength": 2812,
-      "thieving": 2812,
-      "woodcutting": 2812
+      "hitpoints": 2812,
+      "woodcutting": 2812,
+      "fletching": 2812,
+      "fishing": 2812,
+      "crafting": 2812,
+      "agility": 2812,
+      "thieving": 2812
     }
   },
   {
-    "id": "horror_from_the_deep",
+    "id": "Horror from the Deep",
     "name": "Horror from the Deep",
     "quest_points": 2,
     "difficulty": "Intermediate",
     "requirements": {
-      "quests": [
-        "alfred_grimhands_barcrawl"
-      ],
+      "quests": [],
       "skills": {
         "agility": 35
       },
       "quest_points": 0
     },
     "xp_rewards": {
-      "magic": 4662,
+      "strength": 4662,
       "ranged": 4662,
-      "strength": 4662
+      "magic": 4662
     }
   },
   {
-    "id": "throne_of_miscellania",
+    "id": "Throne of Miscellania",
     "name": "Throne of Miscellania",
     "quest_points": 1,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "the_fremennik_trials",
-        "heroes_quest"
+        "Heroes' Quest",
+        "Shield of Arrav",
+        "Lost City",
+        "Merlin's Crystal",
+        "Dragon Slayer I",
+        "The Fremennik Trials"
       ],
       "skills": {},
       "quest_points": 0
@@ -1084,14 +1015,14 @@
     "xp_rewards": {}
   },
   {
-    "id": "monkey_madness_1",
+    "id": "Monkey Madness I",
     "name": "Monkey Madness I",
     "quest_points": 3,
     "difficulty": "Master",
     "requirements": {
       "quests": [
-        "the_grand_tree",
-        "tree_gnome_village"
+        "The Grand Tree",
+        "Tree Gnome Village"
       ],
       "skills": {},
       "quest_points": 0
@@ -1099,13 +1030,13 @@
     "xp_rewards": {}
   },
   {
-    "id": "haunted_mine",
+    "id": "Haunted Mine",
     "name": "Haunted Mine",
     "quest_points": 2,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "priest_in_peril"
+        "Priest in Peril"
       ],
       "skills": {
         "crafting": 35
@@ -1117,33 +1048,35 @@
     }
   },
   {
-    "id": "troll_romance",
+    "id": "Troll Romance",
     "name": "Troll Romance",
     "quest_points": 2,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "troll_stronghold"
+        "Troll Stronghold",
+        "Death Plateau"
       ],
       "skills": {
-        "agility": 28,
-        "woodcutting": 45
+        "agility": 28
       },
       "quest_points": 0
     },
     "xp_rewards": {
-      "agility": 8000,
-      "strength": 4000
+      "strength": 4000,
+      "agility": 8000
     }
   },
   {
-    "id": "in_search_of_the_myreque",
+    "id": "In Search of the Myreque",
     "name": "In Search of the Myreque",
     "quest_points": 2,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "nature_spirit"
+        "Nature Spirit",
+        "Priest in Peril",
+        "The Restless Ghost"
       ],
       "skills": {
         "agility": 25
@@ -1152,25 +1085,21 @@
     },
     "xp_rewards": {
       "attack": 600,
-      "crafting": 600,
       "defence": 600,
+      "strength": 600,
       "hitpoints": 600,
-      "strength": 600
+      "crafting": 600
     }
   },
   {
-    "id": "creature_of_fenkenstrain",
+    "id": "Creature of Fenkenstrain",
     "name": "Creature of Fenkenstrain",
     "quest_points": 2,
     "difficulty": "Intermediate",
     "requirements": {
-      "quests": [
-        "priest_in_peril",
-        "the_restless_ghost"
-      ],
+      "quests": [],
       "skills": {
         "crafting": 20,
-        "smithing": 4,
         "thieving": 25
       },
       "quest_points": 0
@@ -1180,14 +1109,17 @@
     }
   },
   {
-    "id": "roving_elves",
+    "id": "Roving Elves",
     "name": "Roving Elves",
     "quest_points": 1,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "regicide",
-        "waterfall_quest"
+        "Regicide",
+        "Underground Pass",
+        "Biohazard",
+        "Plague City",
+        "Waterfall Quest"
       ],
       "skills": {
         "agility": 56
@@ -1199,15 +1131,12 @@
     }
   },
   {
-    "id": "ghosts_ahoy",
+    "id": "Ghosts Ahoy",
     "name": "Ghosts Ahoy",
     "quest_points": 2,
     "difficulty": "Intermediate",
     "requirements": {
-      "quests": [
-        "priest_in_peril",
-        "the_restless_ghost"
-      ],
+      "quests": [],
       "skills": {
         "agility": 25,
         "cooking": 20
@@ -1219,14 +1148,16 @@
     }
   },
   {
-    "id": "one_small_favour",
+    "id": "One Small Favour",
     "name": "One Small Favour",
     "quest_points": 2,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "rune_mysteries",
-        "shilo_village"
+        "Rune Mysteries",
+        "Shilo Village",
+        "Jungle Potion",
+        "Druidic Ritual"
       ],
       "skills": {
         "agility": 36,
@@ -1239,7 +1170,7 @@
     "xp_rewards": {}
   },
   {
-    "id": "mountain_daughter",
+    "id": "Mountain Daughter",
     "name": "Mountain Daughter",
     "quest_points": 2,
     "difficulty": "Intermediate",
@@ -1256,14 +1187,14 @@
     }
   },
   {
-    "id": "between_a_rock",
+    "id": "Between a Rock...",
     "name": "Between a Rock...",
     "quest_points": 2,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "dwarf_cannon",
-        "fishing_contest"
+        "Dwarf Cannon",
+        "Fishing Contest"
       ],
       "skills": {
         "defence": 30,
@@ -1274,12 +1205,12 @@
     },
     "xp_rewards": {
       "defence": 5000,
-      "mining": 5000,
-      "smithing": 5000
+      "smithing": 5000,
+      "mining": 5000
     }
   },
   {
-    "id": "the_feud",
+    "id": "The Feud",
     "name": "The Feud",
     "quest_points": 1,
     "difficulty": "Intermediate",
@@ -1295,7 +1226,7 @@
     }
   },
   {
-    "id": "the_golem",
+    "id": "The Golem",
     "name": "The Golem",
     "quest_points": 1,
     "difficulty": "Intermediate",
@@ -1313,24 +1244,25 @@
     }
   },
   {
-    "id": "desert_treasure_1",
+    "id": "Desert Treasure I",
     "name": "Desert Treasure I",
     "quest_points": 3,
     "difficulty": "Master",
     "requirements": {
       "quests": [
-        "the_dig_site",
-        "temple_of_ikov",
-        "the_tourist_trap",
-        "troll_stronghold",
-        "priest_in_peril",
-        "waterfall_quest"
+        "The Dig Site",
+        "Temple of Ikov",
+        "The Tourist Trap",
+        "Troll Stronghold",
+        "Death Plateau",
+        "Priest in Peril",
+        "Waterfall Quest"
       ],
       "skills": {
-        "firemaking": 50,
+        "thieving": 53,
         "magic": 50,
-        "slayer": 10,
-        "thieving": 53
+        "firemaking": 50,
+        "slayer": 10
       },
       "quest_points": 0
     },
@@ -1339,33 +1271,31 @@
     }
   },
   {
-    "id": "icthlarins_little_helper",
+    "id": "Icthlarin's Little Helper",
     "name": "Icthlarin's Little Helper",
     "quest_points": 2,
     "difficulty": "Intermediate",
     "requirements": {
-      "quests": [
-        "gertrudes_cat"
-      ],
+      "quests": [],
       "skills": {},
       "quest_points": 0
     },
     "xp_rewards": {
+      "woodcutting": 4000,
       "agility": 4000,
-      "thieving": 4500,
-      "woodcutting": 4000
+      "thieving": 4500
     }
   },
   {
-    "id": "tears_of_guthix",
+    "id": "Tears of Guthix",
     "name": "Tears of Guthix",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [],
       "skills": {
-        "crafting": 20,
         "firemaking": 49,
+        "crafting": 20,
         "mining": 20
       },
       "quest_points": 43
@@ -1375,19 +1305,19 @@
     }
   },
   {
-    "id": "the_lost_tribe",
+    "id": "The Lost Tribe",
     "name": "The Lost Tribe",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "goblin_diplomacy",
-        "rune_mysteries"
+        "Goblin Diplomacy",
+        "Rune Mysteries"
       ],
       "skills": {
         "agility": 13,
-        "mining": 17,
-        "thieving": 13
+        "thieving": 13,
+        "mining": 17
       },
       "quest_points": 0
     },
@@ -1396,7 +1326,7 @@
     }
   },
   {
-    "id": "the_giant_dwarf",
+    "id": "The Giant Dwarf",
     "name": "The Giant Dwarf",
     "quest_points": 2,
     "difficulty": "Intermediate",
@@ -1411,43 +1341,48 @@
       "quest_points": 0
     },
     "xp_rewards": {
-      "crafting": 2500,
-      "firemaking": 1500,
       "magic": 1500,
-      "mining": 2500,
+      "firemaking": 1500,
+      "crafting": 2500,
       "smithing": 2500,
+      "mining": 2500,
       "thieving": 1500
     }
   },
   {
-    "id": "recruitment_drive",
+    "id": "Recruitment Drive",
     "name": "Recruitment Drive",
     "quest_points": 1,
     "difficulty": "Novice",
     "requirements": {
       "quests": [
-        "black_knights_fortress",
-        "druidic_ritual"
+        "Black Knights' Fortress",
+        "Druidic Ritual"
       ],
       "skills": {},
       "quest_points": 0
     },
     "xp_rewards": {
-      "agility": 1000,
+      "prayer": 1000,
       "herblore": 1000,
-      "prayer": 1000
+      "agility": 1000
     }
   },
   {
-    "id": "mournings_end_part_1",
+    "id": "Mourning's End Part I",
     "name": "Mourning's End Part I",
     "quest_points": 2,
     "difficulty": "Master",
     "requirements": {
       "quests": [
-        "big_chompy_bird_hunting",
-        "roving_elves",
-        "sheep_herder"
+        "Roving Elves",
+        "Regicide",
+        "Underground Pass",
+        "Biohazard",
+        "Plague City",
+        "Waterfall Quest",
+        "Big Chompy Bird Hunting",
+        "Sheep Herder"
       ],
       "skills": {
         "ranged": 60,
@@ -1461,14 +1396,14 @@
     }
   },
   {
-    "id": "forgettable_tale",
+    "id": "Forgettable Tale...",
     "name": "Forgettable Tale...",
     "quest_points": 2,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "the_giant_dwarf",
-        "fishing_contest"
+        "The Giant Dwarf",
+        "Fishing Contest"
       ],
       "skills": {
         "cooking": 22,
@@ -1482,13 +1417,15 @@
     }
   },
   {
-    "id": "garden_of_tranquillity",
+    "id": "Garden of Tranquillity",
     "name": "Garden of Tranquillity",
     "quest_points": 2,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "creature_of_fenkenstrain"
+        "Creature of Fenkenstrain",
+        "Priest in Peril",
+        "The Restless Ghost"
       ],
       "skills": {
         "farming": 25
@@ -1500,13 +1437,14 @@
     }
   },
   {
-    "id": "a_tail_of_two_cats",
+    "id": "A Tail of Two Cats",
     "name": "A Tail of Two Cats",
     "quest_points": 2,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "icthlarins_little_helper"
+        "Icthlarin's Little Helper",
+        "Gertrude's Cat"
       ],
       "skills": {},
       "quest_points": 0
@@ -1514,16 +1452,20 @@
     "xp_rewards": {}
   },
   {
-    "id": "wanted",
+    "id": "Wanted!",
     "name": "Wanted!",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "the_lost_tribe",
-        "priest_in_peril",
-        "recruitment_drive",
-        "started_enter_the_abyss"
+        "Recruitment Drive",
+        "Black Knights' Fortress",
+        "Druidic Ritual",
+        "The Lost Tribe",
+        "Rune Mysteries",
+        "Goblin Diplomacy",
+        "Priest in Peril",
+        "Enter the Abyss"
       ],
       "skills": {},
       "quest_points": 32
@@ -1533,13 +1475,20 @@
     }
   },
   {
-    "id": "mournings_end_part_2",
+    "id": "Mourning's End Part II",
     "name": "Mourning's End Part II",
     "quest_points": 2,
     "difficulty": "Master",
     "requirements": {
       "quests": [
-        "mournings_end_part_1"
+        "Mourning's End Part I",
+        "Roving Elves",
+        "Regicide",
+        "Underground Pass",
+        "Biohazard",
+        "Waterfall Quest",
+        "Big Chompy Bird Hunting",
+        "Sheep Herder"
       ],
       "skills": {},
       "quest_points": 0
@@ -1549,39 +1498,42 @@
     }
   },
   {
-    "id": "rum_deal",
+    "id": "Rum Deal",
     "name": "Rum Deal",
     "quest_points": 2,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "priest_in_peril",
-        "zogre_flesh_eaters"
+        "Zogre Flesh Eaters",
+        "Big Chompy Bird Hunting",
+        "Jungle Potion",
+        "Druidic Ritual",
+        "Priest in Peril"
       ],
       "skills": {
         "crafting": 42,
         "farming": 40,
-        "fishing": 50,
         "prayer": 47,
-        "slayer": 42
+        "slayer": 42,
+        "fishing": 50
       },
       "quest_points": 0
     },
     "xp_rewards": {
-      "farming": 7000,
+      "prayer": 7000,
       "fishing": 7000,
-      "prayer": 7000
+      "farming": 7000
     }
   },
   {
-    "id": "shadow_of_the_storm",
+    "id": "Shadow of the Storm",
     "name": "Shadow of the Storm",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "demon_slayer",
-        "the_golem"
+        "The Golem",
+        "Demon Slayer"
       ],
       "skills": {
         "crafting": 30
@@ -1591,32 +1543,33 @@
     "xp_rewards": {}
   },
   {
-    "id": "making_history",
+    "id": "Making History",
     "name": "Making History",
     "quest_points": 3,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "priest_in_peril",
-        "the_restless_ghost"
+        "Priest in Peril",
+        "The Restless Ghost"
       ],
       "skills": {},
       "quest_points": 0
     },
     "xp_rewards": {
-      "crafting": 1000,
-      "prayer": 1000
+      "prayer": 1000,
+      "crafting": 1000
     }
   },
   {
-    "id": "ratcatchers",
+    "id": "Ratcatchers",
     "name": "Ratcatchers",
     "quest_points": 2,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "icthlarins_little_helper",
-        "started_the_giant_dwarf"
+        "Icthlarin's Little Helper",
+        "Gertrude's Cat",
+        "The Giant Dwarf"
       ],
       "skills": {},
       "quest_points": 0
@@ -1626,7 +1579,7 @@
     }
   },
   {
-    "id": "spirits_of_the_elid",
+    "id": "Spirits of the Elid",
     "name": "Spirits of the Elid",
     "quest_points": 2,
     "difficulty": "Intermediate",
@@ -1634,53 +1587,61 @@
       "quests": [],
       "skills": {
         "magic": 33,
-        "mining": 37,
         "ranged": 37,
+        "mining": 37,
         "thieving": 37
       },
       "quest_points": 0
     },
     "xp_rewards": {
-      "magic": 1000,
       "prayer": 8000,
+      "magic": 1000,
       "thieving": 1000
     }
   },
   {
-    "id": "devious_minds",
+    "id": "Devious Minds",
     "name": "Devious Minds",
     "quest_points": 1,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "dorics_quest",
-        "enter_the_abyss",
-        "troll_stronghold",
-        "wanted"
+        "Wanted!",
+        "Recruitment Drive",
+        "Black Knights' Fortress",
+        "Druidic Ritual",
+        "The Lost Tribe",
+        "Goblin Diplomacy",
+        "Rune Mysteries",
+        "Priest in Peril",
+        "Enter the Abyss",
+        "Troll Stronghold",
+        "Death Plateau",
+        "Doric's Quest"
       ],
       "skills": {
-        "fletching": 50,
+        "smithing": 65,
         "runecraft": 50,
-        "smithing": 65
+        "fletching": 50
       },
       "quest_points": 0
     },
     "xp_rewards": {
       "fletching": 5000,
-      "runecraft": 5000,
-      "smithing": 6500
+      "smithing": 6500,
+      "runecraft": 5000
     }
   },
   {
-    "id": "the_hand_in_the_sand",
+    "id": "The Hand in the Sand",
     "name": "The Hand in the Sand",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [],
       "skills": {
-        "crafting": 49,
-        "thieving": 17
+        "thieving": 17,
+        "crafting": 49
       },
       "quest_points": 0
     },
@@ -1690,7 +1651,7 @@
     }
   },
   {
-    "id": "enakhras_lament",
+    "id": "Enakhra's Lament",
     "name": "Enakhra's Lament",
     "quest_points": 2,
     "difficulty": "Experienced",
@@ -1699,28 +1660,32 @@
       "skills": {
         "crafting": 50,
         "firemaking": 45,
-        "magic": 39,
-        "mining": 45,
-        "prayer": 43
+        "prayer": 43,
+        "magic": 39
       },
       "quest_points": 0
     },
     "xp_rewards": {
-      "crafting": 7000,
-      "firemaking": 7000,
       "magic": 7000,
+      "firemaking": 7000,
+      "crafting": 7000,
       "mining": 7000
     }
   },
   {
-    "id": "cabin_fever",
+    "id": "Cabin Fever",
     "name": "Cabin Fever",
     "quest_points": 2,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "pirates_treasure",
-        "rum_deal"
+        "Pirate's Treasure",
+        "Rum Deal",
+        "Zogre Flesh Eaters",
+        "Big Chompy Bird Hunting",
+        "Jungle Potion",
+        "Druidic Ritual",
+        "Priest in Peril"
       ],
       "skills": {
         "agility": 42,
@@ -1731,72 +1696,124 @@
       "quest_points": 0
     },
     "xp_rewards": {
-      "agility": 7000,
       "crafting": 7000,
-      "smithing": 7000
+      "smithing": 7000,
+      "agility": 7000
     }
   },
   {
-    "id": "fairytale_1_growing_pains",
+    "id": "Fairytale I - Growing Pains",
     "name": "Fairytale I - Growing Pains",
     "quest_points": 2,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "lost_city",
-        "nature_spirit"
+        "Lost City",
+        "Nature Spirit",
+        "Priest in Peril",
+        "The Restless Ghost"
       ],
       "skills": {},
       "quest_points": 0
     },
     "xp_rewards": {
       "attack": 2000,
-      "farming": 3500,
-      "magic": 1000
+      "magic": 1000,
+      "farming": 3500
     }
   },
   {
-    "id": "recipe_for_disaster",
+    "id": "Recipe for Disaster",
     "name": "Recipe for Disaster",
     "quest_points": 10,
     "difficulty": "Special",
     "requirements": {
       "quests": [
-        "recipe_for_disaster_defeating_the_culinaromancer"
+        "Fishing Contest",
+        "Goblin Diplomacy",
+        "Big Chompy Bird Hunting",
+        "Murder Mystery",
+        "Nature Spirit",
+        "Priest in Peril",
+        "The Restless Ghost",
+        "Witch's House",
+        "Gertrude's Cat",
+        "Shadow of the Storm",
+        "Demon Slayer",
+        "The Golem",
+        "Family Crest",
+        "Heroes' Quest",
+        "Shield of Arrav",
+        "Lost City",
+        "Merlin's Crystal",
+        "Dragon Slayer I",
+        "Shilo Village",
+        "Jungle Potion",
+        "Druidic Ritual",
+        "Underground Pass",
+        "Biohazard",
+        "Plague City",
+        "Monkey Madness I",
+        "The Grand Tree",
+        "Tree Gnome Village",
+        "Desert Treasure I",
+        "The Dig Site",
+        "The Tourist Trap",
+        "Temple of Ikov",
+        "Waterfall Quest",
+        "Troll Stronghold",
+        "Death Plateau",
+        "Horror from the Deep",
+        "Alfred Grimhand's Barcrawl"
       ],
-      "skills": {},
-      "quest_points": 0
+      "skills": {
+        "cooking": 70,
+        "agility": 48,
+        "mining": 50,
+        "fishing": 53,
+        "thieving": 53,
+        "herblore": 25,
+        "magic": 59,
+        "smithing": 40,
+        "firemaking": 50,
+        "ranged": 40,
+        "crafting": 40,
+        "fletching": 10,
+        "woodcutting": 36
+      },
+      "quest_points": 175
     },
     "xp_rewards": {}
   },
   {
-    "id": "in_aid_of_the_myreque",
+    "id": "In Aid of the Myreque",
     "name": "In Aid of the Myreque",
     "quest_points": 2,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "in_search_of_the_myreque"
+        "In Search of the Myreque",
+        "Nature Spirit",
+        "Priest in Peril",
+        "The Restless Ghost"
       ],
       "skills": {
         "agility": 25,
         "crafting": 25,
-        "fishing": 16,
-        "magic": 7,
         "mining": 15,
-        "smithing": 50
+        "magic": 7
       },
       "quest_points": 0
     },
     "xp_rewards": {
       "attack": 2000,
-      "crafting": 2000,
       "defence": 2000,
-      "strength": 2000
+      "strength": 2000,
+      "crafting": 2000
     }
   },
   {
-    "id": "a_souls_bane",
+    "id": "A Soul's Bane",
     "name": "A Soul's Bane",
     "quest_points": 1,
     "difficulty": "Intermediate",
@@ -1811,7 +1828,7 @@
     }
   },
   {
-    "id": "rag_and_bone_man_1",
+    "id": "Rag and Bone Man I",
     "name": "Rag and Bone Man I",
     "quest_points": 1,
     "difficulty": "Novice",
@@ -1821,44 +1838,57 @@
       "quest_points": 0
     },
     "xp_rewards": {
-      "cooking": 500,
-      "prayer": 500
+      "prayer": 500,
+      "cooking": 500
     }
   },
   {
-    "id": "swan_song",
+    "id": "Swan Song",
     "name": "Swan Song",
     "quest_points": 2,
     "difficulty": "Master",
     "requirements": {
       "quests": [
-        "garden_of_tranquillity",
-        "one_small_favour"
+        "One Small Favour",
+        "Rune Mysteries",
+        "Shilo Village",
+        "Jungle Potion",
+        "Druidic Ritual",
+        "Garden of Tranquillity",
+        "Creature of Fenkenstrain",
+        "Priest in Peril",
+        "The Restless Ghost"
       ],
       "skills": {
-        "cooking": 62,
-        "crafting": 40,
-        "firemaking": 42,
-        "fishing": 62,
         "magic": 66,
-        "smithing": 45
+        "cooking": 62,
+        "fishing": 62,
+        "smithing": 45,
+        "firemaking": 42,
+        "crafting": 40
       },
       "quest_points": 100
     },
     "xp_rewards": {
-      "fishing": 50000,
+      "prayer": 10000,
       "magic": 15000,
-      "prayer": 10000
+      "fishing": 50000
     }
   },
   {
-    "id": "royal_trouble",
+    "id": "Royal Trouble",
     "name": "Royal Trouble",
     "quest_points": 1,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "throne_of_miscellania"
+        "Throne of Miscellania",
+        "Heroes' Quest",
+        "Shield of Arrav",
+        "Lost City",
+        "Merlin's Crystal",
+        "Dragon Slayer I",
+        "The Fremennik Trials"
       ],
       "skills": {
         "agility": 40,
@@ -1867,19 +1897,21 @@
       "quest_points": 0
     },
     "xp_rewards": {
-      "agility": 5000,
       "hitpoints": 5000,
+      "agility": 5000,
       "slayer": 5000
     }
   },
   {
-    "id": "death_to_the_dorgeshuun",
+    "id": "Death to the Dorgeshuun",
     "name": "Death to the Dorgeshuun",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "the_lost_tribe"
+        "The Lost Tribe",
+        "Goblin Diplomacy",
+        "Rune Mysteries"
       ],
       "skills": {
         "agility": 23,
@@ -1893,19 +1925,22 @@
     }
   },
   {
-    "id": "fairytale_2_cure_a_queen",
+    "id": "Fairytale II - Cure a Queen",
     "name": "Fairytale II - Cure a Queen",
     "quest_points": 2,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "druidic_ritual",
-        "fairytale_1_growing_pains"
+        "Fairytale I - Growing Pains",
+        "Lost City",
+        "Nature Spirit",
+        "The Restless Ghost",
+        "Priest in Peril"
       ],
       "skills": {
+        "thieving": 40,
         "farming": 49,
-        "herblore": 57,
-        "thieving": 40
+        "herblore": 57
       },
       "quest_points": 0
     },
@@ -1915,22 +1950,24 @@
     }
   },
   {
-    "id": "lunar_diplomacy",
+    "id": "Lunar Diplomacy",
     "name": "Lunar Diplomacy",
     "quest_points": 2,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "the_fremennik_trials",
-        "lost_city",
-        "rune_mysteries",
-        "shilo_village"
+        "The Fremennik Trials",
+        "Lost City",
+        "Rune Mysteries",
+        "Shilo Village",
+        "Jungle Potion",
+        "Druidic Ritual"
       ],
       "skills": {
+        "herblore": 5,
         "crafting": 61,
         "defence": 40,
         "firemaking": 49,
-        "herblore": 5,
         "magic": 65,
         "mining": 60,
         "woodcutting": 55
@@ -1943,63 +1980,72 @@
     }
   },
   {
-    "id": "the_eyes_of_glouphrie",
+    "id": "The Eyes of Glouphrie",
     "name": "The Eyes of Glouphrie",
     "quest_points": 2,
     "difficulty": "Intermediate",
     "requirements": {
-      "quests": [
-        "the_grand_tree"
-      ],
+      "quests": [],
       "skills": {
         "construction": 5,
-        "magic": 46,
-        "runecraft": 13
+        "magic": 46
       },
       "quest_points": 0
     },
     "xp_rewards": {
-      "construction": 250,
       "magic": 12000,
+      "woodcutting": 2500,
       "runecraft": 6000,
-      "woodcutting": 2500
+      "construction": 250
     }
   },
   {
-    "id": "darkness_of_hallowvale",
+    "id": "Darkness of Hallowvale",
     "name": "Darkness of Hallowvale",
     "quest_points": 2,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "in_aid_of_the_myreque"
+        "In Aid of the Myreque",
+        "In Search of the Myreque",
+        "Nature Spirit",
+        "Priest in Peril",
+        "The Restless Ghost"
       ],
       "skills": {
-        "agility": 26,
         "construction": 5,
+        "mining": 20,
+        "thieving": 22,
+        "agility": 26,
         "crafting": 32,
         "magic": 33,
-        "mining": 20,
-        "strength": 40,
-        "thieving": 22
+        "strength": 40
       },
       "quest_points": 0
     },
     "xp_rewards": {
       "agility": 7000,
-      "construction": 2000,
-      "thieving": 6000
+      "thieving": 6000,
+      "construction": 2000
     }
   },
   {
-    "id": "the_slug_menace",
+    "id": "The Slug Menace",
     "name": "The Slug Menace",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "sea_slug",
-        "wanted"
+        "Wanted!",
+        "Recruitment Drive",
+        "Black Knights' Fortress",
+        "Druidic Ritual",
+        "The Lost Tribe",
+        "Rune Mysteries",
+        "Goblin Diplomacy",
+        "Enter the Abyss",
+        "Priest in Peril",
+        "Sea Slug"
       ],
       "skills": {
         "crafting": 30,
@@ -2011,19 +2057,17 @@
     },
     "xp_rewards": {
       "crafting": 3500,
-      "runecraft": 3500,
-      "thieving": 3500
+      "thieving": 3500,
+      "runecraft": 3500
     }
   },
   {
-    "id": "elemental_workshop_2",
+    "id": "Elemental Workshop II",
     "name": "Elemental Workshop II",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
-      "quests": [
-        "elemental_workshop_1"
-      ],
+      "quests": [],
       "skills": {
         "magic": 20,
         "smithing": 30
@@ -2036,15 +2080,18 @@
     }
   },
   {
-    "id": "my_arms_big_adventure",
+    "id": "My Arm's Big Adventure",
     "name": "My Arm's Big Adventure",
     "quest_points": 1,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "eadgars_ruse",
-        "the_feud",
-        "jungle_potion"
+        "Eadgar's Ruse",
+        "Druidic Ritual",
+        "Troll Stronghold",
+        "Death Plateau",
+        "The Feud",
+        "Jungle Potion"
       ],
       "skills": {
         "farming": 29,
@@ -2053,12 +2100,12 @@
       "quest_points": 0
     },
     "xp_rewards": {
-      "farming": 5000,
-      "herblore": 10000
+      "herblore": 10000,
+      "farming": 5000
     }
   },
   {
-    "id": "enlightened_journey",
+    "id": "Enlightened Journey",
     "name": "Enlightened Journey",
     "quest_points": 1,
     "difficulty": "Intermediate",
@@ -2072,14 +2119,14 @@
       "quest_points": 20
     },
     "xp_rewards": {
-      "crafting": 2000,
-      "farming": 3000,
+      "woodcutting": 1500,
       "firemaking": 4000,
-      "woodcutting": 1500
+      "crafting": 2000,
+      "farming": 3000
     }
   },
   {
-    "id": "eagles_peak",
+    "id": "Eagles' Peak",
     "name": "Eagles' Peak",
     "quest_points": 2,
     "difficulty": "Novice",
@@ -2095,41 +2142,41 @@
     }
   },
   {
-    "id": "animal_magnetism",
+    "id": "Animal Magnetism",
     "name": "Animal Magnetism",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "ernest_the_chicken",
-        "priest_in_peril",
-        "the_restless_ghost"
+        "The Restless Ghost",
+        "Ernest the Chicken",
+        "Priest in Peril"
       ],
       "skills": {
-        "crafting": 19,
-        "prayer": 31,
-        "ranged": 30,
         "slayer": 18,
+        "crafting": 19,
+        "ranged": 30,
         "woodcutting": 35
       },
       "quest_points": 0
     },
     "xp_rewards": {
-      "crafting": 1000,
+      "woodcutting": 2500,
       "fletching": 1000,
-      "slayer": 1000,
-      "woodcutting": 2500
+      "crafting": 1000,
+      "slayer": 1000
     }
   },
   {
-    "id": "contact",
+    "id": "Contact!",
     "name": "Contact!",
     "quest_points": 1,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "prince_ali_rescue",
-        "icthlarins_little_helper"
+        "Prince Ali Rescue",
+        "Icthlarin's Little Helper",
+        "Gertrude's Cat"
       ],
       "skills": {},
       "quest_points": 0
@@ -2139,60 +2186,64 @@
     }
   },
   {
-    "id": "cold_war",
+    "id": "Cold War",
     "name": "Cold War",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [],
       "skills": {
-        "agility": 30,
-        "construction": 34,
-        "crafting": 30,
         "hunter": 10,
-        "thieving": 15,
-        "woodcutting": 50
+        "agility": 30,
+        "crafting": 30,
+        "construction": 34,
+        "thieving": 15
       },
       "quest_points": 0
     },
     "xp_rewards": {
+      "crafting": 2000,
       "agility": 5000,
-      "construction": 1500,
-      "crafting": 2000
+      "construction": 1500
     }
   },
   {
-    "id": "the_fremennik_isles",
+    "id": "The Fremennik Isles",
     "name": "The Fremennik Isles",
     "quest_points": 1,
     "difficulty": "Experienced",
     "requirements": {
-      "quests": [
-        "the_fremennik_trials"
-      ],
+      "quests": [],
       "skills": {
-        "construction": 20,
-        "crafting": 46,
-        "woodcutting": 56
+        "construction": 20
       },
       "quest_points": 0
     },
     "xp_rewards": {
-      "construction": 5000,
+      "woodcutting": 10000,
       "crafting": 5000,
-      "woodcutting": 10000
+      "construction": 5000
     }
   },
   {
-    "id": "the_great_brain_robbery",
+    "id": "The Great Brain Robbery",
     "name": "The Great Brain Robbery",
     "quest_points": 2,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "cabin_fever",
-        "creature_of_fenkenstrain",
-        "recipe_for_disaster_freeing_pirate_pete"
+        "Creature of Fenkenstrain",
+        "Cabin Fever",
+        "Pirate's Treasure",
+        "Rum Deal",
+        "Priest in Peril",
+        "Zogre Flesh Eaters",
+        "Big Chompy Bird Hunting",
+        "Jungle Potion",
+        "Druidic Ritual",
+        "Recipe for Disaster/Freeing Pirate Pete",
+        "Recipe for Disaster/Another Cook's Quest",
+        "Cook's Assistant"
       ],
       "skills": {
         "crafting": 16,
@@ -2202,19 +2253,19 @@
       "quest_points": 0
     },
     "xp_rewards": {
-      "construction": 2000,
+      "prayer": 6000,
       "crafting": 3000,
-      "prayer": 6000
+      "construction": 2000
     }
   },
   {
-    "id": "what_lies_below",
+    "id": "What Lies Below",
     "name": "What Lies Below",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "rune_mysteries"
+        "Rune Mysteries"
       ],
       "skills": {
         "runecraft": 35
@@ -2227,14 +2278,12 @@
     }
   },
   {
-    "id": "olafs_quest",
+    "id": "Olaf's Quest",
     "name": "Olaf's Quest",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
-      "quests": [
-        "the_fremennik_trials"
-      ],
+      "quests": [],
       "skills": {
         "firemaking": 40,
         "woodcutting": 50
@@ -2246,15 +2295,18 @@
     }
   },
   {
-    "id": "another_slice_of_h_a_m",
+    "id": "Another Slice of H.A.M.",
     "name": "Another Slice of H.A.M.",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "death_to_the_dorgeshuun",
-        "the_dig_site",
-        "the_giant_dwarf"
+        "Death to the Dorgeshuun",
+        "The Lost Tribe",
+        "Goblin Diplomacy",
+        "Rune Mysteries",
+        "The Giant Dwarf",
+        "The Dig Site"
       ],
       "skills": {
         "attack": 15,
@@ -2263,19 +2315,27 @@
       "quest_points": 0
     },
     "xp_rewards": {
-      "mining": 3000,
-      "prayer": 3000
+      "prayer": 3000,
+      "mining": 3000
     }
   },
   {
-    "id": "dream_mentor",
+    "id": "Dream Mentor",
     "name": "Dream Mentor",
     "quest_points": 2,
     "difficulty": "Master",
     "requirements": {
       "quests": [
-        "eadgars_ruse",
-        "lunar_diplomacy"
+        "Lunar Diplomacy",
+        "The Fremennik Trials",
+        "Lost City",
+        "Rune Mysteries",
+        "Shilo Village",
+        "Jungle Potion",
+        "Eadgar's Ruse",
+        "Druidic Ritual",
+        "Troll Stronghold",
+        "Death Plateau"
       ],
       "skills": {},
       "quest_points": 0
@@ -2286,48 +2346,52 @@
     }
   },
   {
-    "id": "grim_tales",
+    "id": "Grim Tales",
     "name": "Grim Tales",
     "quest_points": 1,
     "difficulty": "Master",
     "requirements": {
       "quests": [
-        "druidic_ritual",
-        "witchs_house"
+        "Witch's House"
       ],
       "skills": {
-        "agility": 59,
         "farming": 45,
         "herblore": 52,
         "thieving": 58,
+        "agility": 59,
         "woodcutting": 71
       },
       "quest_points": 0
     },
     "xp_rewards": {
-      "agility": 25000,
-      "farming": 10000,
-      "herblore": 15000,
       "hitpoints": 5000,
+      "woodcutting": 60000,
+      "herblore": 15000,
+      "agility": 25000,
       "thieving": 25000,
-      "woodcutting": 60000
+      "farming": 10000
     }
   },
   {
-    "id": "kings_ransom",
+    "id": "King's Ransom",
     "name": "King's Ransom",
     "quest_points": 1,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "black_knights_fortress",
-        "holy_grail",
-        "murder_mystery",
-        "one_small_favour"
+        "Black Knights' Fortress",
+        "Holy Grail",
+        "Merlin's Crystal",
+        "Murder Mystery",
+        "One Small Favour",
+        "Rune Mysteries",
+        "Shilo Village",
+        "Jungle Potion",
+        "Druidic Ritual"
       ],
       "skills": {
-        "defence": 65,
-        "magic": 45
+        "magic": 45,
+        "defence": 65
       },
       "quest_points": 0
     },
@@ -2337,18 +2401,18 @@
     }
   },
   {
-    "id": "shilo_village",
+    "id": "Shilo Village",
     "name": "Shilo Village",
     "quest_points": 2,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "jungle_potion"
+        "Jungle Potion",
+        "Druidic Ritual"
       ],
       "skills": {
-        "agility": 32,
         "crafting": 20,
-        "smithing": 4
+        "agility": 32
       },
       "quest_points": 0
     },
@@ -2357,14 +2421,12 @@
     }
   },
   {
-    "id": "biohazard",
+    "id": "Biohazard",
     "name": "Biohazard",
     "quest_points": 3,
     "difficulty": "Novice",
     "requirements": {
-      "quests": [
-        "plague_city"
-      ],
+      "quests": [],
       "skills": {},
       "quest_points": 0
     },
@@ -2373,7 +2435,95 @@
     }
   },
   {
-    "id": "tower_of_life",
+    "id": "Alfred Grimhand's Barcrawl",
+    "name": "Alfred Grimhand's Barcrawl",
+    "quest_points": 0,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Enter the Abyss",
+    "name": "Enter the Abyss",
+    "quest_points": 0,
+    "difficulty": "Intermediate",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "runecraft": 1000
+    }
+  },
+  {
+    "id": "The General's Shadow",
+    "name": "The General's Shadow",
+    "quest_points": 0,
+    "difficulty": "Experienced",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Barbarian Training",
+    "name": "Barbarian Training",
+    "quest_points": 0,
+    "difficulty": "Experienced",
+    "requirements": {
+      "quests": [],
+      "skills": {
+        "fishing": 55,
+        "firemaking": 35,
+        "strength": 35,
+        "agility": 15,
+        "farming": 15,
+        "crafting": 11,
+        "smithing": 5,
+        "herblore": 4
+      },
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Skippy and the Mogres",
+    "name": "Skippy and the Mogres",
+    "quest_points": 0,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {
+        "cooking": 20
+      },
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Curse of the Empty Lord",
+    "name": "Curse of the Empty Lord",
+    "quest_points": 0,
+    "difficulty": "Experienced",
+    "requirements": {
+      "quests": [],
+      "skills": {
+        "thieving": 53,
+        "prayer": 31
+      },
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Tower of Life",
     "name": "Tower of Life",
     "quest_points": 2,
     "difficulty": "Novice",
@@ -2385,29 +2535,21 @@
       "quest_points": 0
     },
     "xp_rewards": {
-      "construction": 1000,
       "crafting": 500,
-      "thieving": 500
+      "thieving": 500,
+      "construction": 1000
     }
   },
   {
-    "id": "rag_and_bone_man_2",
+    "id": "Rag and Bone Man II",
     "name": "Rag and Bone Man II",
     "quest_points": 1,
     "difficulty": "Experienced",
     "requirements": {
-      "quests": [
-        "the_fremennik_trials",
-        "horror_from_the_deep",
-        "rag_and_bone_man_1",
-        "skippy_and_the_mogres",
-        "started_creature_of_fenkenstrain",
-        "started_waterfall_quest",
-        "started_zogre_flesh_eaters"
-      ],
+      "quests": [],
       "skills": {
-        "defence": 20,
-        "slayer": 40
+        "slayer": 40,
+        "defence": 20
       },
       "quest_points": 0
     },
@@ -2416,39 +2558,85 @@
     }
   },
   {
-    "id": "land_of_the_goblins",
+    "id": "Land of the Goblins",
     "name": "Land of the Goblins",
     "quest_points": 2,
     "difficulty": "Experienced",
     "requirements": {
-      "quests": [],
-      "skills": {},
+      "quests": [
+        "Another Slice of H.A.M.",
+        "Death to the Dorgeshuun",
+        "The Lost Tribe",
+        "Goblin Diplomacy",
+        "Rune Mysteries",
+        "The Giant Dwarf",
+        "The Dig Site",
+        "Fishing Contest"
+      ],
+      "skills": {
+        "agility": 38,
+        "fishing": 40,
+        "thieving": 45,
+        "herblore": 48
+      },
       "quest_points": 0
     },
     "xp_rewards": {
-      "agility": 8000,
       "fishing": 8000,
       "herblore": 8000,
+      "agility": 8000,
       "thieving": 8000
     }
   },
   {
-    "id": "while_guthix_sleeps",
+    "id": "While Guthix Sleeps",
     "name": "While Guthix Sleeps",
     "quest_points": 5,
     "difficulty": "Grandmaster",
     "requirements": {
       "quests": [
-        "defender_of_varrock",
-        "the_path_of_glouphrie",
-        "fight_arena",
-        "dream_mentor",
-        "the_hand_in_the_sand",
-        "wanted",
-        "temple_of_the_eye",
-        "tears_of_guthix",
-        "nature_spirit",
-        "a_tail_of_two_cats"
+        "Defender of Varrock",
+        "Shield of Arrav",
+        "Temple of Ikov",
+        "Below Ice Mountain",
+        "Family Crest",
+        "What Lies Below",
+        "Romeo & Juliet",
+        "Demon Slayer",
+        "Garden of Tranquillity",
+        "Creature of Fenkenstrain",
+        "Priest in Peril",
+        "The Restless Ghost",
+        "The Path of Glouphrie",
+        "The Eyes of Glouphrie",
+        "The Grand Tree",
+        "Waterfall Quest",
+        "Tree Gnome Village",
+        "Fight Arena",
+        "Dream Mentor",
+        "Eadgar's Ruse",
+        "Druidic Ritual",
+        "Troll Stronghold",
+        "Death Plateau",
+        "Lunar Diplomacy",
+        "The Fremennik Trials",
+        "Lost City",
+        "Rune Mysteries",
+        "Shilo Village",
+        "Jungle Potion",
+        "The Hand in the Sand",
+        "Wanted!",
+        "Recruitment Drive",
+        "Black Knights' Fortress",
+        "The Lost Tribe",
+        "Goblin Diplomacy",
+        "Temple of the Eye",
+        "Enter the Abyss",
+        "Tears of Guthix",
+        "Nature Spirit",
+        "A Tail of Two Cats",
+        "Icthlarin's Little Helper",
+        "Gertrude's Cat"
       ],
       "skills": {
         "thieving": 72,
@@ -2456,78 +2644,179 @@
         "agility": 66,
         "farming": 65,
         "herblore": 65,
-        "hunter": 62
+        "hunter": 62,
+        "firemaking": 49,
+        "attack": 99,
+        "strength": 99
       },
       "quest_points": 180
     },
     "xp_rewards": {
-      "farming": 75000,
       "herblore": 75000,
-      "hunter": 50000,
-      "thieving": 80000
+      "thieving": 80000,
+      "farming": 75000,
+      "hunter": 50000
     }
   },
   {
-    "id": "zogre_flesh_eaters",
+    "id": "Zogre Flesh Eaters",
     "name": "Zogre Flesh Eaters",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "big_chompy_bird_hunting",
-        "jungle_potion"
+        "Big Chompy Bird Hunting",
+        "Jungle Potion",
+        "Druidic Ritual"
       ],
       "skills": {
+        "smithing": 4,
         "herblore": 8,
-        "ranged": 30,
-        "smithing": 4
+        "ranged": 30
       },
       "quest_points": 0
     },
     "xp_rewards": {
+      "ranged": 2000,
       "fletching": 2000,
-      "herblore": 2000,
-      "ranged": 2000
+      "herblore": 2000
     }
   },
   {
-    "id": "monkey_madness_2",
+    "id": "Lair of Tarn Razorlor",
+    "name": "Lair of Tarn Razorlor",
+    "quest_points": 0,
+    "difficulty": "Experienced",
+    "requirements": {
+      "quests": [],
+      "skills": {
+        "slayer": 40
+      },
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Architectural Alliance",
+    "name": "Architectural Alliance",
+    "quest_points": 0,
+    "difficulty": "Experienced",
+    "requirements": {
+      "quests": [],
+      "skills": {
+        "mining": 42
+      },
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Monkey Madness II",
     "name": "Monkey Madness II",
     "quest_points": 4,
     "difficulty": "Grandmaster",
     "requirements": {
       "quests": [
-        "enlightened_journey",
-        "the_eyes_of_glouphrie",
-        "recipe_for_disaster_freeing_king_awowogei",
-        "troll_stronghold",
-        "watchtower"
+        "Enlightened Journey",
+        "Balloon transport system#Grand Tree",
+        "The Eyes of Glouphrie",
+        "Recipe for Disaster/Freeing_King_Awowogei",
+        "Monkey Madness I",
+        "The Grand Tree",
+        "Tree Gnome Village",
+        "Troll Stronghold",
+        "Death Plateau",
+        "Watchtower"
       ],
       "skills": {
-        "agility": 55,
-        "crafting": 70,
-        "firemaking": 60,
-        "hunter": 60,
         "slayer": 69,
-        "thieving": 55
+        "crafting": 70,
+        "hunter": 60,
+        "agility": 55,
+        "thieving": 55,
+        "firemaking": 60
       },
       "quest_points": 0
     },
     "xp_rewards": {
       "agility": 60000,
-      "hunter": 50000,
+      "thieving": 50000,
       "slayer": 80000,
-      "thieving": 50000
+      "hunter": 50000
     }
   },
   {
-    "id": "client_of_kourend",
+    "id": "Bear Your Soul",
+    "name": "Bear Your Soul",
+    "quest_points": 0,
+    "difficulty": "Intermediate",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "The Enchanted Key",
+    "name": "The Enchanted Key",
+    "quest_points": 0,
+    "difficulty": "Intermediate",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Mage Arena I",
+    "name": "Mage Arena I",
+    "quest_points": 0,
+    "difficulty": "Experienced",
+    "requirements": {
+      "quests": [],
+      "skills": {
+        "magic": 60
+      },
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Family Pest",
+    "name": "Family Pest",
+    "quest_points": 0,
+    "difficulty": "Intermediate",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Misthalin Mystery",
+    "name": "Misthalin Mystery",
+    "quest_points": 1,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "crafting": 600
+    }
+  },
+  {
+    "id": "Client of Kourend",
     "name": "Client of Kourend",
     "quest_points": 1,
     "difficulty": "Novice",
     "requirements": {
       "quests": [
-        "x_marks_the_spot"
+        "X Marks the Spot"
       ],
       "skills": {},
       "quest_points": 0
@@ -2535,13 +2824,14 @@
     "xp_rewards": {}
   },
   {
-    "id": "the_queen_of_thieves",
+    "id": "The Queen of Thieves",
     "name": "The Queen of Thieves",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "client_of_kourend"
+        "Client of Kourend",
+        "X Marks the Spot"
       ],
       "skills": {
         "thieving": 20
@@ -2553,13 +2843,13 @@
     }
   },
   {
-    "id": "bone_voyage",
+    "id": "Bone Voyage",
     "name": "Bone Voyage",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "the_dig_site"
+        "The Dig Site"
       ],
       "skills": {},
       "quest_points": 0
@@ -2567,48 +2857,74 @@
     "xp_rewards": {}
   },
   {
-    "id": "dragon_slayer_2",
+    "id": "Dragon Slayer II",
     "name": "Dragon Slayer II",
     "quest_points": 5,
     "difficulty": "Grandmaster",
     "requirements": {
       "quests": [
-        "animal_magnetism",
-        "barbarian_firemaking",
-        "bone_voyage",
-        "client_of_kourend",
-        "dream_mentor",
-        "ghosts_ahoy",
-        "legends_quest",
-        "a_tail_of_two_cats"
+        "Legends' Quest",
+        "Family Crest",
+        "Heroes' Quest",
+        "Shield of Arrav",
+        "Lost City",
+        "Merlin's Crystal",
+        "Dragon Slayer I",
+        "Underground Pass",
+        "Biohazard",
+        "Plague City",
+        "Waterfall Quest",
+        "Dream Mentor",
+        "Lunar Diplomacy",
+        "The Fremennik Trials",
+        "Rune Mysteries",
+        "Shilo Village",
+        "Jungle Potion",
+        "Eadgar's Ruse",
+        "Druidic Ritual",
+        "Troll Stronghold",
+        "Death Plateau",
+        "A Tail of Two Cats",
+        "Icthlarin's Little Helper",
+        "Gertrude's Cat",
+        "Animal Magnetism",
+        "Ernest the Chicken",
+        "Priest in Peril",
+        "The Restless Ghost",
+        "Ghosts Ahoy",
+        "Bone Voyage",
+        "The Dig Site",
+        "Client of Kourend",
+        "X Marks the Spot"
       ],
       "skills": {
-        "agility": 60,
-        "construction": 50,
-        "crafting": 62,
-        "hitpoints": 50,
         "magic": 75,
-        "mining": 68,
         "smithing": 70,
-        "thieving": 60
+        "mining": 68,
+        "crafting": 62,
+        "agility": 60,
+        "thieving": 60,
+        "construction": 50,
+        "hitpoints": 50
       },
       "quest_points": 200
     },
     "xp_rewards": {
-      "agility": 50000,
-      "mining": 60000,
       "smithing": 80000,
+      "mining": 60000,
+      "agility": 50000,
       "thieving": 50000
     }
   },
   {
-    "id": "the_depths_of_despair",
+    "id": "The Depths of Despair",
     "name": "The Depths of Despair",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "client_of_kourend"
+        "Client of Kourend",
+        "X Marks the Spot"
       ],
       "skills": {
         "agility": 18
@@ -2620,14 +2936,12 @@
     }
   },
   {
-    "id": "recipe_for_disaster_another_cooks_quest",
+    "id": "Recipe for Disaster/Another Cook's Quest",
     "name": "Recipe for Disaster/Another Cook's Quest",
     "quest_points": 1,
     "difficulty": "Special",
     "requirements": {
-      "quests": [
-        "cooks_assistant"
-      ],
+      "quests": [],
       "skills": {
         "cooking": 10
       },
@@ -2636,14 +2950,15 @@
     "xp_rewards": {}
   },
   {
-    "id": "recipe_for_disaster_freeing_the_goblin_generals",
+    "id": "Recipe for Disaster/Freeing the Goblin generals",
     "name": "Recipe for Disaster/Freeing the Goblin generals",
     "quest_points": 1,
     "difficulty": "Special",
     "requirements": {
       "quests": [
-        "goblin_diplomacy",
-        "recipe_for_disaster_another_cooks_quest"
+        "Recipe for Disaster/Another Cook's Quest",
+        "Cook's Assistant",
+        "Goblin Diplomacy"
       ],
       "skills": {},
       "quest_points": 0
@@ -2655,14 +2970,15 @@
     }
   },
   {
-    "id": "recipe_for_disaster_freeing_the_mountain_dwarf",
+    "id": "Recipe for Disaster/Freeing the Mountain Dwarf",
     "name": "Recipe for Disaster/Freeing the Mountain Dwarf",
     "quest_points": 1,
     "difficulty": "Special",
     "requirements": {
       "quests": [
-        "fishing_contest",
-        "recipe_for_disaster_another_cooks_quest"
+        "Recipe for Disaster/Another Cook's Quest",
+        "Cook's Assistant",
+        "Fishing Contest"
       ],
       "skills": {},
       "quest_points": 0
@@ -2673,19 +2989,20 @@
     }
   },
   {
-    "id": "recipe_for_disaster_freeing_evil_dave",
+    "id": "Recipe for Disaster/Freeing Evil Dave",
     "name": "Recipe for Disaster/Freeing Evil Dave",
     "quest_points": 1,
     "difficulty": "Special",
     "requirements": {
       "quests": [
-        "gertrudes_cat",
-        "recipe_for_disaster_another_cooks_quest",
-        "shadow_of_the_storm"
+        "Gertrude's Cat",
+        "Recipe for Disaster/Another Cook's Quest",
+        "Cook's Assistant",
+        "Shadow of the Storm",
+        "Demon Slayer",
+        "The Golem"
       ],
-      "skills": {
-        "cooking": 25
-      },
+      "skills": {},
       "quest_points": 0
     },
     "xp_rewards": {
@@ -2693,42 +3010,45 @@
     }
   },
   {
-    "id": "recipe_for_disaster_freeing_pirate_pete",
+    "id": "Recipe for Disaster/Freeing Pirate Pete",
     "name": "Recipe for Disaster/Freeing Pirate Pete",
     "quest_points": 1,
     "difficulty": "Special",
     "requirements": {
       "quests": [
-        "recipe_for_disaster_another_cooks_quest"
+        "Recipe for Disaster/Another Cook's Quest",
+        "Cook's Assistant"
       ],
       "skills": {
-        "cooking": 31,
-        "crafting": 42,
-        "smithing": 31
+        "cooking": 31
       },
       "quest_points": 0
     },
     "xp_rewards": {
       "cooking": 1000,
-      "crafting": 1000,
       "fishing": 1000,
+      "crafting": 1000,
       "smithing": 1000
     }
   },
   {
-    "id": "recipe_for_disaster_freeing_the_lumbridge_guide",
+    "id": "Recipe for Disaster/Freeing the Lumbridge Guide",
     "name": "Recipe for Disaster/Freeing the Lumbridge Guide",
     "quest_points": 1,
     "difficulty": "Special",
     "requirements": {
       "quests": [
-        "big_chompy_bird_hunting",
-        "biohazard",
-        "demon_slayer",
-        "murder_mystery",
-        "nature_spirit",
-        "recipe_for_disaster_another_cooks_quest",
-        "witchs_house"
+        "Big Chompy Bird Hunting",
+        "Biohazard",
+        "Plague City",
+        "Demon Slayer",
+        "Murder Mystery",
+        "Nature Spirit",
+        "Priest in Peril",
+        "The Restless Ghost",
+        "Recipe for Disaster/Another Cook's Quest",
+        "Cook's Assistant",
+        "Witch's House"
       ],
       "skills": {
         "cooking": 40
@@ -2736,60 +3056,75 @@
       "quest_points": 0
     },
     "xp_rewards": {
-      "cooking": 2500,
-      "magic": 2500
+      "magic": 2500,
+      "cooking": 2500
     }
   },
   {
-    "id": "recipe_for_disaster_freeing_sir_amik_varze",
+    "id": "Recipe for Disaster/Freeing Sir Amik Varze",
     "name": "Recipe for Disaster/Freeing Sir Amik Varze",
     "quest_points": 1,
     "difficulty": "Special",
     "requirements": {
       "quests": [
-        "recipe_for_disaster_another_cooks_quest",
-        "started_legends_quest"
+        "Family Crest",
+        "Heroes' Quest",
+        "Shield of Arrav",
+        "Lost City",
+        "Merlin's Crystal",
+        "Dragon Slayer I",
+        "Recipe for Disaster/Another Cook's Quest",
+        "Cook's Assistant",
+        "Shilo Village",
+        "Jungle Potion",
+        "Druidic Ritual",
+        "Underground Pass",
+        "Biohazard",
+        "Plague City",
+        "Waterfall Quest"
       ],
-      "skills": {
-        "farming": 20
-      },
-      "quest_points": 0
+      "skills": {},
+      "quest_points": 107
     },
     "xp_rewards": {
-      "cooking": 4000,
-      "hitpoints": 4000
+      "hitpoints": 4000,
+      "cooking": 4000
     }
   },
   {
-    "id": "recipe_for_disaster_freeing_king_awowogei",
+    "id": "Recipe for Disaster/Freeing King Awowogei",
     "name": "Recipe for Disaster/Freeing King Awowogei",
     "quest_points": 1,
     "difficulty": "Special",
     "requirements": {
       "quests": [
-        "monkey_madness_1",
-        "recipe_for_disaster_another_cooks_quest"
+        "Monkey Madness I",
+        "The Grand Tree",
+        "Tree Gnome Village",
+        "Recipe for Disaster/Another Cook's Quest",
+        "Cook's Assistant"
       ],
       "skills": {
-        "agility": 48,
-        "cooking": 70
+        "cooking": 70,
+        "agility": 48
       },
       "quest_points": 0
     },
     "xp_rewards": {
-      "agility": 10000,
-      "cooking": 10000
+      "cooking": 10000,
+      "agility": 10000
     }
   },
   {
-    "id": "recipe_for_disaster_freeing_skrach_uglogwee",
+    "id": "Recipe for Disaster/Freeing Skrach Uglogwee",
     "name": "Recipe for Disaster/Freeing Skrach Uglogwee",
     "quest_points": 1,
     "difficulty": "Special",
     "requirements": {
       "quests": [
-        "big_chompy_bird_hunting",
-        "recipe_for_disaster_another_cooks_quest"
+        "Big Chompy Bird Hunting",
+        "Recipe for Disaster/Another Cook's Quest",
+        "Cook's Assistant"
       ],
       "skills": {
         "cooking": 41,
@@ -2798,25 +3133,118 @@
       "quest_points": 0
     },
     "xp_rewards": {
+      "ranged": 1500,
       "cooking": 1500,
-      "crafting": 1500,
-      "ranged": 1500
+      "crafting": 1500
     }
   },
   {
-    "id": "a_taste_of_hope",
+    "id": "Recipe for Disaster/Full guide",
+    "name": "Recipe for Disaster/Full guide",
+    "quest_points": 0,
+    "difficulty": "Special",
+    "requirements": {
+      "quests": [
+        "Fishing Contest",
+        "Goblin Diplomacy",
+        "Big Chompy Bird Hunting",
+        "Murder Mystery",
+        "Nature Spirit",
+        "Priest in Peril",
+        "The Restless Ghost",
+        "Witch's House",
+        "Gertrude's Cat",
+        "Shadow of the Storm",
+        "Demon Slayer",
+        "The Golem",
+        "Family Crest",
+        "Heroes' Quest",
+        "Shield of Arrav",
+        "Lost City",
+        "Merlin's Crystal",
+        "Dragon Slayer I",
+        "Shilo Village",
+        "Jungle Potion",
+        "Druidic Ritual",
+        "Underground Pass",
+        "Biohazard",
+        "Plague City",
+        "Monkey Madness I",
+        "The Grand Tree",
+        "Tree Gnome Village",
+        "Desert Treasure I",
+        "The Dig Site",
+        "The Tourist Trap",
+        "Temple of Ikov",
+        "Waterfall Quest",
+        "Troll Stronghold",
+        "Death Plateau",
+        "Horror from the Deep",
+        "Alfred Grimhand's Barcrawl"
+      ],
+      "skills": {
+        "cooking": 70,
+        "agility": 48,
+        "mining": 50,
+        "fishing": 53,
+        "thieving": 53,
+        "herblore": 25,
+        "magic": 59,
+        "smithing": 40,
+        "firemaking": 50,
+        "ranged": 40,
+        "crafting": 40,
+        "fletching": 10,
+        "woodcutting": 36
+      },
+      "quest_points": 175
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Mage Arena II",
+    "name": "Mage Arena II",
+    "quest_points": 0,
+    "difficulty": "Master",
+    "requirements": {
+      "quests": [],
+      "skills": {
+        "magic": 75
+      },
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "The Corsair Curse",
+    "name": "The Corsair Curse",
+    "quest_points": 2,
+    "difficulty": "Intermediate",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "A Taste of Hope",
     "name": "A Taste of Hope",
     "quest_points": 1,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "darkness_of_hallowvale",
-        "druidic_ritual"
+        "Darkness of Hallowvale",
+        "In Aid of the Myreque",
+        "In Search of the Myreque",
+        "Nature Spirit",
+        "Priest in Peril",
+        "The Restless Ghost"
       ],
       "skills": {
+        "crafting": 48,
         "agility": 45,
         "attack": 40,
-        "crafting": 48,
         "herblore": 40,
         "slayer": 38
       },
@@ -2825,66 +3253,88 @@
     "xp_rewards": {}
   },
   {
-    "id": "tale_of_the_righteous",
+    "id": "Tale of the Righteous",
     "name": "Tale of the Righteous",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "client_of_kourend"
+        "Client of Kourend",
+        "X Marks the Spot"
       ],
       "skills": {
-        "mining": 10,
-        "strength": 16
+        "strength": 16,
+        "mining": 10
       },
       "quest_points": 0
     },
     "xp_rewards": {}
   },
   {
-    "id": "making_friends_with_my_arm",
+    "id": "Making Friends with My Arm",
     "name": "Making Friends with My Arm",
     "quest_points": 2,
     "difficulty": "Master",
     "requirements": {
       "quests": [
-        "cold_war",
-        "my_arms_big_adventure",
-        "romeo_juliet",
-        "swan_song"
+        "My Arm's Big Adventure",
+        "Eadgar's Ruse",
+        "Druidic Ritual",
+        "Troll Stronghold",
+        "Death Plateau",
+        "The Feud",
+        "Jungle Potion",
+        "Swan Song",
+        "One Small Favour",
+        "Rune Mysteries",
+        "Shilo Village",
+        "Garden of Tranquillity",
+        "Creature of Fenkenstrain",
+        "Priest in Peril",
+        "The Restless Ghost",
+        "Cold War",
+        "Romeo & Juliet"
       ],
       "skills": {
-        "agility": 68,
-        "construction": 35,
         "firemaking": 66,
-        "mining": 72
+        "mining": 72,
+        "construction": 35,
+        "agility": 68
       },
       "quest_points": 0
     },
     "xp_rewards": {
-      "agility": 50000,
-      "construction": 10000,
       "firemaking": 40000,
-      "mining": 50000
+      "mining": 50000,
+      "agility": 50000,
+      "construction": 10000
     }
   },
   {
-    "id": "recipe_for_disaster_defeating_the_culinaromancer",
+    "id": "Recipe for Disaster/Defeating the Culinaromancer",
     "name": "Recipe for Disaster/Defeating the Culinaromancer",
     "quest_points": 1,
     "difficulty": "Special",
     "requirements": {
       "quests": [
-        "desert_treasure_1",
-        "horror_from_the_deep",
-        "recipe_for_disaster_freeing_the_mountain_dwarf",
-        "recipe_for_disaster_freeing_the_goblin_generals",
-        "recipe_for_disaster_freeing_pirate_pete",
-        "recipe_for_disaster_freeing_the_lumbridge_guide",
-        "recipe_for_disaster_freeing_evil_dave",
-        "recipe_for_disaster_freeing_skrach_uglogwee",
-        "recipe_for_disaster_freeing_sir_amik_varze",
-        "recipe_for_disaster_freeing_king_awowogei"
+        "Desert Treasure I",
+        "The Dig Site",
+        "Temple of Ikov",
+        "The Tourist Trap",
+        "Troll Stronghold",
+        "Death Plateau",
+        "Priest in Peril",
+        "Waterfall Quest",
+        "Horror from the Deep",
+        "Alfred Grimhand's Barcrawl",
+        "Recipe for Disaster/Freeing Evil Dave",
+        "Recipe for Disaster/Freeing the Goblin generals",
+        "Recipe for Disaster/Freeing the Lumbridge Guide",
+        "Recipe for Disaster/Freeing the Mountain Dwarf",
+        "Recipe for Disaster/Freeing Pirate Pete",
+        "Recipe for Disaster/Freeing Sir Amik Varze",
+        "Recipe for Disaster/Freeing Skrach Uglogwee",
+        "Recipe for Disaster/Freeing King Awowogei"
       ],
       "skills": {},
       "quest_points": 175
@@ -2892,15 +3342,24 @@
     "xp_rewards": {}
   },
   {
-    "id": "song_of_the_elves",
+    "id": "Song of the Elves",
     "name": "Song of the Elves",
     "quest_points": 4,
     "difficulty": "Grandmaster",
     "requirements": {
       "quests": [
-        "druidic_ritual",
-        "making_history",
-        "mournings_end_part_2"
+        "Mourning's End Part II",
+        "Mourning's End Part I",
+        "Big Chompy Bird Hunting",
+        "Sheep Herder",
+        "Roving Elves",
+        "Waterfall Quest",
+        "Regicide",
+        "Underground Pass",
+        "Making History",
+        "Priest in Peril",
+        "The Restless Ghost",
+        "Druidic Ritual"
       ],
       "skills": {
         "agility": 70,
@@ -2915,24 +3374,25 @@
       "quest_points": 0
     },
     "xp_rewards": {
-      "agility": 40000,
-      "construction": 40000,
-      "farming": 40000,
-      "herblore": 40000,
-      "hunter": 40000,
-      "mining": 40000,
+      "woodcutting": 40000,
       "smithing": 40000,
-      "woodcutting": 40000
+      "mining": 40000,
+      "herblore": 40000,
+      "agility": 40000,
+      "farming": 40000,
+      "hunter": 40000,
+      "construction": 40000
     }
   },
   {
-    "id": "the_ascent_of_arceuus",
+    "id": "The Ascent of Arceuus",
     "name": "The Ascent of Arceuus",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "client_of_kourend"
+        "Client of Kourend",
+        "X Marks the Spot"
       ],
       "skills": {
         "hunter": 12
@@ -2940,63 +3400,100 @@
       "quest_points": 0
     },
     "xp_rewards": {
-      "hunter": 1500,
-      "runecraft": 500
+      "runecraft": 500,
+      "hunter": 1500
     }
   },
   {
-    "id": "the_forsaken_tower",
+    "id": "The Forsaken Tower",
     "name": "The Forsaken Tower",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "client_of_kourend"
+        "Client of Kourend",
+        "X Marks the Spot"
       ],
       "skills": {},
       "quest_points": 0
     },
     "xp_rewards": {
-      "mining": 500,
-      "smithing": 500
+      "smithing": 500,
+      "mining": 500
     }
   },
   {
-    "id": "the_fremennik_exiles",
+    "id": "The Fremennik Exiles",
     "name": "The Fremennik Exiles",
     "quest_points": 2,
     "difficulty": "Master",
     "requirements": {
       "quests": [
-        "the_fremennik_isles",
-        "lunar_diplomacy",
-        "mountain_daughter",
-        "heroes_quest"
+        "The Fremennik Isles",
+        "The Fremennik Trials",
+        "Lunar Diplomacy",
+        "Lost City",
+        "Rune Mysteries",
+        "Shilo Village",
+        "Jungle Potion",
+        "Druidic Ritual",
+        "Mountain Daughter",
+        "Heroes' Quest",
+        "Dragon Slayer I",
+        "Merlin's Crystal",
+        "Shield of Arrav"
       ],
       "skills": {
         "crafting": 65,
+        "slayer": 60,
+        "smithing": 60,
         "fishing": 60,
         "runecraft": 55,
-        "slayer": 60,
-        "smithing": 60
+        "mining": 60
       },
       "quest_points": 0
     },
     "xp_rewards": {
       "crafting": 50000,
-      "runecraft": 30000,
-      "slayer": 50000
+      "slayer": 50000,
+      "runecraft": 30000
     }
   },
   {
-    "id": "the_curse_of_arrav",
+    "id": "X Marks the Spot",
+    "name": "X Marks the Spot",
+    "quest_points": 1,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "The Curse of Arrav",
     "name": "The Curse of Arrav",
     "quest_points": 2,
     "difficulty": "Master",
     "requirements": {
       "quests": [
-        "defender_of_varrock",
-        "troll_romance"
+        "Defender of Varrock",
+        "Shield of Arrav",
+        "Temple of Ikov",
+        "Below Ice Mountain",
+        "Family Crest",
+        "Garden of Tranquillity",
+        "Creature of Fenkenstrain",
+        "Priest in Peril",
+        "The Restless Ghost",
+        "What Lies Below",
+        "Rune Mysteries",
+        "Romeo & Juliet",
+        "Demon Slayer",
+        "Troll Romance",
+        "Troll Stronghold",
+        "Death Plateau"
       ],
       "skills": {
         "mining": 64,
@@ -3009,26 +3506,30 @@
       "quest_points": 0
     },
     "xp_rewards": {
-      "agility": 40000,
       "mining": 40000,
+      "agility": 40000,
       "thieving": 40000
     }
   },
   {
-    "id": "defender_of_varrock",
+    "id": "Defender of Varrock",
     "name": "Defender of Varrock",
     "quest_points": 2,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "shield_of_arrav",
-        "temple_of_ikov",
-        "below_ice_mountain",
-        "family_crest",
-        "garden_of_tranquillity",
-        "what_lies_below",
-        "romeo_juliet",
-        "demon_slayer"
+        "Shield of Arrav",
+        "Temple of Ikov",
+        "Below Ice Mountain",
+        "Family Crest",
+        "Garden of Tranquillity",
+        "Creature of Fenkenstrain",
+        "Priest in Peril",
+        "The Restless Ghost",
+        "What Lies Below",
+        "Rune Mysteries",
+        "Romeo & Juliet",
+        "Demon Slayer"
       ],
       "skills": {
         "smithing": 55,
@@ -3037,63 +3538,91 @@
       "quest_points": 0
     },
     "xp_rewards": {
-      "hunter": 15000,
-      "smithing": 15000
+      "smithing": 15000,
+      "hunter": 15000
     }
   },
   {
-    "id": "sins_of_the_father",
+    "id": "In Search of Knowledge",
+    "name": "In Search of Knowledge",
+    "quest_points": 0,
+    "difficulty": "Experienced",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Sins of the Father",
     "name": "Sins of the Father",
     "quest_points": 2,
     "difficulty": "Master",
     "requirements": {
       "quests": [
-        "a_taste_of_hope",
-        "vampyre_slayer"
+        "Vampyre Slayer",
+        "A Taste of Hope",
+        "Darkness of Hallowvale",
+        "In Aid of the Myreque",
+        "In Search of the Myreque",
+        "Nature Spirit"
       ],
       "skills": {
+        "woodcutting": 62,
+        "fletching": 60,
+        "crafting": 56,
         "agility": 52,
         "attack": 50,
-        "crafting": 56,
-        "fletching": 60,
-        "magic": 49,
         "slayer": 50,
-        "woodcutting": 62
+        "magic": 49
       },
       "quest_points": 0
     },
     "xp_rewards": {}
   },
   {
-    "id": "a_kingdom_divided",
+    "id": "A Kingdom Divided",
     "name": "A Kingdom Divided",
     "quest_points": 2,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "architectural_alliance",
-        "the_ascent_of_arceuus",
-        "the_depths_of_despair",
-        "druidic_ritual",
-        "the_forsaken_tower",
-        "the_queen_of_thieves",
-        "tale_of_the_righteous"
+        "The Depths of Despair",
+        "The Queen of Thieves",
+        "The Ascent of Arceuus",
+        "The Forsaken Tower",
+        "Tale of the Righteous",
+        "Client of Kourend",
+        "X Marks the Spot"
       ],
       "skills": {
         "agility": 54,
-        "crafting": 38,
-        "herblore": 50,
-        "magic": 35,
-        "mining": 42,
         "thieving": 52,
-        "woodcutting": 52
+        "woodcutting": 52,
+        "herblore": 50,
+        "mining": 42,
+        "crafting": 38,
+        "magic": 35
       },
       "quest_points": 0
     },
     "xp_rewards": {}
   },
   {
-    "id": "a_porcine_of_interest",
+    "id": "Daddy's Home",
+    "name": "Daddy's Home",
+    "quest_points": 0,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "A Porcine of Interest",
     "name": "A Porcine of Interest",
     "quest_points": 1,
     "difficulty": "Novice",
@@ -3107,31 +3636,47 @@
     }
   },
   {
-    "id": "getting_ahead",
+    "id": "Getting Ahead",
     "name": "Getting Ahead",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [],
       "skills": {
-        "construction": 26,
-        "crafting": 30
+        "crafting": 30,
+        "construction": 26
       },
       "quest_points": 0
     },
     "xp_rewards": {
-      "construction": 3200,
-      "crafting": 4000
+      "crafting": 4000,
+      "construction": 3200
     }
   },
   {
-    "id": "a_night_at_the_theatre",
+    "id": "Below Ice Mountain",
+    "name": "Below Ice Mountain",
+    "quest_points": 1,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 16
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "A Night at the Theatre",
     "name": "A Night at the Theatre",
     "quest_points": 2,
     "difficulty": "Master",
     "requirements": {
       "quests": [
-        "a_taste_of_hope"
+        "A Taste of Hope",
+        "Darkness of Hallowvale",
+        "In Aid of the Myreque",
+        "In Search of the Myreque",
+        "Nature Spirit"
       ],
       "skills": {},
       "quest_points": 0
@@ -3139,13 +3684,22 @@
     "xp_rewards": {}
   },
   {
-    "id": "beneath_cursed_sands",
+    "id": "Beneath Cursed Sands",
     "name": "Beneath Cursed Sands",
     "quest_points": 2,
     "difficulty": "Master",
     "requirements": {
-      "quests": [],
-      "skills": {},
+      "quests": [
+        "Contact!",
+        "Prince Ali Rescue",
+        "Icthlarin's Little Helper",
+        "Gertrude's Cat"
+      ],
+      "skills": {
+        "agility": 62,
+        "crafting": 55,
+        "firemaking": 55
+      },
       "quest_points": 0
     },
     "xp_rewards": {
@@ -3153,13 +3707,45 @@
     }
   },
   {
-    "id": "temple_of_the_eye",
+    "id": "The Frozen Door",
+    "name": "The Frozen Door",
+    "quest_points": 0,
+    "difficulty": "Master",
+    "requirements": {
+      "quests": [],
+      "skills": {
+        "agility": 70,
+        "hitpoints": 70,
+        "ranged": 70,
+        "strength": 70
+      },
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Hopespear's Will",
+    "name": "Hopespear's Will",
+    "quest_points": 0,
+    "difficulty": "Master",
+    "requirements": {
+      "quests": [],
+      "skills": {
+        "prayer": 50
+      },
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Temple of the Eye",
     "name": "Temple of the Eye",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "enter_the_abyss"
+        "Enter the Abyss",
+        "Rune Mysteries"
       ],
       "skills": {
         "runecraft": 10
@@ -3171,15 +3757,16 @@
     }
   },
   {
-    "id": "the_path_of_glouphrie",
+    "id": "The Path of Glouphrie",
     "name": "The Path of Glouphrie",
     "quest_points": 2,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "the_eyes_of_glouphrie",
-        "waterfall_quest",
-        "tree_gnome_village"
+        "The Eyes of Glouphrie",
+        "The Grand Tree",
+        "Waterfall Quest",
+        "Tree Gnome Village"
       ],
       "skills": {
         "strength": 60,
@@ -3191,20 +3778,22 @@
       "quest_points": 0
     },
     "xp_rewards": {
-      "magic": 5000,
-      "slayer": 20000,
       "strength": 30000,
-      "thieving": 5000
+      "magic": 5000,
+      "thieving": 5000,
+      "slayer": 20000
     }
   },
   {
-    "id": "sleeping_giants",
+    "id": "Sleeping Giants",
     "name": "Sleeping Giants",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [],
-      "skills": {},
+      "skills": {
+        "smithing": 15
+      },
       "quest_points": 0
     },
     "xp_rewards": {
@@ -3212,7 +3801,25 @@
     }
   },
   {
-    "id": "the_garden_of_death",
+    "id": "Into the Tombs",
+    "name": "Into the Tombs",
+    "quest_points": 0,
+    "difficulty": "Master",
+    "requirements": {
+      "quests": [
+        "Beneath Cursed Sands",
+        "Contact!",
+        "Prince Ali Rescue",
+        "Icthlarin's Little Helper",
+        "Gertrude's Cat"
+      ],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "The Garden of Death",
     "name": "The Garden of Death",
     "quest_points": 1,
     "difficulty": "Intermediate",
@@ -3228,25 +3835,58 @@
     }
   },
   {
-    "id": "desert_treasure_2_the_fallen_empire",
+    "id": "Desert Treasure II - The Fallen Empire",
     "name": "Desert Treasure II - The Fallen Empire",
     "quest_points": 5,
     "difficulty": "Grandmaster",
     "requirements": {
       "quests": [
-        "desert_treasure_1",
-        "secrets_of_the_north",
-        "enakhras_lament",
-        "temple_of_the_eye",
-        "the_garden_of_death",
-        "below_ice_mountain",
-        "his_faithful_servants"
+        "Desert Treasure I",
+        "The Dig Site",
+        "Temple of Ikov",
+        "The Tourist Trap",
+        "Troll Stronghold",
+        "Death Plateau",
+        "Priest in Peril",
+        "Waterfall Quest",
+        "Secrets of the North",
+        "Making Friends with My Arm",
+        "My Arm's Big Adventure",
+        "Eadgar's Ruse",
+        "Druidic Ritual",
+        "The Feud",
+        "Jungle Potion",
+        "Swan Song",
+        "One Small Favour",
+        "Rune Mysteries",
+        "Shilo Village",
+        "Garden of Tranquillity",
+        "Creature of Fenkenstrain",
+        "Cold War",
+        "Romeo & Juliet",
+        "The General's Shadow",
+        "Curse of the Empty Lord",
+        "Fight Arena",
+        "Devious Minds",
+        "Wanted!",
+        "Recruitment Drive",
+        "Black Knights' Fortress",
+        "The Lost Tribe",
+        "Goblin Diplomacy",
+        "Doric's Quest",
+        "Enter the Abyss",
+        "Hazeel Cult",
+        "Enakhra's Lament",
+        "Temple of the Eye",
+        "The Garden of Death",
+        "Below Ice Mountain",
+        "His Faithful Servants"
       ],
       "skills": {
         "firemaking": 75,
         "magic": 75,
-        "herblore": 62,
         "thieving": 70,
+        "herblore": 62,
         "runecraft": 60,
         "construction": 60
       },
@@ -3255,16 +3895,42 @@
     "xp_rewards": {}
   },
   {
-    "id": "secrets_of_the_north",
+    "id": "Secrets of the North",
     "name": "Secrets of the North",
     "quest_points": 2,
     "difficulty": "Master",
     "requirements": {
       "quests": [
-        "making_friends_with_my_arm",
-        "the_generals_shadow",
-        "devious_minds",
-        "hazeel_cult"
+        "Making Friends with My Arm",
+        "My Arm's Big Adventure",
+        "Eadgar's Ruse",
+        "Druidic Ritual",
+        "Troll Stronghold",
+        "Death Plateau",
+        "The Feud",
+        "Jungle Potion",
+        "Swan Song",
+        "One Small Favour",
+        "Rune Mysteries",
+        "Shilo Village",
+        "Garden of Tranquillity",
+        "Creature of Fenkenstrain",
+        "Priest in Peril",
+        "The Restless Ghost",
+        "Cold War",
+        "Romeo & Juliet",
+        "The General's Shadow",
+        "Curse of the Empty Lord",
+        "Fight Arena",
+        "Devious Minds",
+        "Wanted!",
+        "Recruitment Drive",
+        "Black Knights' Fortress",
+        "The Lost Tribe",
+        "Goblin Diplomacy",
+        "Doric's Quest",
+        "Enter the Abyss",
+        "Hazeel Cult"
       ],
       "skills": {
         "agility": 69,
@@ -3275,12 +3941,24 @@
     },
     "xp_rewards": {
       "agility": 60000,
-      "hunter": 40000,
-      "thieving": 50000
+      "thieving": 50000,
+      "hunter": 40000
     }
   },
   {
-    "id": "children_of_the_sun",
+    "id": "His Faithful Servants",
+    "name": "His Faithful Servants",
+    "quest_points": 0,
+    "difficulty": "Experienced",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Children of the Sun",
     "name": "Children of the Sun",
     "quest_points": 1,
     "difficulty": "Novice",
@@ -3292,13 +3970,14 @@
     "xp_rewards": {}
   },
   {
-    "id": "perilous_moons",
+    "id": "Perilous Moons",
     "name": "Perilous Moons",
     "quest_points": 2,
     "difficulty": "Master",
     "requirements": {
       "quests": [
-        "twilights_promise"
+        "Twilight's Promise",
+        "Children of the Sun"
       ],
       "skills": {
         "slayer": 48,
@@ -3311,19 +3990,19 @@
     },
     "xp_rewards": {
       "fishing": 5000,
-      "hunter": 5000,
+      "slayer": 40000,
       "runecraft": 5000,
-      "slayer": 40000
+      "hunter": 5000
     }
   },
   {
-    "id": "the_ribbiting_tale_of_a_lily_pad_labour_dispute",
+    "id": "The Ribbiting Tale of a Lily Pad Labour Dispute",
     "name": "The Ribbiting Tale of a Lily Pad Labour Dispute",
     "quest_points": 1,
     "difficulty": "Novice",
     "requirements": {
       "quests": [
-        "children_of_the_sun"
+        "Children of the Sun"
       ],
       "skills": {
         "woodcutting": 15
@@ -3335,13 +4014,13 @@
     }
   },
   {
-    "id": "twilights_promise",
+    "id": "Twilight's Promise",
     "name": "Twilight's Promise",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "children_of_the_sun"
+        "Children of the Sun"
       ],
       "skills": {},
       "quest_points": 0
@@ -3351,14 +4030,14 @@
     }
   },
   {
-    "id": "at_first_light",
+    "id": "At First Light",
     "name": "At First Light",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "children_of_the_sun",
-        "eagles_peak"
+        "Children of the Sun",
+        "Eagles' Peak"
       ],
       "skills": {
         "hunter": 46,
@@ -3368,19 +4047,20 @@
       "quest_points": 0
     },
     "xp_rewards": {
-      "construction": 800,
       "herblore": 500,
-      "hunter": 4500
+      "hunter": 4500,
+      "construction": 800
     }
   },
   {
-    "id": "the_heart_of_darkness",
+    "id": "The Heart of Darkness",
     "name": "The Heart of Darkness",
     "quest_points": 2,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "twilights_promise"
+        "Twilight's Promise",
+        "Children of the Sun"
       ],
       "skills": {
         "mining": 55,
@@ -3391,41 +4071,41 @@
       "quest_points": 0
     },
     "xp_rewards": {
-      "agility": 8000,
       "mining": 8000,
-      "slayer": 8000,
-      "thieving": 8000
+      "agility": 8000,
+      "thieving": 8000,
+      "slayer": 8000
     }
   },
   {
-    "id": "death_on_the_isle",
+    "id": "Death on the Isle",
     "name": "Death on the Isle",
     "quest_points": 2,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [
-        "children_of_the_sun"
+        "Children of the Sun"
       ],
       "skills": {
-        "agility": 32,
-        "thieving": 34
+        "thieving": 34,
+        "agility": 32
       },
       "quest_points": 0
     },
     "xp_rewards": {
-      "agility": 7500,
       "crafting": 5000,
+      "agility": 7500,
       "thieving": 10000
     }
   },
   {
-    "id": "meat_and_greet",
+    "id": "Meat and Greet",
     "name": "Meat and Greet",
     "quest_points": 1,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [
-        "children_of_the_sun"
+        "Children of the Sun"
       ],
       "skills": {},
       "quest_points": 0
@@ -3435,14 +4115,14 @@
     }
   },
   {
-    "id": "ethically_acquired_antiquities",
+    "id": "Ethically Acquired Antiquities",
     "name": "Ethically Acquired Antiquities",
     "quest_points": 1,
     "difficulty": "Novice",
     "requirements": {
       "quests": [
-        "children_of_the_sun",
-        "shield_of_arrav"
+        "Children of the Sun",
+        "Shield of Arrav"
       ],
       "skills": {
         "thieving": 25
@@ -3454,35 +4134,63 @@
     }
   },
   {
-    "id": "the_blood_moon_rises",
+    "id": "The Blood Moon Rises",
     "name": "The Blood Moon Rises",
     "quest_points": 4,
     "difficulty": "Grandmaster",
     "requirements": {
-      "quests": [],
-      "skills": {},
+      "quests": [
+        "A Night at the Theatre",
+        "Sins of the Father",
+        "Vampyre Slayer",
+        "A Taste of Hope",
+        "Darkness of Hallowvale",
+        "In Aid of the Myreque",
+        "In Search of the Myreque"
+      ],
+      "skills": {
+        "slayer": 74,
+        "woodcutting": 74,
+        "smithing": 72,
+        "cooking": 72,
+        "fletching": 70,
+        "mining": 66,
+        "hunter": 65,
+        "crafting": 64,
+        "herblore": 64,
+        "magic": 57
+      },
       "quest_points": 0
     },
     "xp_rewards": {}
   },
   {
-    "id": "the_final_dawn",
+    "id": "The Final Dawn",
     "name": "The Final Dawn",
     "quest_points": 3,
     "difficulty": "Master",
     "requirements": {
-      "quests": [],
-      "skills": {},
+      "quests": [
+        "The Heart of Darkness",
+        "Twilight's Promise",
+        "Children of the Sun",
+        "Perilous Moons"
+      ],
+      "skills": {
+        "thieving": 66,
+        "runecraft": 52,
+        "fletching": 52
+      },
       "quest_points": 0
     },
     "xp_rewards": {
       "fletching": 25000,
-      "runecraft": 25000,
-      "thieving": 55000
+      "thieving": 55000,
+      "runecraft": 25000
     }
   },
   {
-    "id": "pandemonium",
+    "id": "Pandemonium",
     "name": "Pandemonium",
     "quest_points": 1,
     "difficulty": "Novice",
@@ -3496,28 +4204,37 @@
     }
   },
   {
-    "id": "prying_times",
+    "id": "Prying Times",
     "name": "Prying Times",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
-      "quests": [],
-      "skills": {},
+      "quests": [
+        "Pandemonium",
+        "The Knight's Sword"
+      ],
+      "skills": {
+        "smithing": 30,
+        "sailing": 12
+      },
       "quest_points": 0
     },
     "xp_rewards": {
-      "sailing": 800,
-      "smithing": 1000
+      "smithing": 1000,
+      "sailing": 800
     }
   },
   {
-    "id": "current_affairs",
+    "id": "Current Affairs",
     "name": "Current Affairs",
     "quest_points": 1,
     "difficulty": "Novice",
     "requirements": {
       "quests": [],
-      "skills": {},
+      "skills": {
+        "sailing": 22,
+        "fishing": 10
+      },
       "quest_points": 0
     },
     "xp_rewards": {
@@ -3526,76 +4243,207 @@
     }
   },
   {
-    "id": "troubled_tortugans",
+    "id": "Troubled Tortugans",
     "name": "Troubled Tortugans",
     "quest_points": 1,
     "difficulty": "Experienced",
     "requirements": {
       "quests": [],
-      "skills": {},
+      "skills": {
+        "slayer": 51,
+        "construction": 48,
+        "sailing": 45,
+        "hunter": 45,
+        "woodcutting": 40,
+        "crafting": 34
+      },
       "quest_points": 0
     },
     "xp_rewards": {
-      "sailing": 10000,
-      "slayer": 8000
+      "slayer": 8000,
+      "sailing": 10000
     }
   },
   {
-    "id": "the_red_reef",
+    "id": "The Red Reef",
     "name": "The Red Reef",
     "quest_points": 2,
     "difficulty": "Experienced",
     "requirements": {
-      "quests": [],
-      "skills": {},
+      "quests": [
+        "Troubled Tortugans",
+        "Pandemonium"
+      ],
+      "skills": {
+        "sailing": 52,
+        "smithing": 48
+      },
       "quest_points": 0
     },
     "xp_rewards": {
-      "sailing": 15000,
-      "smithing": 5000
+      "smithing": 5000,
+      "sailing": 15000
     }
   },
   {
-    "id": "shadows_of_custodia",
+    "id": "Shadows of Custodia",
     "name": "Shadows of Custodia",
     "quest_points": 2,
     "difficulty": "Experienced",
     "requirements": {
-      "quests": [],
-      "skills": {},
+      "quests": [
+        "Children of the Sun"
+      ],
+      "skills": {
+        "slayer": 54,
+        "fishing": 45,
+        "construction": 41,
+        "hunter": 36
+      },
       "quest_points": 0
     },
     "xp_rewards": {
-      "construction": 3000,
       "fishing": 3000,
+      "slayer": 10000,
       "hunter": 4000,
-      "slayer": 10000
+      "construction": 3000
     }
   },
   {
-    "id": "scrambled",
+    "id": "Scrambled!",
     "name": "Scrambled!",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
+      "quests": [
+        "Children of the Sun"
+      ],
+      "skills": {
+        "construction": 38,
+        "cooking": 36,
+        "smithing": 35
+      },
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "cooking": 5000,
+      "smithing": 5000,
+      "construction": 5000
+    }
+  },
+  {
+    "id": "Vale Totems (miniquest)",
+    "name": "Vale Totems (miniquest)",
+    "quest_points": 0,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [
+        "Children of the Sun"
+      ],
+      "skills": {
+        "fletching": 20
+      },
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Spirit of Adventure",
+    "name": "Spirit of Adventure",
+    "quest_points": 0,
+    "difficulty": "Novice",
+    "requirements": {
       "quests": [],
       "skills": {},
       "quest_points": 0
     },
-    "xp_rewards": {
-      "construction": 5000,
-      "cooking": 5000,
-      "smithing": 5000
-    }
+    "xp_rewards": {}
   },
   {
-    "id": "fallen_from_grace",
+    "id": "Lost Lover",
+    "name": "Lost Lover",
+    "quest_points": 0,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Learning the Ropes",
+    "name": "Learning the Ropes",
+    "quest_points": 1,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "The Ides of Milk",
+    "name": "The Ides of Milk",
+    "quest_points": 1,
+    "difficulty": "Novice",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "The Graveyard",
+    "name": "The Graveyard",
+    "quest_points": 0,
+    "difficulty": "Master",
+    "requirements": {
+      "quests": [
+        "The Fremennik Exiles",
+        "The Fremennik Isles",
+        "The Fremennik Trials",
+        "Lunar Diplomacy",
+        "Lost City",
+        "Rune Mysteries",
+        "Shilo Village",
+        "Jungle Potion",
+        "Druidic Ritual",
+        "Mountain Daughter",
+        "Heroes' Quest",
+        "Dragon Slayer I",
+        "Merlin's Crystal",
+        "Shield of Arrav",
+        "Olaf's Quest",
+        "Pandemonium"
+      ],
+      "skills": {
+        "sailing": 65,
+        "agility": 65,
+        "woodcutting": 56,
+        "fletching": 54
+      },
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "Fallen From Grace",
     "name": "Fallen From Grace",
     "quest_points": 2,
     "difficulty": "Experienced",
     "requirements": {
-      "quests": [],
-      "skills": {},
+      "quests": [
+        "Pandemonium"
+      ],
+      "skills": {
+        "sailing": 62,
+        "crafting": 60,
+        "runecraft": 47,
+        "mining": 53
+      },
       "quest_points": 0
     },
     "xp_rewards": {
@@ -3606,13 +4454,15 @@
     }
   },
   {
-    "id": "a_ruff_situation",
+    "id": "A Ruff Situation",
     "name": "A Ruff Situation",
     "quest_points": 1,
     "difficulty": "Novice",
     "requirements": {
       "quests": [],
-      "skills": {},
+      "skills": {
+        "crafting": 15
+      },
       "quest_points": 0
     },
     "xp_rewards": {
@@ -3620,13 +4470,16 @@
     }
   },
   {
-    "id": "crab_quest",
+    "id": "Crab Quest",
     "name": "Crab Quest",
     "quest_points": 1,
     "difficulty": "Intermediate",
     "requirements": {
       "quests": [],
-      "skills": {},
+      "skills": {
+        "sailing": 40,
+        "fishing": 30
+      },
       "quest_points": 0
     },
     "xp_rewards": {

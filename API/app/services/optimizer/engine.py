@@ -8,14 +8,17 @@ from app.services.optimizer.methods import get_skill_rate
 
 
 async def generate_optimization_plan(request: OptimizationRequest) -> OptimizationResponse:
-    # Check if quest actually exists in database
-    if request.target_goal not in QUEST_DB:
+    target_quest = QUEST_DB.get(request.target_goal)
+    if not target_quest:
+        for name, q in QUEST_DB.items():
+            if name.lower() == request.target_goal.lower():
+                target_quest = q
+                break
+    if not target_quest:
         raise HTTPException(
             status_code=404, 
             detail=f"Goal quest '{request.target_goal}' not found in quest database."
         )
-
-    target_quest = QUEST_DB[request.target_goal]
 
     # Use cached data or fetch live data if cache doesnt exist
     player = await fetch_player_profile(request.username, request.account_type)
@@ -154,22 +157,25 @@ async def generate_optimization_plan(request: OptimizationRequest) -> Optimizati
 def get_missing_quests(target_goal: str, completed_quests: set[str] | list[str]) -> list[Quest]:
     missing_quests: list[Quest] = []
     visited_quests: set[str] = set()
+    completed_lower = {q.lower() for q in completed_quests}
 
-    def visit(quest_id: str):
-        # If quest is already done then no work needs to be done
-        if quest_id in completed_quests:
+    def visit(quest_name: str):
+        if quest_name.lower() in completed_lower:
             return
 
-        # Check if quest has already been searched by DFS
-        if quest_id in visited_quests:
+        if quest_name.lower() in visited_quests:
             return
 
-        visited_quests.add(quest_id)
+        visited_quests.add(quest_name.lower())
 
-        if quest_id not in QUEST_DB:
+        quest = QUEST_DB.get(quest_name)
+        if not quest:
+            for name, q in QUEST_DB.items():
+                if name.lower() == quest_name.lower():
+                    quest = q
+                    break
+        if not quest:
             return
-
-        quest = QUEST_DB[quest_id]
 
         # Recursive call for each prerequisite quest
         for prerequisite in quest.requirements.quests:
