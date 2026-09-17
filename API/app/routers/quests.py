@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException, Query
 from app.models.quest import Quest
 from app.services.dataloader import QUEST_DB
-from app.services.quest_sync import sync_osrs_quests
 
 router = APIRouter(prefix="/api/quests", tags=["Quests"])
 

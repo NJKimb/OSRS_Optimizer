@@ -16,7 +16,7 @@ from app.services.dataloader import reload_quests
 
 logger = logging.getLogger(__name__)
 
-USER_AGENT = "OSRSAccountOptimizer/1.0 (https://github.com/NJKimb/OSRS_Optimizer)"
+USER_AGENT = "OSRSAccountOptimizer/1.0 (https://github.com/NJKimb/OSRS_Optimizer) Discord: JJoner"
 WIKI_API_ENDPOINT = "https://oldschool.runescape.wiki/api.php"
 
 SKILL_NAME_MAP = {
