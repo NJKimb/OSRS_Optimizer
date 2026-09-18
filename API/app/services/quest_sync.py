@@ -2,7 +2,6 @@ import html
 import json
 import logging
 import re
-import urllib.parse
 from pathlib import Path
 from typing import Any
 
@@ -21,8 +20,6 @@ WIKI_API_ENDPOINT = "https://oldschool.runescape.wiki/api.php"
 
 SKILL_NAME_MAP = {
     "runecrafting": "runecraft",
-    "runecraft": "runecraft",
-    "hitpoints": "hitpoints",
     "hp": "hitpoints",
 }
 
@@ -162,54 +159,6 @@ def parse_quest_xp_rewards(content: str) -> dict[str, dict[str, int]]:
     return xp_by_quest
 
 
-def parse_quest_requirements(wikitext: str) -> dict[str, dict[str, Any]]:
-    """
-    Legacy parser for `Module:Questreq/data` using `slpp`.
-    Maintained for backwards compatibility and unit testing.
-    """
-    start = wikitext.find("local questReqs = {")
-    end = wikitext.rfind("return questReqs")
-    if start == -1 or end == -1:
-        raise ValueError("Could not find questReqs table in Module:Questreq/data")
-
-    lua_code = wikitext[start + len("local questReqs = "):end].strip()
-    decoded = slpp.decode(lua_code) or {}
-
-    valid_skills = {s.value for s in Skill}
-    results = {}
-
-    for qname, data in decoded.items():
-        if not isinstance(data, dict):
-            continue
-
-        subquests = [q.strip() for q in data.get("quests", []) if isinstance(q, str) and q.strip()]
-        skills: dict[str, int] = {}
-        qp_req = 0
-
-        for item in data.get("skills", []):
-            if isinstance(item, (list, tuple)) and len(item) >= 2:
-                sname = str(item[0]).strip()
-                try:
-                    slevel = int(item[1])
-                    sname_lower = sname.lower()
-                    if sname_lower in ("quest point", "quest points"):
-                        qp_req = slevel
-                    else:
-                        canonical_skill = SKILL_NAME_MAP.get(sname_lower, sname_lower)
-                        if canonical_skill in valid_skills:
-                            skills[canonical_skill] = slevel
-                except (ValueError, TypeError):
-                    continue
-
-        results[qname] = {
-            "quests": subquests,
-            "skills": skills,
-            "quest_points": qp_req,
-        }
-
-    return results
-
-
 def parse_quests_list(html_text: str) -> list[dict[str, Any]]:
     """
     Legacy parser for `Quests/List` HTML using BeautifulSoup.
@@ -290,9 +239,18 @@ def sync_osrs_quests(
             continue
         seen_names.add(qname)
 
-        difficulty = item.get("official_difficulty") or "Novice"
+        raw_difficulty = item.get("official_difficulty")
+        raw_length = item.get("official_length")
         raw_reqs = item.get("requirements", "")
         req_data = parse_bucket_requirements(raw_reqs)
+
+        # Skip entries that aren't full official quests (e.g. miniquests or unreleased pitches)
+        if not raw_difficulty or not raw_length:
+            logger.warning(f"Skipping '{qname}': missing difficulty ({raw_difficulty}) or length ({raw_length})")
+            continue
+
+        difficulty = str(raw_difficulty).strip()
+        length = str(raw_length).strip().lower()
 
         typed_skills: dict[Skill, int] = {
             Skill(s): lvl for s, lvl in req_data["skills"].items() if s in valid_skills
@@ -316,6 +274,7 @@ def sync_osrs_quests(
             id=qname,
             name=qname,
             quest_points=qp,
+            length=length,
             difficulty=difficulty,
             requirements=requirements,
             xp_rewards=typed_xp_rewards,

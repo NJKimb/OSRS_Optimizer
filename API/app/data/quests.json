@@ -4,6 +4,7 @@
     "name": "Cook's Assistant",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -18,6 +19,7 @@
     "name": "Romeo & Juliet",
     "quest_points": 5,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -30,6 +32,7 @@
     "name": "Demon Slayer",
     "quest_points": 3,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -42,6 +45,7 @@
     "name": "Shield of Arrav",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -54,6 +58,7 @@
     "name": "Sheep Shearer",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -68,6 +73,7 @@
     "name": "The Restless Ghost",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -82,6 +88,7 @@
     "name": "Ernest the Chicken",
     "quest_points": 4,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -94,6 +101,7 @@
     "name": "Vampyre Slayer",
     "quest_points": 3,
     "difficulty": "Intermediate",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -108,6 +116,7 @@
     "name": "Imp Catcher",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -122,6 +131,7 @@
     "name": "Prince Ali Rescue",
     "quest_points": 3,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -134,6 +144,7 @@
     "name": "Doric's Quest",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -148,6 +159,7 @@
     "name": "Black Knights' Fortress",
     "quest_points": 3,
     "difficulty": "Intermediate",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -160,6 +172,7 @@
     "name": "Witch's Potion",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -174,6 +187,7 @@
     "name": "The Knight's Sword",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -190,6 +204,7 @@
     "name": "Goblin Diplomacy",
     "quest_points": 5,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -204,6 +219,7 @@
     "name": "Pirate's Treasure",
     "quest_points": 2,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -216,6 +232,7 @@
     "name": "Dragon Slayer I",
     "quest_points": 2,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -231,6 +248,7 @@
     "name": "Druidic Ritual",
     "quest_points": 4,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -245,6 +263,7 @@
     "name": "Lost City",
     "quest_points": 3,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -260,6 +279,7 @@
     "name": "Witch's House",
     "quest_points": 4,
     "difficulty": "Intermediate",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -274,6 +294,7 @@
     "name": "Merlin's Crystal",
     "quest_points": 6,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -286,6 +307,7 @@
     "name": "Heroes' Quest",
     "quest_points": 1,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Shield of Arrav",
@@ -321,6 +343,7 @@
     "name": "Scorpion Catcher",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -337,6 +360,7 @@
     "name": "Family Crest",
     "quest_points": 1,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -354,6 +378,7 @@
     "name": "Fishing Contest",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -370,6 +395,7 @@
     "name": "Tribal Totem",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -386,6 +412,7 @@
     "name": "Monk's Friend",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -400,6 +427,7 @@
     "name": "Temple of Ikov",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -418,6 +446,7 @@
     "name": "Clock Tower",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -430,6 +459,7 @@
     "name": "Holy Grail",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [
         "Merlin's Crystal"
@@ -449,6 +479,7 @@
     "name": "Tree Gnome Village",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -463,6 +494,7 @@
     "name": "Fight Arena",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -478,6 +510,7 @@
     "name": "Hazeel Cult",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -492,6 +525,7 @@
     "name": "Sheep Herder",
     "quest_points": 4,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -504,6 +538,7 @@
     "name": "Plague City",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -518,6 +553,7 @@
     "name": "Sea Slug",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -534,6 +570,7 @@
     "name": "Waterfall Quest",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -549,6 +586,7 @@
     "name": "Jungle Potion",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -565,6 +603,7 @@
     "name": "The Grand Tree",
     "quest_points": 5,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -583,6 +622,7 @@
     "name": "Underground Pass",
     "quest_points": 5,
     "difficulty": "Experienced",
+    "length": "long",
     "requirements": {
       "quests": [
         "Biohazard",
@@ -603,6 +643,7 @@
     "name": "Observatory Quest",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -617,6 +658,7 @@
     "name": "The Tourist Trap",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -632,6 +674,7 @@
     "name": "Watchtower",
     "quest_points": 4,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -652,6 +695,7 @@
     "name": "Dwarf Cannon",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -666,6 +710,7 @@
     "name": "Murder Mystery",
     "quest_points": 3,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -680,6 +725,7 @@
     "name": "The Dig Site",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -699,6 +745,7 @@
     "name": "Gertrude's Cat",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -713,6 +760,7 @@
     "name": "Legends' Quest",
     "quest_points": 4,
     "difficulty": "Master",
+    "length": "long",
     "requirements": {
       "quests": [
         "Family Crest",
@@ -746,24 +794,11 @@
     "xp_rewards": {}
   },
   {
-    "id": "Rogue Trader",
-    "name": "Rogue Trader",
-    "quest_points": 0,
-    "difficulty": "Novice",
-    "requirements": {
-      "quests": [
-        "Gertrude's Cat"
-      ],
-      "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {}
-  },
-  {
     "id": "Rune Mysteries",
     "name": "Rune Mysteries",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -776,6 +811,7 @@
     "name": "Death Plateau",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -790,6 +826,7 @@
     "name": "Eadgar's Ruse",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Druidic Ritual",
@@ -810,6 +847,7 @@
     "name": "Big Chompy Bird Hunting",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -830,6 +868,7 @@
     "name": "Elemental Workshop I",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -849,6 +888,7 @@
     "name": "Nature Spirit",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -865,6 +905,7 @@
     "name": "Priest in Peril",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -879,6 +920,7 @@
     "name": "Regicide",
     "quest_points": 3,
     "difficulty": "Experienced",
+    "length": "long",
     "requirements": {
       "quests": [
         "Underground Pass",
@@ -900,6 +942,7 @@
     "name": "Tai Bwo Wannai Trio",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Jungle Potion",
@@ -924,6 +967,7 @@
     "name": "Troll Stronghold",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -938,6 +982,7 @@
     "name": "Shades of Mort'ton",
     "quest_points": 3,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [
         "Priest in Peril"
@@ -959,6 +1004,7 @@
     "name": "The Fremennik Trials",
     "quest_points": 3,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -982,6 +1028,7 @@
     "name": "Horror from the Deep",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -1000,6 +1047,7 @@
     "name": "Throne of Miscellania",
     "quest_points": 1,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Heroes' Quest",
@@ -1019,6 +1067,7 @@
     "name": "Monkey Madness I",
     "quest_points": 3,
     "difficulty": "Master",
+    "length": "long",
     "requirements": {
       "quests": [
         "The Grand Tree",
@@ -1034,6 +1083,7 @@
     "name": "Haunted Mine",
     "quest_points": 2,
     "difficulty": "Experienced",
+    "length": "short",
     "requirements": {
       "quests": [
         "Priest in Peril"
@@ -1052,6 +1102,7 @@
     "name": "Troll Romance",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [
         "Troll Stronghold",
@@ -1072,6 +1123,7 @@
     "name": "In Search of the Myreque",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [
         "Nature Spirit",
@@ -1096,6 +1148,7 @@
     "name": "Creature of Fenkenstrain",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -1113,6 +1166,7 @@
     "name": "Roving Elves",
     "quest_points": 1,
     "difficulty": "Experienced",
+    "length": "short",
     "requirements": {
       "quests": [
         "Regicide",
@@ -1135,6 +1189,7 @@
     "name": "Ghosts Ahoy",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -1152,6 +1207,7 @@
     "name": "One Small Favour",
     "quest_points": 2,
     "difficulty": "Experienced",
+    "length": "long",
     "requirements": {
       "quests": [
         "Rune Mysteries",
@@ -1174,6 +1230,7 @@
     "name": "Mountain Daughter",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -1191,6 +1248,7 @@
     "name": "Between a Rock...",
     "quest_points": 2,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Dwarf Cannon",
@@ -1214,6 +1272,7 @@
     "name": "The Feud",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -1230,6 +1289,7 @@
     "name": "The Golem",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -1248,6 +1308,7 @@
     "name": "Desert Treasure I",
     "quest_points": 3,
     "difficulty": "Master",
+    "length": "long",
     "requirements": {
       "quests": [
         "The Dig Site",
@@ -1275,6 +1336,7 @@
     "name": "Icthlarin's Little Helper",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -1291,6 +1353,7 @@
     "name": "Tears of Guthix",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -1309,6 +1372,7 @@
     "name": "The Lost Tribe",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [
         "Goblin Diplomacy",
@@ -1330,6 +1394,7 @@
     "name": "The Giant Dwarf",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -1354,6 +1419,7 @@
     "name": "Recruitment Drive",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [
         "Black Knights' Fortress",
@@ -1373,6 +1439,7 @@
     "name": "Mourning's End Part I",
     "quest_points": 2,
     "difficulty": "Master",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Roving Elves",
@@ -1400,6 +1467,7 @@
     "name": "Forgettable Tale...",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "long",
     "requirements": {
       "quests": [
         "The Giant Dwarf",
@@ -1421,6 +1489,7 @@
     "name": "Garden of Tranquillity",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "long",
     "requirements": {
       "quests": [
         "Creature of Fenkenstrain",
@@ -1441,6 +1510,7 @@
     "name": "A Tail of Two Cats",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Icthlarin's Little Helper",
@@ -1456,6 +1526,7 @@
     "name": "Wanted!",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Recruitment Drive",
@@ -1479,6 +1550,7 @@
     "name": "Mourning's End Part II",
     "quest_points": 2,
     "difficulty": "Master",
+    "length": "long",
     "requirements": {
       "quests": [
         "Mourning's End Part I",
@@ -1502,6 +1574,7 @@
     "name": "Rum Deal",
     "quest_points": 2,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Zogre Flesh Eaters",
@@ -1530,6 +1603,7 @@
     "name": "Shadow of the Storm",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [
         "The Golem",
@@ -1547,6 +1621,7 @@
     "name": "Making History",
     "quest_points": 3,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [
         "Priest in Peril",
@@ -1565,6 +1640,7 @@
     "name": "Ratcatchers",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Icthlarin's Little Helper",
@@ -1583,6 +1659,7 @@
     "name": "Spirits of the Elid",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -1604,6 +1681,7 @@
     "name": "Devious Minds",
     "quest_points": 1,
     "difficulty": "Experienced",
+    "length": "short",
     "requirements": {
       "quests": [
         "Wanted!",
@@ -1637,6 +1715,7 @@
     "name": "The Hand in the Sand",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -1655,6 +1734,7 @@
     "name": "Enakhra's Lament",
     "quest_points": 2,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -1677,6 +1757,7 @@
     "name": "Cabin Fever",
     "quest_points": 2,
     "difficulty": "Experienced",
+    "length": "short",
     "requirements": {
       "quests": [
         "Pirate's Treasure",
@@ -1706,6 +1787,7 @@
     "name": "Fairytale I - Growing Pains",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Lost City",
@@ -1727,6 +1809,7 @@
     "name": "Recipe for Disaster",
     "quest_points": 10,
     "difficulty": "Special",
+    "length": "very long",
     "requirements": {
       "quests": [
         "Fishing Contest",
@@ -1790,6 +1873,7 @@
     "name": "In Aid of the Myreque",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [
         "In Search of the Myreque",
@@ -1817,6 +1901,7 @@
     "name": "A Soul's Bane",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -1832,6 +1917,7 @@
     "name": "Rag and Bone Man I",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -1847,6 +1933,7 @@
     "name": "Swan Song",
     "quest_points": 2,
     "difficulty": "Master",
+    "length": "medium",
     "requirements": {
       "quests": [
         "One Small Favour",
@@ -1880,6 +1967,7 @@
     "name": "Royal Trouble",
     "quest_points": 1,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Throne of Miscellania",
@@ -1907,6 +1995,7 @@
     "name": "Death to the Dorgeshuun",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [
         "The Lost Tribe",
@@ -1929,6 +2018,7 @@
     "name": "Fairytale II - Cure a Queen",
     "quest_points": 2,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Fairytale I - Growing Pains",
@@ -1954,6 +2044,7 @@
     "name": "Lunar Diplomacy",
     "quest_points": 2,
     "difficulty": "Experienced",
+    "length": "long",
     "requirements": {
       "quests": [
         "The Fremennik Trials",
@@ -1984,6 +2075,7 @@
     "name": "The Eyes of Glouphrie",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -2004,6 +2096,7 @@
     "name": "Darkness of Hallowvale",
     "quest_points": 2,
     "difficulty": "Experienced",
+    "length": "long",
     "requirements": {
       "quests": [
         "In Aid of the Myreque",
@@ -2034,6 +2127,7 @@
     "name": "The Slug Menace",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Wanted!",
@@ -2066,6 +2160,7 @@
     "name": "Elemental Workshop II",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -2084,6 +2179,7 @@
     "name": "My Arm's Big Adventure",
     "quest_points": 1,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Eadgar's Ruse",
@@ -2109,6 +2205,7 @@
     "name": "Enlightened Journey",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -2130,6 +2227,7 @@
     "name": "Eagles' Peak",
     "quest_points": 2,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -2146,6 +2244,7 @@
     "name": "Animal Magnetism",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [
         "The Restless Ghost",
@@ -2172,6 +2271,7 @@
     "name": "Contact!",
     "quest_points": 1,
     "difficulty": "Experienced",
+    "length": "short",
     "requirements": {
       "quests": [
         "Prince Ali Rescue",
@@ -2190,6 +2290,7 @@
     "name": "Cold War",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -2212,6 +2313,7 @@
     "name": "The Fremennik Isles",
     "quest_points": 1,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -2230,6 +2332,7 @@
     "name": "The Great Brain Robbery",
     "quest_points": 2,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Creature of Fenkenstrain",
@@ -2263,6 +2366,7 @@
     "name": "What Lies Below",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [
         "Rune Mysteries"
@@ -2282,6 +2386,7 @@
     "name": "Olaf's Quest",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -2299,6 +2404,7 @@
     "name": "Another Slice of H.A.M.",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [
         "Death to the Dorgeshuun",
@@ -2324,6 +2430,7 @@
     "name": "Dream Mentor",
     "quest_points": 2,
     "difficulty": "Master",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Lunar Diplomacy",
@@ -2350,6 +2457,7 @@
     "name": "Grim Tales",
     "quest_points": 1,
     "difficulty": "Master",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Witch's House"
@@ -2377,6 +2485,7 @@
     "name": "King's Ransom",
     "quest_points": 1,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Black Knights' Fortress",
@@ -2405,6 +2514,7 @@
     "name": "Shilo Village",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Jungle Potion",
@@ -2425,6 +2535,7 @@
     "name": "Biohazard",
     "quest_points": 3,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -2439,6 +2550,7 @@
     "name": "Alfred Grimhand's Barcrawl",
     "quest_points": 0,
     "difficulty": "Novice",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -2451,6 +2563,7 @@
     "name": "Enter the Abyss",
     "quest_points": 0,
     "difficulty": "Intermediate",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -2465,6 +2578,7 @@
     "name": "The General's Shadow",
     "quest_points": 0,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -2477,6 +2591,7 @@
     "name": "Barbarian Training",
     "quest_points": 0,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -2498,6 +2613,7 @@
     "name": "Skippy and the Mogres",
     "quest_points": 0,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -2512,6 +2628,7 @@
     "name": "Curse of the Empty Lord",
     "quest_points": 0,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -2527,6 +2644,7 @@
     "name": "Tower of Life",
     "quest_points": 2,
     "difficulty": "Novice",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -2545,6 +2663,7 @@
     "name": "Rag and Bone Man II",
     "quest_points": 1,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -2562,6 +2681,7 @@
     "name": "Land of the Goblins",
     "quest_points": 2,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Another Slice of H.A.M.",
@@ -2593,6 +2713,7 @@
     "name": "While Guthix Sleeps",
     "quest_points": 5,
     "difficulty": "Grandmaster",
+    "length": "very long",
     "requirements": {
       "quests": [
         "Defender of Varrock",
@@ -2663,6 +2784,7 @@
     "name": "Zogre Flesh Eaters",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [
         "Big Chompy Bird Hunting",
@@ -2687,6 +2809,7 @@
     "name": "Lair of Tarn Razorlor",
     "quest_points": 0,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -2701,6 +2824,7 @@
     "name": "Architectural Alliance",
     "quest_points": 0,
     "difficulty": "Experienced",
+    "length": "long",
     "requirements": {
       "quests": [],
       "skills": {
@@ -2715,6 +2839,7 @@
     "name": "Monkey Madness II",
     "quest_points": 4,
     "difficulty": "Grandmaster",
+    "length": "very long",
     "requirements": {
       "quests": [
         "Enlightened Journey",
@@ -2750,6 +2875,7 @@
     "name": "Bear Your Soul",
     "quest_points": 0,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -2762,6 +2888,7 @@
     "name": "The Enchanted Key",
     "quest_points": 0,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -2774,6 +2901,7 @@
     "name": "Mage Arena I",
     "quest_points": 0,
     "difficulty": "Experienced",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -2788,6 +2916,7 @@
     "name": "Family Pest",
     "quest_points": 0,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -2800,6 +2929,7 @@
     "name": "Misthalin Mystery",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -2814,6 +2944,7 @@
     "name": "Client of Kourend",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [
         "X Marks the Spot"
@@ -2828,6 +2959,7 @@
     "name": "The Queen of Thieves",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "very short",
     "requirements": {
       "quests": [
         "Client of Kourend",
@@ -2847,6 +2979,7 @@
     "name": "Bone Voyage",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [
         "The Dig Site"
@@ -2861,6 +2994,7 @@
     "name": "Dragon Slayer II",
     "quest_points": 5,
     "difficulty": "Grandmaster",
+    "length": "very long",
     "requirements": {
       "quests": [
         "Legends' Quest",
@@ -2921,6 +3055,7 @@
     "name": "The Depths of Despair",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [
         "Client of Kourend",
@@ -2940,6 +3075,7 @@
     "name": "Recipe for Disaster/Another Cook's Quest",
     "quest_points": 1,
     "difficulty": "Special",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -2954,6 +3090,7 @@
     "name": "Recipe for Disaster/Freeing the Goblin generals",
     "quest_points": 1,
     "difficulty": "Special",
+    "length": "short",
     "requirements": {
       "quests": [
         "Recipe for Disaster/Another Cook's Quest",
@@ -2974,6 +3111,7 @@
     "name": "Recipe for Disaster/Freeing the Mountain Dwarf",
     "quest_points": 1,
     "difficulty": "Special",
+    "length": "short",
     "requirements": {
       "quests": [
         "Recipe for Disaster/Another Cook's Quest",
@@ -2993,6 +3131,7 @@
     "name": "Recipe for Disaster/Freeing Evil Dave",
     "quest_points": 1,
     "difficulty": "Special",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Gertrude's Cat",
@@ -3014,6 +3153,7 @@
     "name": "Recipe for Disaster/Freeing Pirate Pete",
     "quest_points": 1,
     "difficulty": "Special",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Recipe for Disaster/Another Cook's Quest",
@@ -3036,6 +3176,7 @@
     "name": "Recipe for Disaster/Freeing the Lumbridge Guide",
     "quest_points": 1,
     "difficulty": "Special",
+    "length": "short",
     "requirements": {
       "quests": [
         "Big Chompy Bird Hunting",
@@ -3065,6 +3206,7 @@
     "name": "Recipe for Disaster/Freeing Sir Amik Varze",
     "quest_points": 1,
     "difficulty": "Special",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Family Crest",
@@ -3096,6 +3238,7 @@
     "name": "Recipe for Disaster/Freeing King Awowogei",
     "quest_points": 1,
     "difficulty": "Special",
+    "length": "long",
     "requirements": {
       "quests": [
         "Monkey Madness I",
@@ -3120,6 +3263,7 @@
     "name": "Recipe for Disaster/Freeing Skrach Uglogwee",
     "quest_points": 1,
     "difficulty": "Special",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Big Chompy Bird Hunting",
@@ -3143,6 +3287,7 @@
     "name": "Recipe for Disaster/Full guide",
     "quest_points": 0,
     "difficulty": "Special",
+    "length": "very long",
     "requirements": {
       "quests": [
         "Fishing Contest",
@@ -3206,6 +3351,7 @@
     "name": "Mage Arena II",
     "quest_points": 0,
     "difficulty": "Master",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -3220,6 +3366,7 @@
     "name": "The Corsair Curse",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -3232,6 +3379,7 @@
     "name": "A Taste of Hope",
     "quest_points": 1,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Darkness of Hallowvale",
@@ -3257,6 +3405,7 @@
     "name": "Tale of the Righteous",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [
         "Client of Kourend",
@@ -3275,6 +3424,7 @@
     "name": "Making Friends with My Arm",
     "quest_points": 2,
     "difficulty": "Master",
+    "length": "medium",
     "requirements": {
       "quests": [
         "My Arm's Big Adventure",
@@ -3315,6 +3465,7 @@
     "name": "Recipe for Disaster/Defeating the Culinaromancer",
     "quest_points": 1,
     "difficulty": "Special",
+    "length": "short",
     "requirements": {
       "quests": [
         "Desert Treasure I",
@@ -3346,6 +3497,7 @@
     "name": "Song of the Elves",
     "quest_points": 4,
     "difficulty": "Grandmaster",
+    "length": "very long",
     "requirements": {
       "quests": [
         "Mourning's End Part II",
@@ -3389,6 +3541,7 @@
     "name": "The Ascent of Arceuus",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [
         "Client of Kourend",
@@ -3409,6 +3562,7 @@
     "name": "The Forsaken Tower",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [
         "Client of Kourend",
@@ -3427,6 +3581,7 @@
     "name": "The Fremennik Exiles",
     "quest_points": 2,
     "difficulty": "Master",
+    "length": "medium",
     "requirements": {
       "quests": [
         "The Fremennik Isles",
@@ -3464,6 +3619,7 @@
     "name": "X Marks the Spot",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -3476,6 +3632,7 @@
     "name": "The Curse of Arrav",
     "quest_points": 2,
     "difficulty": "Master",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Defender of Varrock",
@@ -3516,6 +3673,7 @@
     "name": "Defender of Varrock",
     "quest_points": 2,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Shield of Arrav",
@@ -3547,6 +3705,7 @@
     "name": "In Search of Knowledge",
     "quest_points": 0,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -3559,6 +3718,7 @@
     "name": "Sins of the Father",
     "quest_points": 2,
     "difficulty": "Master",
+    "length": "long",
     "requirements": {
       "quests": [
         "Vampyre Slayer",
@@ -3586,6 +3746,7 @@
     "name": "A Kingdom Divided",
     "quest_points": 2,
     "difficulty": "Experienced",
+    "length": "long",
     "requirements": {
       "quests": [
         "The Depths of Despair",
@@ -3614,6 +3775,7 @@
     "name": "Daddy's Home",
     "quest_points": 0,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -3626,6 +3788,7 @@
     "name": "A Porcine of Interest",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -3640,6 +3803,7 @@
     "name": "Getting Ahead",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -3658,6 +3822,7 @@
     "name": "Below Ice Mountain",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -3670,6 +3835,7 @@
     "name": "A Night at the Theatre",
     "quest_points": 2,
     "difficulty": "Master",
+    "length": "medium",
     "requirements": {
       "quests": [
         "A Taste of Hope",
@@ -3688,6 +3854,7 @@
     "name": "Beneath Cursed Sands",
     "quest_points": 2,
     "difficulty": "Master",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Contact!",
@@ -3711,6 +3878,7 @@
     "name": "The Frozen Door",
     "quest_points": 0,
     "difficulty": "Master",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -3728,6 +3896,7 @@
     "name": "Hopespear's Will",
     "quest_points": 0,
     "difficulty": "Master",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -3742,6 +3911,7 @@
     "name": "Temple of the Eye",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [
         "Enter the Abyss",
@@ -3761,6 +3931,7 @@
     "name": "The Path of Glouphrie",
     "quest_points": 2,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [
         "The Eyes of Glouphrie",
@@ -3789,6 +3960,7 @@
     "name": "Sleeping Giants",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -3805,6 +3977,7 @@
     "name": "Into the Tombs",
     "quest_points": 0,
     "difficulty": "Master",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Beneath Cursed Sands",
@@ -3823,6 +3996,7 @@
     "name": "The Garden of Death",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -3839,6 +4013,7 @@
     "name": "Desert Treasure II - The Fallen Empire",
     "quest_points": 5,
     "difficulty": "Grandmaster",
+    "length": "very long",
     "requirements": {
       "quests": [
         "Desert Treasure I",
@@ -3899,6 +4074,7 @@
     "name": "Secrets of the North",
     "quest_points": 2,
     "difficulty": "Master",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Making Friends with My Arm",
@@ -3950,6 +4126,7 @@
     "name": "His Faithful Servants",
     "quest_points": 0,
     "difficulty": "Experienced",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -3962,6 +4139,7 @@
     "name": "Children of the Sun",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -3974,6 +4152,7 @@
     "name": "Perilous Moons",
     "quest_points": 2,
     "difficulty": "Master",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Twilight's Promise",
@@ -4000,6 +4179,7 @@
     "name": "The Ribbiting Tale of a Lily Pad Labour Dispute",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [
         "Children of the Sun"
@@ -4018,6 +4198,7 @@
     "name": "Twilight's Promise",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [
         "Children of the Sun"
@@ -4034,6 +4215,7 @@
     "name": "At First Light",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [
         "Children of the Sun",
@@ -4057,6 +4239,7 @@
     "name": "The Heart of Darkness",
     "quest_points": 2,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Twilight's Promise",
@@ -4082,6 +4265,7 @@
     "name": "Death on the Isle",
     "quest_points": 2,
     "difficulty": "Intermediate",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Children of the Sun"
@@ -4103,6 +4287,7 @@
     "name": "Meat and Greet",
     "quest_points": 1,
     "difficulty": "Experienced",
+    "length": "short",
     "requirements": {
       "quests": [
         "Children of the Sun"
@@ -4119,6 +4304,7 @@
     "name": "Ethically Acquired Antiquities",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [
         "Children of the Sun",
@@ -4138,6 +4324,7 @@
     "name": "The Blood Moon Rises",
     "quest_points": 4,
     "difficulty": "Grandmaster",
+    "length": "very long",
     "requirements": {
       "quests": [
         "A Night at the Theatre",
@@ -4169,6 +4356,7 @@
     "name": "The Final Dawn",
     "quest_points": 3,
     "difficulty": "Master",
+    "length": "long",
     "requirements": {
       "quests": [
         "The Heart of Darkness",
@@ -4194,6 +4382,7 @@
     "name": "Pandemonium",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -4208,6 +4397,7 @@
     "name": "Prying Times",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [
         "Pandemonium",
@@ -4229,6 +4419,7 @@
     "name": "Current Affairs",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -4247,6 +4438,7 @@
     "name": "Troubled Tortugans",
     "quest_points": 1,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [],
       "skills": {
@@ -4269,6 +4461,7 @@
     "name": "The Red Reef",
     "quest_points": 2,
     "difficulty": "Experienced",
+    "length": "medium",
     "requirements": {
       "quests": [
         "Troubled Tortugans",
@@ -4290,6 +4483,7 @@
     "name": "Shadows of Custodia",
     "quest_points": 2,
     "difficulty": "Experienced",
+    "length": "short",
     "requirements": {
       "quests": [
         "Children of the Sun"
@@ -4314,6 +4508,7 @@
     "name": "Scrambled!",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [
         "Children of the Sun"
@@ -4336,6 +4531,7 @@
     "name": "Vale Totems (miniquest)",
     "quest_points": 0,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [
         "Children of the Sun"
@@ -4348,34 +4544,11 @@
     "xp_rewards": {}
   },
   {
-    "id": "Spirit of Adventure",
-    "name": "Spirit of Adventure",
-    "quest_points": 0,
-    "difficulty": "Novice",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {}
-  },
-  {
-    "id": "Lost Lover",
-    "name": "Lost Lover",
-    "quest_points": 0,
-    "difficulty": "Novice",
-    "requirements": {
-      "quests": [],
-      "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {}
-  },
-  {
     "id": "Learning the Ropes",
     "name": "Learning the Ropes",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "very short",
     "requirements": {
       "quests": [],
       "skills": {},
@@ -4388,43 +4561,10 @@
     "name": "The Ides of Milk",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {},
-      "quest_points": 0
-    },
-    "xp_rewards": {}
-  },
-  {
-    "id": "The Graveyard",
-    "name": "The Graveyard",
-    "quest_points": 0,
-    "difficulty": "Master",
-    "requirements": {
-      "quests": [
-        "The Fremennik Exiles",
-        "The Fremennik Isles",
-        "The Fremennik Trials",
-        "Lunar Diplomacy",
-        "Lost City",
-        "Rune Mysteries",
-        "Shilo Village",
-        "Jungle Potion",
-        "Druidic Ritual",
-        "Mountain Daughter",
-        "Heroes' Quest",
-        "Dragon Slayer I",
-        "Merlin's Crystal",
-        "Shield of Arrav",
-        "Olaf's Quest",
-        "Pandemonium"
-      ],
-      "skills": {
-        "sailing": 65,
-        "agility": 65,
-        "woodcutting": 56,
-        "fletching": 54
-      },
       "quest_points": 0
     },
     "xp_rewards": {}
@@ -4434,6 +4574,7 @@
     "name": "Fallen From Grace",
     "quest_points": 2,
     "difficulty": "Experienced",
+    "length": "short",
     "requirements": {
       "quests": [
         "Pandemonium"
@@ -4458,6 +4599,7 @@
     "name": "A Ruff Situation",
     "quest_points": 1,
     "difficulty": "Novice",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {
@@ -4474,6 +4616,7 @@
     "name": "Crab Quest",
     "quest_points": 1,
     "difficulty": "Intermediate",
+    "length": "short",
     "requirements": {
       "quests": [],
       "skills": {

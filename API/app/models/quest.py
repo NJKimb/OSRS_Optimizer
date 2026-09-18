@@ -11,5 +11,6 @@ class Quest(BaseModel):
     name: str
     quest_points: int
     difficulty: str
+    length: str
     requirements: QuestRequirements = Field(default_factory=QuestRequirements)
     xp_rewards: dict[Skill, int] = Field(default_factory=dict)

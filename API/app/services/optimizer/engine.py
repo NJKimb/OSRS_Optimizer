@@ -6,6 +6,15 @@ from app.services.hiscores import fetch_player_profile
 from app.services.dataloader import QUEST_DB
 from app.services.optimizer.methods import get_skill_rate
 
+# Estimated time to complete every official quest length
+QUEST_ESTIMATED_TIME = {
+    "very short": .08,
+    "short": .2,
+    "short - medium": .33,
+    "medium": .5,
+    "long": 1,
+    "very long": 2.25
+}
 
 async def generate_optimization_plan(request: OptimizationRequest) -> OptimizationResponse:
     target_quest = QUEST_DB.get(request.target_goal)
@@ -52,7 +61,6 @@ async def generate_optimization_plan(request: OptimizationRequest) -> Optimizati
     skill_requirements = get_skill_requirements(missing_quests)
 
     # Generate optimization plan accounting for quest experience rewards
-    # (Gemini wrote this I have no idea how it works)
     simulated_xp: dict[Skill, int] = {
         skill: (player.skills[skill].xp if skill in player.skills else (1154 if skill == Skill.HITPOINTS else 0))
         for skill in Skill
@@ -105,7 +113,7 @@ async def generate_optimization_plan(request: OptimizationRequest) -> Optimizati
                 step_type="quest",
                 title=f"Complete {quest.name}",
                 description=reward_desc,
-                estimated_hours=0.0
+                estimated_hours=QUEST_ESTIMATED_TIME.get(quest.length.strip().lower(), .5)
             )
         )
         step_counter += 1
