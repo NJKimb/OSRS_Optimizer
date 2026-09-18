@@ -144,11 +144,24 @@ async def generate_optimization_plan(request: OptimizationRequest) -> Optimizati
                     simulated_xp[skill] = required_xp
 
         # 3. Complete the chosen quest and claim rewards
+        parts = []
         rewards_list = [
             f"+{xp:,} {sk.value.title()} XP" 
             for sk, xp in best_quest.xp_rewards.items()
         ]
-        reward_desc = f"Grants: {', '.join(rewards_list)}" if rewards_list else "Unlocks downstream progression."
+        if rewards_list:
+            parts.append(f"Grants: {', '.join(rewards_list)}")
+        # Show quests that chosen quest is prerequisite for in rewards
+        downstream = [
+            q.name for q in missing_quests
+            if q.name != best_quest.name and any(req.lower() == best_quest.name.lower() for req in q.requirements.quests)
+        ]
+        if downstream:
+            parts.append(f"Prerequisite for {', '.join(downstream)}")
+        elif best_quest.name.lower() != target_quest.name.lower():
+            parts.append(f"Prerequisite for {target_quest.name}")
+
+        reward_desc = ". ".join(parts) + "." if parts else f"Goal {target_quest.name} completed!"
 
         roadmap.append(
             RoadmapStep(
