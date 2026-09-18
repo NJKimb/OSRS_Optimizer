@@ -151,13 +151,23 @@ async def generate_optimization_plan(request: OptimizationRequest) -> Optimizati
         ]
         if rewards_list:
             parts.append(f"Grants: {', '.join(rewards_list)}")
-        # Show quests that chosen quest is prerequisite for in rewards
+        # Show specific immediate quest that chosen quest is a direct prerequisite for
         downstream = [
-            q.name for q in missing_quests
+            q for q in missing_quests
             if q.name != best_quest.name and any(req.lower() == best_quest.name.lower() for req in q.requirements.quests)
         ]
-        if downstream:
-            parts.append(f"Prerequisite for {', '.join(downstream)}")
+        # Filter out indirect downstream quests (i.e. quests that depend on another quest in downstream)
+        direct_dependents = [
+            d.name for d in downstream
+            if not any(
+                any(req.lower() == other.name.lower() for req in d.requirements.quests)
+                for other in downstream
+                if other.name != d.name
+            )
+        ]
+
+        if direct_dependents:
+            parts.append(f"Prerequisite for {', '.join(direct_dependents)}")
         elif best_quest.name.lower() != target_quest.name.lower():
             parts.append(f"Prerequisite for {target_quest.name}")
 
