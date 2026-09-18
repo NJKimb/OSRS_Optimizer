@@ -72,38 +72,81 @@ async def generate_optimization_plan(request: OptimizationRequest) -> Optimizati
     roadmap: list[RoadmapStep] = []
     step_counter = 1
 
-    for quest in missing_quests:
-        # Step A: Before this quest can be started, train any deficient prerequisite skills
-        for skill, required_level in quest.requirements.skills.items():
-            required_xp = XP_TABLE[min(required_level, 99)]
-            current_xp = simulated_xp[skill]
+    remaining_quests: dict[str, Quest] = {q.name: q for q in missing_quests}
+    completed_names: set[str] = {q.lower() for q in player.completed_quests}
+    current_qp: int = sum(QUEST_DB[q].quest_points for q in player.completed_quests if q in QUEST_DB)
+    ordered_completed_quests: list[Quest] = []
 
-            if current_xp < required_xp:
-                xp_diff = required_xp - current_xp
-                rate = get_skill_rate(skill, request.custom_xp_rates)
-                training_hours = round(xp_diff / rate, 2)
-                hours_per_skill[skill] += training_hours
+    def candidate_sort_key(q: Quest):
+        q_time = QUEST_ESTIMATED_TIME.get(q.length.strip().lower(), 0.5)
+        needed_training_hours = 0.0
+        for s, lvl in q.requirements.skills.items():
+            req_xp = XP_TABLE[min(lvl, 99)]
+            curr_xp = simulated_xp[s]
+            if curr_xp < req_xp:
+                r = get_skill_rate(s, request.custom_xp_rates)
+                needed_training_hours += (req_xp - curr_xp) / r
+        return (q_time, needed_training_hours, q.name)
 
-                current_lvl = xp_to_level(current_xp)
-                roadmap.append(
-                    RoadmapStep(
-                        step_number=step_counter,
-                        step_type="skill_training",
-                        title=f"Train {skill.value.title()} to level {required_level}",
-                        description=(
-                            f"Train from level {current_lvl} to {required_level} "
-                            f"(+{xp_diff:,} XP needed for {quest.name}) at ~{rate:,} XP/hr."
-                        ),
-                        estimated_hours=training_hours
+    while remaining_quests:
+        # 1. Candidate quests whose prerequisite quests are completed
+        ready_candidates = [
+            q for q in remaining_quests.values()
+            if all(req.lower() in completed_names for req in q.requirements.quests)
+        ]
+
+        if not ready_candidates:
+            # Fallback to avoid deadlock if requirements contain circular or unresolvable dependencies
+            ready_candidates = list(remaining_quests.values())
+
+        # Prefer candidates that also satisfy Quest Point requirements if available
+        qp_ready = [q for q in ready_candidates if current_qp >= q.requirements.quest_points]
+        candidates = qp_ready if qp_ready else ready_candidates
+
+        # 2. Check which candidates require ZERO additional skilling right now
+        doable_now = [
+            q for q in candidates
+            if all(xp_to_level(simulated_xp[s]) >= lvl for s, lvl in q.requirements.skills.items())
+        ]
+
+        if doable_now:
+            # Prioritize completing quests over skilling; pick the shortest quest first
+            best_quest = min(doable_now, key=candidate_sort_key)
+        else:
+            # No doable quest without skilling: pick candidate with shortest length / least training
+            best_quest = min(candidates, key=candidate_sort_key)
+
+            # Train any deficient prerequisite skills for this quest
+            for skill, required_level in best_quest.requirements.skills.items():
+                required_xp = XP_TABLE[min(required_level, 99)]
+                current_xp = simulated_xp[skill]
+
+                if current_xp < required_xp:
+                    xp_diff = required_xp - current_xp
+                    rate = get_skill_rate(skill, request.custom_xp_rates)
+                    training_hours = round(xp_diff / rate, 2)
+                    hours_per_skill[skill] += training_hours
+
+                    current_lvl = xp_to_level(current_xp)
+                    roadmap.append(
+                        RoadmapStep(
+                            step_number=step_counter,
+                            step_type="skill_training",
+                            title=f"Train {skill.value.title()} to level {required_level}",
+                            description=(
+                                f"Train from level {current_lvl} to {required_level} "
+                                f"(+{xp_diff:,} XP needed for {best_quest.name}) at ~{rate:,} XP/hr."
+                            ),
+                            estimated_hours=training_hours
+                        )
                     )
-                )
-                step_counter += 1
-                simulated_xp[skill] = required_xp
+                    step_counter += 1
+                    simulated_xp[skill] = required_xp
 
-        # Step B: Complete the quest and claim its XP rewards
+        # 3. Complete the chosen quest and claim rewards
         rewards_list = [
             f"+{xp:,} {sk.value.title()} XP" 
-            for sk, xp in quest.xp_rewards.items()
+            for sk, xp in best_quest.xp_rewards.items()
         ]
         reward_desc = f"Grants: {', '.join(rewards_list)}" if rewards_list else "Unlocks downstream progression."
 
@@ -111,19 +154,23 @@ async def generate_optimization_plan(request: OptimizationRequest) -> Optimizati
             RoadmapStep(
                 step_number=step_counter,
                 step_type="quest",
-                title=f"Complete {quest.name}",
+                title=f"Complete {best_quest.name}",
                 description=reward_desc,
-                estimated_hours=QUEST_ESTIMATED_TIME.get(quest.length.strip().lower(), .5)
+                estimated_hours=QUEST_ESTIMATED_TIME.get(best_quest.length.strip().lower(), 0.5)
             )
         )
         step_counter += 1
 
         # Apply quest XP rewards to our simulation (ONLY for prerequisite quests, not the final goal itself!)
-        if quest.id != request.target_goal:
-            for sk, xp in quest.xp_rewards.items():
+        if best_quest.id != request.target_goal and best_quest.name.lower() != request.target_goal.lower():
+            for sk, xp in best_quest.xp_rewards.items():
                 simulated_xp[sk] += xp
                 quest_xp_awarded[sk] += xp
 
+        completed_names.add(best_quest.name.lower())
+        current_qp += best_quest.quest_points
+        ordered_completed_quests.append(best_quest)
+        del remaining_quests[best_quest.name]
 
     # 6. Build Skill Deficit summary breakdown
     skill_deficits: list[SkillDeficit] = []
@@ -155,7 +202,7 @@ async def generate_optimization_plan(request: OptimizationRequest) -> Optimizati
     return OptimizationResponse(
         goal_name=target_quest.name,
         total_hours_remaining=total_hours,
-        missing_quests=[q.name for q in missing_quests],
+        missing_quests=[q.name for q in ordered_completed_quests],
         skill_deficits=skill_deficits,
         roadmap=roadmap
     )
