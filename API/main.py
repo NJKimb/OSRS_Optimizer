@@ -1,10 +1,7 @@
-from fastapi import FastAPI, Query
-from app.core.skills import AccountType
-from app.models.player import PlayerProfile
-from app.services.hiscores import fetch_player_profile
-from app.models.plan import OptimizationRequest, OptimizationResponse
-from app.services.optimizer.engine import generate_optimization_plan
+from fastapi import FastAPI
 from app.routers.quests import router as quests_router
+from app.routers.player import router as player_router
+from app.routers.optimizer import router as optimizer_router
 
 
 app = FastAPI(
@@ -14,6 +11,8 @@ app = FastAPI(
 )
 
 app.include_router(quests_router)
+app.include_router(player_router)
+app.include_router(optimizer_router)
 
 @app.get("/")
 def read_root():
@@ -22,12 +21,3 @@ def read_root():
 @app.get("/api/health")
 def health_check():
     return {"status": "healthy"}
-
-@app.get("/api/player/{username}", response_model=PlayerProfile)
-async def get_player_profile(username: str, account_type: AccountType = Query(default=AccountType.MAIN)):
-    return await fetch_player_profile(username, account_type)
-
-@app.post("/api/optimize/plan", response_model=OptimizationResponse)
-async def optimize_plan(request: OptimizationRequest):
-    return await generate_optimization_plan(request)
-

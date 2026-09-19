@@ -5,8 +5,7 @@ from main import app
 from app.core.skills import Skill
 from app.models.quest import Quest
 from app.services.dataloader import QUEST_DB
-from app.services.quest_sync import (
-    parse_quest_requirements,
+from app.services.quest_parser import (
     parse_bucket_requirements,
     parse_quest_xp_rewards,
     parse_quests_list,
@@ -18,46 +17,6 @@ class TestQuestSync(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.client = TestClient(app)
-
-    def test_parse_quest_requirements_mock(self):
-        sample_lua = """
-local questReqs = {
-    ['Animal Magnetism'] = {
-        ['quests'] = {
-            'Ernest the Chicken',
-            'Priest in Peril',
-            'The Restless Ghost'
-        },
-        ['skills'] = {
-            {'Crafting', 19},
-            {'Prayer', 31, 'ironman'},
-            {'Ranged', 30},
-            {'Slayer', 18},
-            {'Woodcutting', 35}
-        }
-    },
-    ['Below Ice Mountain'] = {
-        ['quests'] = {},
-        ['skills'] = {
-            {'Quest point', 16}
-        }
-    }
-}
-return questReqs
-        """
-        reqs = parse_quest_requirements(sample_lua)
-        self.assertIn("Animal Magnetism", reqs)
-        self.assertEqual(reqs["Animal Magnetism"]["quests"], [
-            "Ernest the Chicken",
-            "Priest in Peril",
-            "The Restless Ghost"
-        ])
-        self.assertEqual(reqs["Animal Magnetism"]["skills"]["crafting"], 19)
-        self.assertEqual(reqs["Animal Magnetism"]["skills"]["ranged"], 30)
-        self.assertEqual(reqs["Animal Magnetism"]["quest_points"], 0)
-
-        self.assertIn("Below Ice Mountain", reqs)
-        self.assertEqual(reqs["Below Ice Mountain"]["quest_points"], 16)
 
     def test_parse_quest_xp_rewards_mock(self):
         sample_wikitext = """

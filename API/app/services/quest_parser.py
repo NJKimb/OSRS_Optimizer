@@ -7,7 +7,6 @@ from typing import Any
 
 from bs4 import BeautifulSoup
 import httpx2
-from slpp import slpp
 
 from app.core.skills import Skill
 from app.models.quest import Quest, QuestRequirements
@@ -282,7 +281,7 @@ def sync_osrs_quests(
         validated_quests.append(quest)
 
     if save:
-        out_path = target_file or (Path(__file__).parent.parent / "data" / "quests.json")
+        out_path = target_file or (Path(__file__).resolve().parents[2] / "data" / "quests.json")
         out_path.parent.mkdir(parents=True, exist_ok=True)
         quest_data = [q.model_dump(mode="json") for q in validated_quests]
         with open(out_path, "w", encoding="utf-8") as f:

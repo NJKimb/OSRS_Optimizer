@@ -1,6 +1,5 @@
-from app.core.skills import AccountType
-from app.models.player import SkillDetail
-from app.models.player import PlayerProfile
+import cachetools
+from app.models.player import AccountType, SkillDetail, PlayerProfile
 import httpx2
 import time
 from fastapi import HTTPException
@@ -13,9 +12,7 @@ HISCORES_BASE_URLS = {
     AccountType.ULTIMATE_IRONMAN: "https://services.runescape.com/m=hiscore_oldschool_ultimate/index_lite.json",
 }
 
-# TODO: Cache currently does not wipe automatically, implement cleanup
-_PROFILE_CACHE: dict[str, tuple[float, PlayerProfile]] = {}
-CACHE_DURATION_SECONDS = 300  # 5 minutes
+_PROFILE_CACHE = cachetools.TTLCache(maxsize=2000, ttl=300)
 
 async def fetch_player_profile(username: str, account_type: AccountType) -> PlayerProfile:
 
@@ -23,11 +20,9 @@ async def fetch_player_profile(username: str, account_type: AccountType) -> Play
     current_time = time.time()
 
     if cache_key in _PROFILE_CACHE:
-        timestamp, cached_profile = _PROFILE_CACHE[cache_key]
-        if current_time - timestamp < CACHE_DURATION_SECONDS:
-            return cached_profile
+        return _PROFILE_CACHE[cache_key].model_copy(deep=True)
 
-    base_url = HISCORES_BASE_URLS.get(account_type, AccountType.MAIN)
+    base_url = HISCORES_BASE_URLS.get(account_type, HISCORES_BASE_URLS[AccountType.MAIN])
     params = {"player": username}
     headers = {"User-Agent": "OSRS_Account_Optimizer"}
 

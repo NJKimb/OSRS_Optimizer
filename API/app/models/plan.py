@@ -1,7 +1,6 @@
-from app.core.skills import AccountType
+from app.models.player import AccountType
 from pydantic import BaseModel, Field
 from app.core.skills import Skill
-from app.models.player import PlayerProfile
 
 # What the frontend sends:
 class OptimizationRequest(BaseModel):

@@ -31,12 +31,6 @@ class Skill(StrEnum):
     CONSTRUCTION = "construction"
     SAILING = "sailing"
 
-class AccountType(StrEnum):
-    MAIN = "main"
-    IRONMAN = "ironman"
-    HARDCORE_IRONMAN = "hardcore_ironman"
-    ULTIMATE_IRONMAN = "ultimate_ironman"
-
 def calculate_xp_for_level(level: int) -> int:
     """Calculates total XP needed for a specific level using the OSRS formula."""
     if level <= 1:

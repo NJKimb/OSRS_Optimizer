@@ -15,7 +15,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger("sync_quests")
 
-from app.services.quest_sync import sync_osrs_quests
+from app.services.quest_parser import sync_osrs_quests
 
 def main():
     logger.info("Starting OSRS Wiki quest synchronization...")
