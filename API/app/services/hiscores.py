@@ -60,6 +60,6 @@ async def fetch_player_profile(username: str, account_type: AccountType) -> Play
 
     profile = PlayerProfile(username=username, account_type=account_type, skills = skills_data)
 
-    _PROFILE_CACHE[cache_key] = (current_time, profile)
+    _PROFILE_CACHE[cache_key] = profile
 
     return profile

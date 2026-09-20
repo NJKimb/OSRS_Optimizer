@@ -1,3 +1,4 @@
+from typing import Any
 from app.models.player import AccountType
 from pydantic import BaseModel, Field
 from app.core.skills import Skill
@@ -7,7 +8,8 @@ class OptimizationRequest(BaseModel):
     username: str
     account_type: AccountType = AccountType.MAIN
     target_goal: str                                         # e.g. "song_of_the_elves"
-    completed_quests: set[str] = Field(default_factory=set) # Optional completed quests
+    quests_status: Any = Field(default=None)                 # Exporter JSON dict, list, or string
+    completed_quests: Any = Field(default=None)              # Backward-compatible alias
     custom_xp_rates: dict[Skill, int] = Field(default_factory=dict)
 
 # Breakdown of each skill's deficit & hours:

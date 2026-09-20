@@ -18,4 +18,4 @@ class PlayerProfile(BaseModel):
     account_type: AccountType
     # Maps each Skill enum to its level/xp/rank
     skills: dict[Skill, SkillDetail]
-    completed_quests: set[str] = Field(default_factory=set)
+    quests_status: set[str] = Field(default_factory=set)

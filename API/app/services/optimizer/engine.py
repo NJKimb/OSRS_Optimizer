@@ -1,3 +1,4 @@
+from app.services.player_quest_parser import parse_player_quest_status
 from fastapi import HTTPException
 from app.core.skills import Skill, XP_TABLE, xp_to_level
 from app.models.plan import OptimizationResponse, OptimizationRequest, SkillDeficit, RoadmapStep
@@ -32,12 +33,15 @@ async def generate_optimization_plan(request: OptimizationRequest) -> Optimizati
     # Use cached data or fetch live data if cache doesnt exist
     player = await fetch_player_profile(request.username, request.account_type)
 
-    # If the request contains completed quests then update the player profile with them
-    if request.completed_quests:
-        player.completed_quests.update(request.completed_quests)
+    # Merge finished quests from the exporter with the player profile
+    player_completed_quests = set(player.quests_status)
+    raw_quest_data = request.quests_status if request.quests_status is not None else request.completed_quests
+    if raw_quest_data:
+        finished_quests = parse_player_quest_status(raw_quest_data)
+        player_completed_quests.update(finished_quests)
 
     # Get missing quests
-    missing_quests = get_missing_quests(request.target_goal, player.completed_quests)
+    missing_quests = get_missing_quests(request.target_goal, player_completed_quests)
 
     # If goal is already completed, return an immediate 0-hour plan
     if not missing_quests:
@@ -73,8 +77,18 @@ async def generate_optimization_plan(request: OptimizationRequest) -> Optimizati
     step_counter = 1
 
     remaining_quests: dict[str, Quest] = {q.name: q for q in missing_quests}
-    completed_names: set[str] = {q.lower() for q in player.completed_quests}
-    current_qp: int = sum(QUEST_DB[q].quest_points for q in player.completed_quests if q in QUEST_DB)
+    completed_names: set[str] = {q.lower() for q in player_completed_quests}
+
+    def _resolve_qp(q_name: str) -> int:
+        if q_name in QUEST_DB:
+            return QUEST_DB[q_name].quest_points
+        q_low = q_name.lower()
+        for name, quest in QUEST_DB.items():
+            if name.lower() == q_low:
+                return quest.quest_points
+        return 0
+
+    current_qp: int = sum(_resolve_qp(q) for q in player_completed_quests)
     ordered_completed_quests: list[Quest] = []
 
     def candidate_sort_key(q: Quest):

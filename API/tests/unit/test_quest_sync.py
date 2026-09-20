@@ -5,7 +5,7 @@ from main import app
 from app.core.skills import Skill
 from app.models.quest import Quest
 from app.services.dataloader import QUEST_DB
-from app.services.quest_parser import (
+from app.services.wiki_quest_parser import (
     parse_bucket_requirements,
     parse_quest_xp_rewards,
     parse_quests_list,
