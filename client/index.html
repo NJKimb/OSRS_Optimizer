@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OSRS Account Optimizer | Quest Roadmap & Skill Simulator</title>
+  <meta name="description" content="Optimize your Old School RuneScape account progression with optimal quest sequencing, skill training roadmaps, and RuneLite character exporter integration.">
+  
+  <!-- Google Fonts: Cinzel for RPG grandeur, Inter for clean modern UI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#" class="logo-group">
+        <div class="logo-icon">⚔️</div>
+        <div class="logo-text">
+          <h1>OSRS Optimizer</h1>
+          <span>Account Progression Engine</span>
+        </div>
+      </a>
+      <div class="header-actions">
+        <div id="api-status" class="status-badge offline" title="Backend connection status">
+          <span class="status-dot"></span> Checking API...
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Banner -->
+    <section class="hero-section">
+      <div class="hero-pill">Old School RuneScape Progression Tool</div>
+      <h2>Forge Your Path to <span>Grandmaster</span> Unlocks</h2>
+      <p>Simulate the mathematically optimal order for quests, skip unnecessary skilling grinds with quest XP rewards, and track your account progression.</p>
+    </section>
+
+    <!-- Configuration Panel -->
+    <section class="config-card">
+      <div class="card-title">
+        <span>Optimizer Configuration</span>
+        <button type="button" id="btn-load-demo" class="badge-demo" title="Load sample profile for John RedHelm">
+          ⚡ Try Demo Account (John RedHelm)
+        </button>
+      </div>
+
+      <!-- Player & Goal Inputs Grid -->
+      <div class="form-grid">
+        <!-- Username & Hiscores -->
+        <div class="form-group">
+          <label class="form-label" for="username-input">
+            <span>OSRS Username</span>
+          </label>
+          <div class="input-with-button">
+            <input type="text" id="username-input" class="form-input" placeholder="e.g. Lynx Titan" spellcheck="false" autocomplete="off">
+            <button type="button" id="btn-fetch-hiscores" class="btn btn-secondary" title="Fetch live stats from Jagex Hiscores">
+              <span>📊 Stats</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Account Type -->
+        <div class="form-group">
+          <label class="form-label" for="account-type-select">Account Type</label>
+          <select id="account-type-select" class="form-select">
+            <option value="main">Standard (Main)</option>
+            <option value="ironman">Ironman (Solo)</option>
+            <option value="hardcore_ironman">Hardcore Ironman (HCIM)</option>
+            <option value="ultimate_ironman">Ultimate Ironman (UIM)</option>
+          </select>
+        </div>
+
+        <!-- Target Goal -->
+        <div class="form-group">
+          <label class="form-label" for="target-goal-select">Target Quest / Goal</label>
+          <select id="target-goal-select" class="form-select">
+            <option value="">Loading quests from database...</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Quick Preset Milestones -->
+      <div class="presets-container">
+        <div class="presets-label">Popular Milestones & Capes:</div>
+        <div id="preset-chips-container" class="presets-chips">
+          <!-- Populated by presets.js -->
+        </div>
+      </div>
+
+      <!-- RuneLite Exporter Dropzone -->
+      <div class="form-group" style="margin-bottom: 20px;">
+        <div class="form-label">
+          <span>RuneLite Quest Exporter File (Optional)</span>
+          <button type="button" id="btn-paste-json-modal" class="badge-demo">
+            📋 Paste Raw JSON
+          </button>
+        </div>
+        
+        <div id="dropzone" class="dropzone-container">
+          <div class="dropzone-icon">📁</div>
+          <div class="dropzone-text">
+            Drag & drop your RuneLite <strong>quests.json</strong> here, or click to browse.
+          </div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">
+            Located at: <code>.runelite/character-exporter/&lt;Player&gt;/quests.json</code>
+          </div>
+          <input type="file" id="file-input" class="dropzone-file-input" accept=".json">
+        </div>
+
+        <!-- Loaded Summary Badge -->
+        <div id="quests-status-summary" class="quests-status-summary" style="display: none;">
+          <span id="quests-summary-text"></span>
+          <button type="button" id="btn-clear-quests">Clear</button>
+        </div>
+      </div>
+
+      <!-- Advanced XP Rates Accordion -->
+      <button type="button" id="accordion-toggle-rates" class="accordion-toggle">
+        ▼ Customize Skilling XP Rates (XP/hr)
+      </button>
+      <div id="accordion-rates-content" class="accordion-content">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <span style="font-size: 0.8rem; color: var(--text-secondary);">Customize training speeds to match your account methods:</span>
+          <button type="button" id="btn-reset-rates" class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.75rem;">
+            Reset to Defaults
+          </button>
+        </div>
+        <div id="rates-grid" class="rates-grid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <div class="submit-row">
+        <button type="button" id="btn-generate-plan" class="btn btn-primary btn-glow">
+          <span id="plan-spinner" class="spinner" style="display: none;"></span>
+          <span id="plan-button-text">Generate Optimal Roadmap</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results-container" style="display: none;">
+      <!-- KPI Metric Summary Row -->
+      <div class="metrics-row">
+        <div class="metric-card">
+          <div class="metric-label">Target Milestone</div>
+          <div id="metric-goal" class="metric-value" style="font-size: 1.3rem;">-</div>
+          <div class="metric-sub">Calculated requirement tree</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">⏱️ Total Playtime</div>
+          <div id="metric-hours" class="metric-value highlight">-</div>
+          <div class="metric-sub">Estimated time remaining</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">📜 Missing Quests</div>
+          <div id="metric-quests-count" class="metric-value">-</div>
+          <div class="metric-sub">Prerequisites remaining</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">⛏️ Net XP to Grind</div>
+          <div id="metric-xp-grind" class="metric-value" style="color: #e67e22;">-</div>
+          <div class="metric-sub">After quest XP offsets</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">🎁 Free Quest XP</div>
+          <div id="metric-xp-reward" class="metric-value" style="color: #2ecc71;">-</div>
+          <div class="metric-sub">Saved via quest rewards</div>
+        </div>
+      </div>
+
+      <!-- View Navigation Tabs -->
+      <div class="tabs-nav">
+        <button type="button" id="tab-roadmap" class="tab-btn active">🗺️ Step-by-Step Roadmap</button>
+        <button type="button" id="tab-deficits" class="tab-btn">📊 Skill Deficit Matrix</button>
+        <button type="button" id="tab-stats" class="tab-btn">👤 Player Stats</button>
+        <button type="button" id="tab-quests" class="tab-btn">📜 Quest Directory</button>
+      </div>
+
+      <!-- TAB 1: ROADMAP VIEW -->
+      <div id="view-roadmap" class="roadmap-container">
+        <div class="roadmap-header">
+          <div class="roadmap-controls">
+            <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Filter:</span>
+            <button type="button" id="filter-all" class="filter-btn active">All Steps</button>
+            <button type="button" id="filter-quests" class="filter-btn">Quests Only</button>
+            <button type="button" id="filter-skilling" class="filter-btn">Skilling Only</button>
+          </div>
+          <button type="button" id="btn-copy-markdown" class="btn btn-secondary" style="font-size: 0.8rem; padding: 6px 12px;">
+            📋 Copy as Markdown
+          </button>
+        </div>
+
+        <!-- Progress Tracker Bar -->
+        <div id="progress-container" class="progress-container" style="display: none;">
+          <div class="progress-header">
+            <span id="progress-label">Progress: Step 0 of 0 finished</span>
+            <strong id="progress-percent" style="color: var(--gold-primary);">0%</strong>
+          </div>
+          <div class="progress-bar-bg">
+            <div id="progress-bar-fill" class="progress-bar-fill"></div>
+          </div>
+        </div>
+
+        <!-- Timeline Steps -->
+        <div id="timeline-container" class="timeline">
+          <!-- Populated by app.js -->
+        </div>
+      </div>
+
+      <!-- TAB 2: SKILL DEFICITS VIEW -->
+      <div id="view-deficits" style="display: none;">
+        <div id="deficits-empty" class="empty-state" style="display: none;">
+          <div class="empty-icon">✨</div>
+          <h3>No Skill Deficits</h3>
+          <p>Your current skill levels already meet all requirements for these quests!</p>
+        </div>
+        <div id="deficits-grid" class="deficits-grid">
+          <!-- Populated by app.js -->
+        </div>
+      </div>
+
+      <!-- TAB 3: PLAYER STATS VIEW -->
+      <div id="view-stats" style="display: none;">
+        <div id="stats-empty" class="empty-state">
+          <div class="empty-icon">📊</div>
+          <h3>No Player Stats Loaded Yet</h3>
+          <p>Enter an OSRS username and click "Stats" to view their hiscore profile.</p>
+        </div>
+        <div id="stats-grid" class="metrics-row" style="display: none;">
+          <!-- Populated by app.js -->
+        </div>
+      </div>
+
+      <!-- TAB 4: QUEST EXPLORER VIEW -->
+      <div id="view-quests" style="display: none;" class="roadmap-container">
+        <div style="display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap;">
+          <input type="text" id="quest-search-input" class="form-input" style="max-width: 320px;" placeholder="Search quest name...">
+          <select id="quest-difficulty-filter" class="form-select" style="max-width: 200px;">
+            <option value="">All Difficulties</option>
+            <option value="Novice">Novice</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Experienced">Experienced</option>
+            <option value="Master">Master</option>
+            <option value="Grandmaster">Grandmaster</option>
+            <option value="Special">Special</option>
+          </select>
+        </div>
+        <div class="table-responsive">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Quest Name</th>
+                <th>Difficulty</th>
+                <th>Length</th>
+                <th>QP</th>
+                <th>Skill Reqs</th>
+                <th>Prerequisites</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="quest-table-body">
+              <!-- Populated by app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Paste JSON Modal -->
+  <div id="paste-modal" class="modal-overlay">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Paste RuneLite Quests JSON</h3>
+        <button type="button" id="btn-close-paste" class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px;">
+          Paste the contents of your <code>quests.json</code> exported by the RuneLite Character Exporter:
+        </p>
+        <textarea id="paste-textarea" placeholder='{"summary": {"finished": 120}, "quests": [{"name": "Cook&apos;s Assistant", "state": "FINISHED"}]}'></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btn-apply-paste" class="btn btn-primary">Apply Quests Data</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
