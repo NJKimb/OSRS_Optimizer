@@ -1,9 +1,11 @@
 import cachetools
 from app.models.player import AccountType, SkillDetail, PlayerProfile
 import httpx2
-import time
+import logging
 from fastapi import HTTPException
 from app.core.skills import Skill
+
+logger = logging.getLogger(__name__)
 
 HISCORES_BASE_URLS = {
     AccountType.MAIN: "https://secure.runescape.com/m=hiscore_oldschool/index_lite.json",
@@ -17,7 +19,6 @@ _PROFILE_CACHE = cachetools.TTLCache(maxsize=2000, ttl=300)
 async def fetch_player_profile(username: str, account_type: AccountType) -> PlayerProfile:
 
     cache_key = f"{username.lower()}_{account_type.value}"
-    current_time = time.time()
 
     if cache_key in _PROFILE_CACHE:
         return _PROFILE_CACHE[cache_key].model_copy(deep=True)
@@ -45,8 +46,10 @@ async def fetch_player_profile(username: str, account_type: AccountType) -> Play
         try:
             skill_enum = Skill(raw_name)
         except ValueError:
+            logger.debug("Unrecognized hiscores skill name '%s' was ignored", raw_name)
             continue
 
+        # If hiscores returns -1 in a skill, the player has not trained the skill
         level = item.get("level", -1)
         xp = item.get("xp", -1)
         rank = item.get("rank", -1)
