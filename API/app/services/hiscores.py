@@ -16,14 +16,19 @@ HISCORES_BASE_URLS = {
 
 _PROFILE_CACHE = cachetools.TTLCache(maxsize=2000, ttl=300)
 
-async def fetch_player_profile(username: str, account_type: AccountType) -> PlayerProfile:
+
+async def fetch_player_profile(
+    username: str, account_type: AccountType
+) -> PlayerProfile:
 
     cache_key = f"{username.lower()}_{account_type.value}"
 
     if cache_key in _PROFILE_CACHE:
         return _PROFILE_CACHE[cache_key].model_copy(deep=True)
 
-    base_url = HISCORES_BASE_URLS.get(account_type, HISCORES_BASE_URLS[AccountType.MAIN])
+    base_url = HISCORES_BASE_URLS.get(
+        account_type, HISCORES_BASE_URLS[AccountType.MAIN]
+    )
     params = {"player": username}
     headers = {"User-Agent": "OSRS_Account_Optimizer"}
 
@@ -31,12 +36,18 @@ async def fetch_player_profile(username: str, account_type: AccountType) -> Play
         try:
             response = await client.get(base_url, params=params, headers=headers)
         except httpx2.RequestError:
-            raise HTTPException(status_code=503, detail="Unable to connect to Jagex Hiscores.")
+            raise HTTPException(
+                status_code=503, detail="Unable to connect to Jagex Hiscores."
+            )
         if response.status_code == 404:
-            raise HTTPException(status_code=404, detail=f"Player '{username}' not found on hiscores.")
-        
+            raise HTTPException(
+                status_code=404, detail=f"Player '{username}' not found on hiscores."
+            )
+
         if response.status_code != 200:
-            raise HTTPException(status_code=502, detail="Error fetching data from Jagex Hiscores.")
+            raise HTTPException(
+                status_code=502, detail="Error fetching data from Jagex Hiscores."
+            )
         data = response.json()
 
     skills_data = {}
@@ -59,9 +70,11 @@ async def fetch_player_profile(username: str, account_type: AccountType) -> Play
             level = 10 if skill_enum == Skill.HITPOINTS else 1
             xp = 1154 if skill_enum == Skill.HITPOINTS else 0
 
-        skills_data[skill_enum] = SkillDetail(level = level, xp = xp, rank = rank)
+        skills_data[skill_enum] = SkillDetail(level=level, xp=xp, rank=rank)
 
-    profile = PlayerProfile(username=username, account_type=account_type, skills = skills_data)
+    profile = PlayerProfile(
+        username=username, account_type=account_type, skills=skills_data
+    )
 
     _PROFILE_CACHE[cache_key] = profile
 

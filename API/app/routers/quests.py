@@ -7,8 +7,12 @@ router = APIRouter(prefix="/api/quests", tags=["Quests"])
 
 @router.get("", response_model=list[Quest])
 def list_quests(
-    search: str | None = Query(default=None, description="Filter by quest name substring"),
-    difficulty: str | None = Query(default=None, description="Filter by difficulty (e.g. Novice, Master)"),
+    search: str | None = Query(
+        default=None, description="Filter by quest name substring"
+    ),
+    difficulty: str | None = Query(
+        default=None, description="Filter by difficulty (e.g. Novice, Master)"
+    ),
     repo: QuestRepository = Depends(get_quest_repository),
 ):
     """Returns all available quests with optional filtering."""

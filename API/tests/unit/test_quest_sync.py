@@ -160,7 +160,9 @@ class TestQuestSync(unittest.TestCase):
         resp = self.client.get("/api/quests?difficulty=Grandmaster")
         self.assertEqual(resp.status_code, 200)
         gm_quests = resp.json()
-        self.assertTrue(all(q["difficulty"].lower() == "grandmaster" for q in gm_quests))
+        self.assertTrue(
+            all(q["difficulty"].lower() == "grandmaster" for q in gm_quests)
+        )
         self.assertTrue(any(q["name"] == "Song of the Elves" for q in gm_quests))
 
         # Single quest

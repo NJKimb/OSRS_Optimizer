@@ -27,9 +27,13 @@ class QuestRepository:
     def get(self, name_or_id: str) -> Quest | None:
         """O(1) lookup supporting exact name, lowercase, or slug format."""
         normalized = name_or_id.strip().lower()
-        return self._by_normalized_name.get(normalized) or self._by_normalized_name.get(normalized.replace(" ", "_"))
+        return self._by_normalized_name.get(normalized) or self._by_normalized_name.get(
+            normalized.replace(" ", "_")
+        )
 
-    def search(self, query: str | None = None, difficulty: str | None = None) -> list[Quest]:
+    def search(
+        self, query: str | None = None, difficulty: str | None = None
+    ) -> list[Quest]:
         """
         Filters quests by name substring and/or difficulty.
         Returns all quests if no filters are provided.

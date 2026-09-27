@@ -22,38 +22,46 @@ SKILL_NAME_MAP = {
     "hp": "hitpoints",
 }
 
+
 def fetch_wiki_page_content(page_title: str = "", prop: str | None = None) -> Any:
     """
     Fetches wikitext or parsed HTML from the OSRS Wiki API if prop is specified.
     If prop is None, queries the Wiki Bucket API for all quest entries.
     """
     if prop is not None:
-        params = {
-            "action": "parse",
-            "page": page_title,
-            "prop": prop,
-            "format": "json"
-        }
-        response = httpx2.get(WIKI_API_ENDPOINT, params=params, headers={"User-Agent": USER_AGENT}, timeout=30)
+        params = {"action": "parse", "page": page_title, "prop": prop, "format": "json"}
+        response = httpx2.get(
+            WIKI_API_ENDPOINT,
+            params=params,
+            headers={"User-Agent": USER_AGENT},
+            timeout=30,
+        )
         if response.status_code == 200:
             data = response.json()
             if "error" in data:
-                raise RuntimeError(f"OSRS Wiki API error for '{page_title}': {data['error'].get('info')}")
+                raise RuntimeError(
+                    f"OSRS Wiki API error for '{page_title}': {data['error'].get('info')}"
+                )
             return data["parse"][prop]["*"]
         else:
-            raise RuntimeError(f"OSRS Wiki API request failed with status {response.status_code}")
+            raise RuntimeError(
+                f"OSRS Wiki API request failed with status {response.status_code}"
+            )
     else:
         query_string = "bucket('quest').select('page_name', 'official_difficulty', 'official_length', 'requirements').run()"
-        params = {
-            "action": "bucket",
-            "format": "json",
-            "query": query_string
-        }
-        response = httpx2.get(WIKI_API_ENDPOINT, params=params, headers={"User-Agent": USER_AGENT}, timeout=30)
+        params = {"action": "bucket", "format": "json", "query": query_string}
+        response = httpx2.get(
+            WIKI_API_ENDPOINT,
+            params=params,
+            headers={"User-Agent": USER_AGENT},
+            timeout=30,
+        )
         if response.status_code == 200:
             return response.json()
         else:
-            raise RuntimeError(f"OSRS Wiki Bucket API request failed with status {response.status_code}")
+            raise RuntimeError(
+                f"OSRS Wiki Bucket API request failed with status {response.status_code}"
+            )
 
 
 def parse_bucket_requirements(req_text: str) -> dict[str, Any]:
@@ -83,7 +91,7 @@ def parse_bucket_requirements(req_text: str) -> dict[str, Any]:
                 skills[canonical] = level
 
     if qp_req == 0:
-        qp_match = re.search(r'(\d+)\s+\[\[Quest points\]\]', req_text, re.IGNORECASE)
+        qp_match = re.search(r"(\d+)\s+\[\[Quest points\]\]", req_text, re.IGNORECASE)
         if qp_match:
             qp_req = int(qp_match.group(1))
 
@@ -97,10 +105,13 @@ def parse_bucket_requirements(req_text: str) -> dict[str, Any]:
             in_quest_section = True
             continue
 
-        m = re.match(r'^\*{1,6}\s*\[\[([^\]|]+)(?:\|[^\]]+)?\]\]', line_clean)
+        m = re.match(r"^\*{1,6}\s*\[\[([^\]|]+)(?:\|[^\]]+)?\]\]", line_clean)
         if m:
             q_candidate = m.group(1).strip()
-            if not any(q_candidate.startswith(p) for p in ("File:", "Image:", "Category:", "Quest point")):
+            if not any(
+                q_candidate.startswith(p)
+                for p in ("File:", "Image:", "Category:", "Quest point")
+            ):
                 if in_quest_section or line_clean.startswith("**"):
                     if q_candidate not in subquests:
                         subquests.append(q_candidate)
@@ -125,7 +136,10 @@ def parse_quest_xp_rewards(content: str) -> dict[str, dict[str, int]]:
         skills = [s.value for s in Skill]
 
         for skill in skills:
-            h = soup.find(lambda tag: tag.name in ["h3", "h2"] and tag.get_text(strip=True).lower().startswith(skill))
+            h = soup.find(
+                lambda tag: tag.name in ["h3", "h2"]
+                and tag.get_text(strip=True).lower().startswith(skill)
+            )
             if not h:
                 continue
             table = h.find_next("table", class_="wikitable")
@@ -144,9 +158,11 @@ def parse_quest_xp_rewards(content: str) -> dict[str, dict[str, int]]:
                         xp_by_quest[qname][skill] = xp_amt
     else:
         # Fallback for wikitext format
-        matches = re.findall(r'data-rowid="([^"]+)"[\s\S]*?\{\{\+=\|([a-z]+)\|([0-9.,]+)', content)
+        matches = re.findall(
+            r'data-rowid="([^"]+)"[\s\S]*?\{\{\+=\|([a-z]+)\|([0-9.,]+)', content
+        )
         for qname, raw_skill, raw_amt in matches:
-            clean_amt = int(float(raw_amt.replace(',', '')))
+            clean_amt = int(float(raw_amt.replace(",", "")))
             qname_clean = html.unescape(qname).strip()
             skill = SKILL_NAME_MAP.get(raw_skill.lower(), raw_skill.lower())
             if skill not in valid_skills:
@@ -178,7 +194,7 @@ def parse_quests_list(html_text: str) -> list[dict[str, Any]]:
         qname = cells[1]
         difficulty = cells[2]
         try:
-            qp_match = re.search(r'\d+', cells[4])
+            qp_match = re.search(r"\d+", cells[4])
             quest_points = int(qp_match.group(0)) if qp_match else 0
         except Exception:
             quest_points = 0
@@ -187,20 +203,20 @@ def parse_quests_list(html_text: str) -> list[dict[str, Any]]:
             continue
         seen_ids.add(qname)
 
-        quests.append({
-            "id": qname,
-            "name": qname,
-            "difficulty": difficulty,
-            "quest_points": quest_points,
-        })
+        quests.append(
+            {
+                "id": qname,
+                "name": qname,
+                "difficulty": difficulty,
+                "quest_points": quest_points,
+            }
+        )
 
     return quests
 
 
 def sync_osrs_quests(
-    save: bool = True,
-    target_file: Path | None = None,
-    reload_db: bool = True
+    save: bool = True, target_file: Path | None = None, reload_db: bool = True
 ) -> list[Quest]:
     """
     Performs automated synchronization of all OSRS quests using:
@@ -245,7 +261,9 @@ def sync_osrs_quests(
 
         # Skip entries that aren't full official quests (e.g. miniquests or unreleased pitches)
         if not raw_difficulty or not raw_length:
-            logger.warning(f"Skipping '{qname}': missing difficulty ({raw_difficulty}) or length ({raw_length})")
+            logger.warning(
+                f"Skipping '{qname}': missing difficulty ({raw_difficulty}) or length ({raw_length})"
+            )
             continue
 
         difficulty = str(raw_difficulty).strip()
@@ -261,7 +279,9 @@ def sync_osrs_quests(
         }
 
         # Look up quest points from Quests/List, fallback to QUEST_DB
-        qp = qp_by_name.get(qname, 0) or (QUEST_DB[qname].quest_points if qname in QUEST_DB else 0)
+        qp = qp_by_name.get(qname, 0) or (
+            QUEST_DB[qname].quest_points if qname in QUEST_DB else 0
+        )
 
         requirements = QuestRequirements(
             quests=req_data["quests"],
@@ -281,7 +301,9 @@ def sync_osrs_quests(
         validated_quests.append(quest)
 
     if save:
-        out_path = target_file or (Path(__file__).resolve().parents[2] / "data" / "quests.json")
+        out_path = target_file or (
+            Path(__file__).resolve().parents[2] / "data" / "quests.json"
+        )
         out_path.parent.mkdir(parents=True, exist_ok=True)
         quest_data = [q.model_dump(mode="json") for q in validated_quests]
         with open(out_path, "w", encoding="utf-8") as f:

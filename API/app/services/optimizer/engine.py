@@ -8,7 +8,9 @@ from app.services.optimizer.simulator import QUEST_ESTIMATED_TIME, OptimizationS
 from app.services.player_quest_parser import parse_player_quest_status
 
 
-async def generate_optimization_plan(request: OptimizationRequest) -> OptimizationResponse:
+async def generate_optimization_plan(
+    request: OptimizationRequest,
+) -> OptimizationResponse:
     repo = get_quest_repository()
     target_quest = repo.get(request.target_goal)
     if not target_quest:
@@ -32,7 +34,9 @@ async def generate_optimization_plan(request: OptimizationRequest) -> Optimizati
         player_completed_quests.update(finished_quests)
 
     # Resolve prerequisite tree
-    missing_quests = get_missing_quests(request.target_goal, player_completed_quests, repo=repo)
+    missing_quests = get_missing_quests(
+        request.target_goal, player_completed_quests, repo=repo
+    )
 
     # If goal is already completed, return an immediate 0-hour plan
     if not missing_quests:
@@ -111,7 +115,9 @@ def get_missing_quests(
     completed_lower = {q.strip().lower() for q in completed_quests}
     visited: set[str] = set()
     missing_quests: list[Quest] = []
-    _collect_prerequisites_dfs(target_goal, completed_lower, visited, missing_quests, repo)
+    _collect_prerequisites_dfs(
+        target_goal, completed_lower, visited, missing_quests, repo
+    )
     return missing_quests
 
 

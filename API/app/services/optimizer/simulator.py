@@ -60,7 +60,9 @@ class OptimizationSimulator:
 
         self.remaining_quests: dict[str, Quest] = {q.name: q for q in missing_quests}
         self.completed_names: set[str] = {q.lower() for q in player_completed_quests}
-        self.current_qp: int = sum(self._get_quest_qp(q) for q in player_completed_quests)
+        self.current_qp: int = sum(
+            self._get_quest_qp(q) for q in player_completed_quests
+        )
         self.ordered_completed_quests: list[Quest] = []
 
     # Get quest points for a given quest, if it doesnt exist return 0
@@ -97,7 +99,10 @@ class OptimizationSimulator:
         ready = [
             q
             for q in self.remaining_quests.values()
-            if all(prereq.lower() in self.completed_names for prereq in q.requirements.quests)
+            if all(
+                prereq.lower() in self.completed_names
+                for prereq in q.requirements.quests
+            )
         ]
         if not ready:
             # Fallback to avoid deadlock if circular or unresolvable dependencies exist
@@ -146,8 +151,7 @@ class OptimizationSimulator:
         """Constructs human-readable description indicating XP rewards and downstream unlock context."""
         parts: list[str] = []
         rewards_list = [
-            f"+{xp:,} {sk.value.title()} XP"
-            for sk, xp in quest.xp_rewards.items()
+            f"+{xp:,} {sk.value.title()} XP" for sk, xp in quest.xp_rewards.items()
         ]
         if rewards_list:
             parts.append(f"Grants: {', '.join(rewards_list)}")
@@ -173,7 +177,11 @@ class OptimizationSimulator:
         elif quest.name.lower() != self.target_quest.name.lower():
             parts.append(f"Prerequisite for {self.target_quest.name}")
 
-        return ". ".join(parts) + "." if parts else f"Goal {self.target_quest.name} completed!"
+        return (
+            ". ".join(parts) + "."
+            if parts
+            else f"Goal {self.target_quest.name} completed!"
+        )
 
     def complete_quest(self, quest: Quest) -> None:
         """Advances simulation state with quest completion, roadmap step, and XP rewards."""
@@ -184,7 +192,9 @@ class OptimizationSimulator:
                 step_type="quest",
                 title=f"Complete {quest.name}",
                 description=desc,
-                estimated_hours=QUEST_ESTIMATED_TIME.get(quest.length.strip().lower(), 0.5),
+                estimated_hours=QUEST_ESTIMATED_TIME.get(
+                    quest.length.strip().lower(), 0.5
+                ),
             )
         )
         self.step_counter += 1
@@ -213,7 +223,9 @@ class OptimizationSimulator:
             self.train_prerequisites_for_quest(best_quest)
             self.complete_quest(best_quest)
 
-    def build_skill_deficits(self, skill_requirements: dict[Skill, int]) -> list[SkillDeficit]:
+    def build_skill_deficits(
+        self, skill_requirements: dict[Skill, int]
+    ) -> list[SkillDeficit]:
         """Builds summary breakdown of initial skill vs target level, grind XP, and free quest XP."""
         deficits: list[SkillDeficit] = []
         for skill, target_level in skill_requirements.items():

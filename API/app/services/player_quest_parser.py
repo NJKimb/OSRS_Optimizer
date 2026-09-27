@@ -5,10 +5,12 @@ from typing import Any
 
 logger = logging.getLogger(__name__)
 
+
 class QuestStates(StrEnum):
     NOT_STARTED = "NOT_STARTED"
     IN_PROGRESS = "IN_PROGRESS"
     FINISHED = "FINISHED"
+
 
 # Map RuneLite character-exporter subquest names to OSRS Wiki database canonical names
 RFD_NAME_MAP: dict[str, str] = {
@@ -24,10 +26,12 @@ RFD_NAME_MAP: dict[str, str] = {
     "recipe for disaster - culinaromancer": "Recipe for Disaster/Defeating the Culinaromancer",
 }
 
+
 def normalize_quest_name(name: str) -> str:
     """Returns canonical quest name if an alias exists, otherwise returns original name."""
     cleaned = name.strip()
     return RFD_NAME_MAP.get(cleaned.lower(), cleaned)
+
 
 def parse_player_quest_status(quests: Any) -> set[str]:
     """
@@ -55,10 +59,16 @@ def parse_player_quest_status(quests: Any) -> set[str]:
         else:
             # Handle direct dictionary e.g. {"Cook's Assistant": "FINISHED"}
             for name, val in quests.items():
-                state = (val.get("state") or val.get("status")) if isinstance(val, dict) else val
+                state = (
+                    (val.get("state") or val.get("status"))
+                    if isinstance(val, dict)
+                    else val
+                )
                 if state and str(state).strip().upper() == QuestStates.FINISHED:
                     finished_quests.add(normalize_quest_name(str(name)))
-            logger.info(f"Extracted {len(finished_quests)} finished quests from flat dict.")
+            logger.info(
+                f"Extracted {len(finished_quests)} finished quests from flat dict."
+            )
             return finished_quests
     elif isinstance(quests, list):
         quest_list = quests

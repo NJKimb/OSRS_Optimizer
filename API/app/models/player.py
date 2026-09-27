@@ -2,16 +2,19 @@ from enum import StrEnum
 from pydantic import BaseModel, Field
 from app.core.skills import Skill
 
+
 class AccountType(StrEnum):
     MAIN = "main"
     IRONMAN = "ironman"
     HARDCORE_IRONMAN = "hardcore_ironman"
     ULTIMATE_IRONMAN = "ultimate_ironman"
 
+
 class SkillDetail(BaseModel):
     level: int
     xp: int
     rank: int = -1
+
 
 class PlayerProfile(BaseModel):
     username: str

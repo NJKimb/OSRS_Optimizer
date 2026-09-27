@@ -75,4 +75,3 @@ class TestPlanIntegration(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         data = response.json()
         self.assertNotIn("Waterfall Quest", data["missing_quests"])
-
