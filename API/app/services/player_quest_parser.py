@@ -55,38 +55,38 @@ def parse_player_quest_status(quests: Any) -> set[str]:
     # 2. Dictionary input
     if isinstance(quests, dict):
         if "quests" in quests and isinstance(quests["quests"], (list, dict)):
-            quest_list = quests["quests"]
+            quest_entries = quests["quests"]
         else:
             # Handle direct dictionary e.g. {"Cook's Assistant": "FINISHED"}
-            for name, val in quests.items():
+            for quest_name, status_value in quests.items():
                 state = (
-                    (val.get("state") or val.get("status"))
-                    if isinstance(val, dict)
-                    else val
+                    (status_value.get("state") or status_value.get("status"))
+                    if isinstance(status_value, dict)
+                    else status_value
                 )
                 if state and str(state).strip().upper() == QuestStates.FINISHED:
-                    finished_quests.add(normalize_quest_name(str(name)))
+                    finished_quests.add(normalize_quest_name(str(quest_name)))
             logger.info(
                 f"Extracted {len(finished_quests)} finished quests from flat dict."
             )
             return finished_quests
     elif isinstance(quests, list):
-        quest_list = quests
+        quest_entries = quests
     elif isinstance(quests, set):
-        return {normalize_quest_name(str(q)) for q in quests}
+        return {normalize_quest_name(str(quest_name)) for quest_name in quests}
     else:
         return set()
 
     # 3. List of items (dicts or strings)
-    for quest in quest_list:
-        if isinstance(quest, dict):
-            state = quest.get("state") or quest.get("status")
+    for quest_entry in quest_entries:
+        if isinstance(quest_entry, dict):
+            state = quest_entry.get("state") or quest_entry.get("status")
             if state and str(state).strip().upper() == QuestStates.FINISHED:
-                name = quest.get("name")
-                if name:
-                    finished_quests.add(normalize_quest_name(str(name)))
-        elif isinstance(quest, str):
-            finished_quests.add(normalize_quest_name(quest))
+                quest_name = quest_entry.get("name")
+                if quest_name:
+                    finished_quests.add(normalize_quest_name(str(quest_name)))
+        elif isinstance(quest_entry, str):
+            finished_quests.add(normalize_quest_name(quest_entry))
 
     logger.info(f"Extracted {len(finished_quests)} finished quests from request.")
     return finished_quests

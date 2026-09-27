@@ -75,7 +75,10 @@ async def generate_optimization_plan(
     return OptimizationResponse(
         goal_name=target_quest.name,
         total_hours_remaining=total_hours,
-        missing_quests=[q.name for q in simulator.ordered_completed_quests],
+        missing_quests=[
+            completed_quest.name
+            for completed_quest in simulator.ordered_completed_quests
+        ],
         skill_deficits=skill_deficits,
         roadmap=simulator.roadmap,
     )
@@ -89,10 +92,10 @@ def _collect_prerequisites_dfs(
     repo: QuestRepository,
 ) -> None:
     """Recursive helper function for post-order DFS prerequisite collection."""
-    q_lower = quest_name.strip().lower()
-    if q_lower in completed_lower or q_lower in visited:
+    normalized_quest_name = quest_name.strip().lower()
+    if normalized_quest_name in completed_lower or normalized_quest_name in visited:
         return
-    visited.add(q_lower)
+    visited.add(normalized_quest_name)
 
     quest = repo.get(quest_name)
     if not quest:
@@ -112,7 +115,9 @@ def get_missing_quests(
     """Recursively resolves missing prerequisites for the target goal via post-order DFS."""
     if repo is None:
         repo = get_quest_repository()
-    completed_lower = {q.strip().lower() for q in completed_quests}
+    completed_lower = {
+        completed_name.strip().lower() for completed_name in completed_quests
+    }
     visited: set[str] = set()
     missing_quests: list[Quest] = []
     _collect_prerequisites_dfs(

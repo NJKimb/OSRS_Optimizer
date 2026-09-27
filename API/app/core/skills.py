@@ -38,15 +38,17 @@ def calculate_xp_for_level(level: int) -> int:
     if level <= 1:
         return 0
 
-    total = 0.0
-    for i in range(1, level):
-        # floor(i + 300 * 2^(i/7))
-        total += math.floor(i + 300.0 * (2.0 ** (i / 7.0)))
+    accumulated_xp = 0.0
+    for level_step in range(1, level):
+        # floor(level_step + 300 * 2^(level_step/7))
+        accumulated_xp += math.floor(level_step + 300.0 * (2.0 ** (level_step / 7.0)))
 
-    return math.floor(total / 4.0)
+    return math.floor(accumulated_xp / 4.0)
 
 
-XP_TABLE = [calculate_xp_for_level(lvl) for lvl in range(MAX_LEVEL + 1)]
+XP_TABLE = [
+    calculate_xp_for_level(target_level) for target_level in range(MAX_LEVEL + 1)
+]
 
 
 def xp_to_level(xp: int) -> int:

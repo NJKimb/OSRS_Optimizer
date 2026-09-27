@@ -58,10 +58,14 @@ class OptimizationSimulator:
         self.roadmap: list[RoadmapStep] = []
         self.step_counter: int = 1
 
-        self.remaining_quests: dict[str, Quest] = {q.name: q for q in missing_quests}
-        self.completed_names: set[str] = {q.lower() for q in player_completed_quests}
+        self.remaining_quests: dict[str, Quest] = {
+            quest.name: quest for quest in missing_quests
+        }
+        self.completed_names: set[str] = {
+            quest_name.lower() for quest_name in player_completed_quests
+        }
         self.current_qp: int = sum(
-            self._get_quest_qp(q) for q in player_completed_quests
+            self._get_quest_qp(quest_name) for quest_name in player_completed_quests
         )
         self.ordered_completed_quests: list[Quest] = []
 
@@ -77,44 +81,54 @@ class OptimizationSimulator:
         2. Required training hours for deficit skills
         3. Alphabetical quest name for deterministic ordering
         """
-        q_time = QUEST_ESTIMATED_TIME.get(quest.length.strip().lower(), 0.5)
+        quest_duration_hours = QUEST_ESTIMATED_TIME.get(
+            quest.length.strip().lower(), 0.5
+        )
         needed_training_hours = 0.0
-        for skill, req_level in quest.requirements.skills.items():
-            req_xp = XP_TABLE[min(req_level, 99)]
-            curr_xp = self.simulated_xp[skill]
-            if curr_xp < req_xp:
-                rate = get_skill_rate(skill, self.custom_xp_rates)
-                needed_training_hours += (req_xp - curr_xp) / rate
-        return (q_time, needed_training_hours, quest.name)
+        for skill, required_level in quest.requirements.skills.items():
+            required_xp = XP_TABLE[min(required_level, 99)]
+            current_xp = self.simulated_xp[skill]
+            if current_xp < required_xp:
+                xp_rate = get_skill_rate(skill, self.custom_xp_rates)
+                needed_training_hours += (required_xp - current_xp) / xp_rate
+        return (quest_duration_hours, needed_training_hours, quest.name)
 
     def is_quest_doable_without_skilling(self, quest: Quest) -> bool:
         """Returns True if the player meets all skill requirements without additional training."""
         return all(
-            xp_to_level(self.simulated_xp[skill]) >= req_level
-            for skill, req_level in quest.requirements.skills.items()
+            xp_to_level(self.simulated_xp[skill]) >= required_level
+            for skill, required_level in quest.requirements.skills.items()
         )
 
     def get_ready_candidates(self) -> list[Quest]:
         """Returns quests whose quest prerequisites are satisfied, preferring QP-ready candidates."""
         ready = [
-            q
-            for q in self.remaining_quests.values()
+            quest
+            for quest in self.remaining_quests.values()
             if all(
                 prereq.lower() in self.completed_names
-                for prereq in q.requirements.quests
+                for prereq in quest.requirements.quests
             )
         ]
         if not ready:
             # Fallback to avoid deadlock if circular or unresolvable dependencies exist
             ready = list(self.remaining_quests.values())
 
-        qp_ready = [q for q in ready if self.current_qp >= q.requirements.quest_points]
+        qp_ready = [
+            quest
+            for quest in ready
+            if self.current_qp >= quest.requirements.quest_points
+        ]
         return qp_ready if qp_ready else ready
 
     def select_next_quest(self) -> Quest:
         """Selects the next optimal quest based on skilling readiness and duration."""
         candidates = self.get_ready_candidates()
-        doable_now = [q for q in candidates if self.is_quest_doable_without_skilling(q)]
+        doable_now = [
+            quest
+            for quest in candidates
+            if self.is_quest_doable_without_skilling(quest)
+        ]
         if doable_now:
             return min(doable_now, key=self.candidate_sort_key)
         return min(candidates, key=self.candidate_sort_key)
@@ -127,19 +141,19 @@ class OptimizationSimulator:
 
             if current_xp < required_xp:
                 xp_diff = required_xp - current_xp
-                rate = get_skill_rate(skill, self.custom_xp_rates)
-                training_hours = round(xp_diff / rate, 2)
+                xp_rate = get_skill_rate(skill, self.custom_xp_rates)
+                training_hours = round(xp_diff / xp_rate, 2)
                 self.hours_per_skill[skill] += training_hours
 
-                current_lvl = xp_to_level(current_xp)
+                current_level = xp_to_level(current_xp)
                 self.roadmap.append(
                     RoadmapStep(
                         step_number=self.step_counter,
                         step_type="skill_training",
                         title=f"Train {skill.value.title()} to level {required_level}",
                         description=(
-                            f"Train from level {current_lvl} to {required_level} "
-                            f"(+{xp_diff:,} XP needed for {quest.name}) at ~{rate:,} XP/hr."
+                            f"Train from level {current_level} to {required_level} "
+                            f"(+{xp_diff:,} XP needed for {quest.name}) at ~{xp_rate:,} XP/hr."
                         ),
                         estimated_hours=training_hours,
                     )
@@ -151,24 +165,31 @@ class OptimizationSimulator:
         """Constructs human-readable description indicating XP rewards and downstream unlock context."""
         parts: list[str] = []
         rewards_list = [
-            f"+{xp:,} {sk.value.title()} XP" for sk, xp in quest.xp_rewards.items()
+            f"+{xp_amount:,} {skill.value.title()} XP"
+            for skill, xp_amount in quest.xp_rewards.items()
         ]
         if rewards_list:
             parts.append(f"Grants: {', '.join(rewards_list)}")
 
         downstream = [
-            q
-            for q in self.missing_quests
-            if q.name != quest.name
-            and any(req.lower() == quest.name.lower() for req in q.requirements.quests)
+            candidate_quest
+            for candidate_quest in self.missing_quests
+            if candidate_quest.name != quest.name
+            and any(
+                prereq_name.lower() == quest.name.lower()
+                for prereq_name in candidate_quest.requirements.quests
+            )
         ]
         direct_dependents = [
-            d.name
-            for d in downstream
+            dependent_quest.name
+            for dependent_quest in downstream
             if not any(
-                any(req.lower() == other.name.lower() for req in d.requirements.quests)
-                for other in downstream
-                if other.name != d.name
+                any(
+                    prereq_name.lower() == other_quest.name.lower()
+                    for prereq_name in dependent_quest.requirements.quests
+                )
+                for other_quest in downstream
+                if other_quest.name != dependent_quest.name
             )
         ]
 
@@ -185,13 +206,13 @@ class OptimizationSimulator:
 
     def complete_quest(self, quest: Quest) -> None:
         """Advances simulation state with quest completion, roadmap step, and XP rewards."""
-        desc = self.format_quest_description(quest)
+        quest_description = self.format_quest_description(quest)
         self.roadmap.append(
             RoadmapStep(
                 step_number=self.step_counter,
                 step_type="quest",
                 title=f"Complete {quest.name}",
-                description=desc,
+                description=quest_description,
                 estimated_hours=QUEST_ESTIMATED_TIME.get(
                     quest.length.strip().lower(), 0.5
                 ),
@@ -207,9 +228,9 @@ class OptimizationSimulator:
             or quest.name.lower() == self.target_goal.lower()
         )
         if not is_target_goal:
-            for sk, xp in quest.xp_rewards.items():
-                self.simulated_xp[sk] += xp
-                self.quest_xp_awarded[sk] += xp
+            for skill, xp_amount in quest.xp_rewards.items():
+                self.simulated_xp[skill] += xp_amount
+                self.quest_xp_awarded[skill] += xp_amount
 
         self.completed_names.add(quest.name.lower())
         self.current_qp += quest.quest_points
@@ -229,25 +250,25 @@ class OptimizationSimulator:
         """Builds summary breakdown of initial skill vs target level, grind XP, and free quest XP."""
         deficits: list[SkillDeficit] = []
         for skill, target_level in skill_requirements.items():
-            init_xp = self.initial_xp[skill]
-            init_level = xp_to_level(init_xp)
+            initial_xp = self.initial_xp[skill]
+            initial_level = xp_to_level(initial_xp)
             target_xp = XP_TABLE[min(target_level, 99)]
-            raw_xp_needed = max(0, target_xp - init_xp)
-            free_xp = self.quest_xp_awarded.get(skill, 0)
-            net_grind_xp = max(0, raw_xp_needed - free_xp)
-            hours = round(self.hours_per_skill.get(skill, 0.0), 2)
+            raw_xp_needed = max(0, target_xp - initial_xp)
+            free_quest_xp = self.quest_xp_awarded.get(skill, 0)
+            net_grind_xp = max(0, raw_xp_needed - free_quest_xp)
+            training_hours = round(self.hours_per_skill.get(skill, 0.0), 2)
 
             deficits.append(
                 SkillDeficit(
                     skill=skill,
-                    current_level=init_level,
+                    current_level=initial_level,
                     target_level=target_level,
-                    current_xp=init_xp,
+                    current_xp=initial_xp,
                     target_xp=target_xp,
                     xp_needed=raw_xp_needed,
-                    quest_xp_rewards=free_xp,
+                    quest_xp_rewards=free_quest_xp,
                     remaining_xp_to_grind=net_grind_xp,
-                    estimated_hours=hours,
+                    estimated_hours=training_hours,
                 )
             )
         return deficits

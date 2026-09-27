@@ -23,20 +23,24 @@ def main():
     start_time = time.time()
     try:
         quests = sync_osrs_quests(save=True, reload_db=True)
-        elapsed = time.time() - start_time
+        elapsed_seconds = time.time() - start_time
         logger.info(
-            f"Successfully synchronized {len(quests)} quests in {elapsed:.2f} seconds!"
+            f"Successfully synchronized {len(quests)} quests in {elapsed_seconds:.2f} seconds!"
         )
 
         # Display sample statistics
-        with_reqs = sum(
-            1 for q in quests if q.requirements.quests or q.requirements.skills
+        quests_with_requirements = sum(
+            1
+            for quest in quests
+            if quest.requirements.quests or quest.requirements.skills
         )
-        with_xp = sum(1 for q in quests if q.xp_rewards)
-        logger.info(f"Quests with requirements: {with_reqs}/{len(quests)}")
-        logger.info(f"Quests with XP rewards: {with_xp}/{len(quests)}")
-    except Exception as e:
-        logger.error(f"Failed to synchronize quests: {e}", exc_info=True)
+        quests_with_xp = sum(1 for quest in quests if quest.xp_rewards)
+        logger.info(
+            f"Quests with requirements: {quests_with_requirements}/{len(quests)}"
+        )
+        logger.info(f"Quests with XP rewards: {quests_with_xp}/{len(quests)}")
+    except Exception as error:
+        logger.error(f"Failed to synchronize quests: {error}", exc_info=True)
         sys.exit(1)
 
 

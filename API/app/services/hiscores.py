@@ -48,22 +48,24 @@ async def fetch_player_profile(
             raise HTTPException(
                 status_code=502, detail="Error fetching data from Jagex Hiscores."
             )
-        data = response.json()
+        hiscores_data = response.json()
 
     skills_data = {}
 
-    for item in data.get("skills", []):
-        raw_name = item.get("name", "").lower()
+    for skill_entry in hiscores_data.get("skills", []):
+        raw_skill_name = skill_entry.get("name", "").lower()
         try:
-            skill_enum = Skill(raw_name)
+            skill_enum = Skill(raw_skill_name)
         except ValueError:
-            logger.debug("Unrecognized hiscores skill name '%s' was ignored", raw_name)
+            logger.debug(
+                "Unrecognized hiscores skill name '%s' was ignored", raw_skill_name
+            )
             continue
 
         # If hiscores returns -1 in a skill, the player has not trained the skill
-        level = item.get("level", -1)
-        xp = item.get("xp", -1)
-        rank = item.get("rank", -1)
+        level = skill_entry.get("level", -1)
+        xp = skill_entry.get("xp", -1)
+        rank = skill_entry.get("rank", -1)
 
         if level == -1 or xp == -1:
             # Hitpoints starts at level 10, other skills start at 1

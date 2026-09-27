@@ -14,10 +14,12 @@ class QuestRepository:
 
     def load(self) -> None:
         """Loads and indexes quests from JSON into memory."""
-        with open(self.data_path, "r", encoding="utf-8") as file:
-            data_dict = json.load(file)
+        with open(self.data_path, "r", encoding="utf-8") as quest_file:
+            quest_records = json.load(quest_file)
 
-        self._quests = {item["id"]: Quest(**item) for item in data_dict}
+        self._quests = {
+            quest_data["id"]: Quest(**quest_data) for quest_data in quest_records
+        }
         self._by_normalized_name.clear()
         for quest in self._quests.values():
             clean_name = quest.name.strip().lower()
@@ -40,11 +42,17 @@ class QuestRepository:
         """
         results = list(self._quests.values())
         if query:
-            q = query.strip().lower()
-            results = [quest for quest in results if q in quest.name.lower()]
+            normalized_query = query.strip().lower()
+            results = [
+                quest for quest in results if normalized_query in quest.name.lower()
+            ]
         if difficulty:
-            d = difficulty.strip().lower()
-            results = [quest for quest in results if quest.difficulty.lower() == d]
+            normalized_difficulty = difficulty.strip().lower()
+            results = [
+                quest
+                for quest in results
+                if quest.difficulty.lower() == normalized_difficulty
+            ]
         return results
 
     def all(self) -> list[Quest]:
