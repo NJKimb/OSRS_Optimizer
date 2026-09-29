@@ -95,3 +95,17 @@ class TestPlanIntegration(unittest.TestCase):
         }
         response = self.client.post("/api/optimize/plan", json=payload)
         self.assertEqual(response.status_code, 422)
+
+    @patch("app.services.optimizer.engine.fetch_player_profile", new_callable=AsyncMock)
+    def test_accepts_completed_quests_alias(self, mock_fetch):
+        mock_fetch.return_value = PlayerProfile(
+            username="John RedHelm", account_type=AccountType.MAIN, skills={}
+        )
+        payload = {
+            "username": "John RedHelm",
+            "target_goal": "Cook's Assistant",
+            "completed_quests": ["Cook's Assistant"],
+        }
+        response = self.client.post("/api/optimize/plan", json=payload)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["missing_quests"], [])

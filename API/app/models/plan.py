@@ -1,7 +1,7 @@
 from enum import StrEnum
 from typing import Any
 from app.models.player import AccountType, Username
-from pydantic import BaseModel, Field, PositiveInt
+from pydantic import AliasChoices, BaseModel, Field, PositiveInt
 from app.core.skills import Skill
 
 
@@ -10,8 +10,11 @@ class OptimizationRequest(BaseModel):
     username: Username
     account_type: AccountType = AccountType.MAIN
     target_goal: str  # e.g. "song_of_the_elves"
-    quests_status: Any = Field(default=None)  # Exporter JSON dict, list, or string
-    completed_quests: Any = Field(default=None)  # Backward-compatible alias
+    # Character Exporter JSON as a dict, list, or string; also accepted as "completed_quests"
+    quests_status: dict[str, Any] | list[Any] | str | None = Field(
+        default=None,
+        validation_alias=AliasChoices("quests_status", "completed_quests"),
+    )
     custom_xp_rates: dict[Skill, PositiveInt] = Field(default_factory=dict)
     allow_boosts: bool = True  # Use cheap temporary boosts for boostable requirements
 

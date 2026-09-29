@@ -29,13 +29,8 @@ async def generate_optimization_plan(
 
     # Merge finished quests from the exporter with the player profile
     player_completed_quests = set(player.quests_status)
-    raw_quest_data = (
-        request.quests_status
-        if request.quests_status is not None
-        else request.completed_quests
-    )
-    if raw_quest_data:
-        finished_quests = parse_player_quest_status(raw_quest_data)
+    if request.quests_status:
+        finished_quests = parse_player_quest_status(request.quests_status)
         player_completed_quests.update(finished_quests)
 
     # Resolve prerequisite tree
