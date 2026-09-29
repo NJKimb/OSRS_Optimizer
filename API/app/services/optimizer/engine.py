@@ -56,8 +56,6 @@ async def generate_optimization_plan(
             ],
         )
 
-    skill_requirements = get_skill_requirements(missing_quests)
-
     simulator = OptimizationSimulator(
         player=player,
         missing_quests=missing_quests,
@@ -66,10 +64,11 @@ async def generate_optimization_plan(
         player_completed_quests=player_completed_quests,
         custom_xp_rates=request.custom_xp_rates,
         repo=repo,
+        allow_boosts=request.allow_boosts,
     )
     simulator.run()
 
-    skill_deficits = simulator.build_skill_deficits(skill_requirements)
+    skill_deficits = simulator.build_skill_deficits()
     total_hours = round(sum(step.estimated_hours for step in simulator.roadmap), 2)
 
     return OptimizationResponse(
@@ -92,12 +91,13 @@ def _collect_prerequisites_dfs(
     repo: QuestRepository,
 ) -> None:
     """Recursive helper function for post-order DFS prerequisite collection."""
-    normalized_quest_name = quest_name.strip().lower()
+    quest = repo.get(quest_name)
+    # Compare by canonical name so slugs like "cook's_assistant" match completed quests
+    normalized_quest_name = (quest.name if quest else quest_name).strip().lower()
     if normalized_quest_name in completed_lower or normalized_quest_name in visited:
         return
     visited.add(normalized_quest_name)
 
-    quest = repo.get(quest_name)
     if not quest:
         return
 

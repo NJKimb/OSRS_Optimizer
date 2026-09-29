@@ -72,25 +72,29 @@ def parse_bucket_requirements(requirements_text: str) -> dict[str, Any]:
       - Prerequisite quests from wiki bullet links under quest completion sections
     """
     if not requirements_text or requirements_text.strip().lower() == "none":
-        return {"skills": {}, "quests": [], "quest_points": 0}
+        return {"skills": {}, "boostable_skills": [], "quests": [], "quest_points": 0}
 
     skill_requirements: dict[str, int] = {}
+    boostable_skills: list[str] = []
     required_quest_points = 0
     valid_skills = {skill.value for skill in Skill}
 
-    # 1. Extract skills and Quest points from data-skill / data-level tags
-    for match in re.finditer(
-        r'data-skill="([^"]+)"\s+data-level="(\d+)"', requirements_text
-    ):
-        raw_skill = match.group(1).strip()
-        level = int(match.group(2))
-        raw_skill_lower = raw_skill.lower()
-        if raw_skill_lower in ("quest points", "quest point"):
-            required_quest_points = max(required_quest_points, level)
-        else:
+    # 1. Extract skills and Quest points from data-skill / data-level tags.
+    # Each requirement sits on its own line, followed by its boostable annotation.
+    for line in requirements_text.splitlines():
+        is_boostable = 'title="This requirement is boostable"' in line
+        for match in re.finditer(r'data-skill="([^"]+)"\s+data-level="(\d+)"', line):
+            raw_skill = match.group(1).strip()
+            level = int(match.group(2))
+            raw_skill_lower = raw_skill.lower()
+            if raw_skill_lower in ("quest points", "quest point"):
+                required_quest_points = max(required_quest_points, level)
+                continue
             canonical_skill = SKILL_NAME_MAP.get(raw_skill_lower, raw_skill_lower)
             if canonical_skill in valid_skills:
                 skill_requirements[canonical_skill] = level
+                if is_boostable and canonical_skill not in boostable_skills:
+                    boostable_skills.append(canonical_skill)
 
     if required_quest_points == 0:
         quest_points_match = re.search(
@@ -126,6 +130,7 @@ def parse_bucket_requirements(requirements_text: str) -> dict[str, Any]:
 
     return {
         "skills": skill_requirements,
+        "boostable_skills": boostable_skills,
         "quests": prerequisite_quests,
         "quest_points": required_quest_points,
     }
@@ -308,6 +313,11 @@ def sync_osrs_quests(
         requirements = QuestRequirements(
             quests=requirements_data["quests"],
             skills=typed_skill_requirements,
+            boostable_skills=[
+                Skill(skill_name)
+                for skill_name in requirements_data["boostable_skills"]
+                if skill_name in valid_skills
+            ],
             quest_points=requirements_data["quest_points"],
         )
 

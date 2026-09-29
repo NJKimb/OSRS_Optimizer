@@ -12,6 +12,7 @@ class OptimizationRequest(BaseModel):
     quests_status: Any = Field(default=None)  # Exporter JSON dict, list, or string
     completed_quests: Any = Field(default=None)  # Backward-compatible alias
     custom_xp_rates: dict[Skill, int] = Field(default_factory=dict)
+    allow_boosts: bool = True  # Use cheap temporary boosts for boostable requirements
 
 
 # Breakdown of each skill's deficit & hours:
@@ -25,6 +26,7 @@ class SkillDeficit(BaseModel):
     quest_xp_rewards: int = 0  # Free XP from scheduled quests
     remaining_xp_to_grind: int = 0  # Net XP player must train manually
     estimated_hours: float = 0.0
+    boost: str | None = None  # e.g. "Boost to 70 with Summer pie"
 
 
 # Actionable chronological step in the roadmap:

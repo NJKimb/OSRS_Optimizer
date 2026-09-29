@@ -32,7 +32,7 @@ jobs:
       - name: Sync quest database from OSRS Wiki
         working-directory: API
         run: |
-          python -m app.scripts.sync_quests
+          python -m scripts.sync_quests
 
       - name: Run verification tests
         working-directory: API
@@ -45,9 +45,9 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
           # Check if quests.json has modifications
-          if git status --porcelain | grep -q "API/app/data/quests.json"; then
+          if git status --porcelain | grep -q "API/data/quests.json"; then
             echo "New or updated quest data detected. Committing changes..."
-            git add API/app/data/quests.json
+            git add API/data/quests.json
             git commit -m "Auto-sync quest database from OSRS Wiki [skip ci]"
             git push
           else

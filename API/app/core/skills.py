@@ -51,6 +51,11 @@ XP_TABLE = [
 ]
 
 
+def xp_for_level(level: int) -> int:
+    """Returns total XP needed for a level, clamped to the valid 1-126 range."""
+    return XP_TABLE[max(1, min(level, MAX_LEVEL))]
+
+
 def xp_to_level(xp: int) -> int:
     """Returns the level (1-126) for a given amount of XP."""
     if xp < 0:

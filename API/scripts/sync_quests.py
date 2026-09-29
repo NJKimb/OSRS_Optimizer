@@ -1,7 +1,7 @@
 """
 CLI script to sync all OSRS quests from the official OSRS Wiki API.
 Usage:
-    python -m app.scripts.sync_quests
+    python -m scripts.sync_quests
 """
 
 import sys
