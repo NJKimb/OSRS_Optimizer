@@ -1,5 +1,5 @@
 from app.core.skills import Skill, xp_for_level, xp_to_level
-from app.models.plan import RoadmapStep, SkillDeficit
+from app.models.plan import RoadmapStep, SkillDeficit, StepType
 from app.models.player import PlayerProfile
 from app.models.quest import Quest
 from app.repositories.quest_repository import QuestRepository, get_quest_repository
@@ -238,7 +238,7 @@ class OptimizationSimulator:
                 self.roadmap.append(
                     RoadmapStep(
                         step_number=self.step_counter,
-                        step_type="skill_training",
+                        step_type=StepType.SKILL_TRAINING,
                         title=f"Train {skill.value.title()} to level {base_level}",
                         description=(
                             f"Train from level {current_level} to {base_level} "
@@ -323,7 +323,7 @@ class OptimizationSimulator:
         self.roadmap.append(
             RoadmapStep(
                 step_number=self.step_counter,
-                step_type="quest",
+                step_type=StepType.QUEST,
                 title=f"Complete {quest.name}",
                 description=quest_description,
                 estimated_hours=QUEST_ESTIMATED_TIME.get(

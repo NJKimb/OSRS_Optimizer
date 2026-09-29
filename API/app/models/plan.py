@@ -1,3 +1,4 @@
+from enum import StrEnum
 from typing import Any
 from app.models.player import AccountType, Username
 from pydantic import BaseModel, Field, PositiveInt
@@ -29,10 +30,16 @@ class SkillDeficit(BaseModel):
     boost: str | None = None  # e.g. "Boost to 70 with Summer pie"
 
 
+class StepType(StrEnum):
+    QUEST = "quest"
+    SKILL_TRAINING = "skill_training"
+    COMPLETE = "complete"
+
+
 # Actionable chronological step in the roadmap:
 class RoadmapStep(BaseModel):
     step_number: int
-    step_type: str  # "quest" | "skill_training"
+    step_type: StepType
     title: str  # e.g. "Complete The Knight's Sword"
     description: str  # e.g. "Grants 12,725 Smithing XP"
     estimated_hours: float = 0.0

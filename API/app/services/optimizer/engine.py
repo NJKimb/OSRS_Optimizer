@@ -1,6 +1,11 @@
 from fastapi import HTTPException
 from app.core.skills import Skill
-from app.models.plan import OptimizationRequest, OptimizationResponse, RoadmapStep
+from app.models.plan import (
+    OptimizationRequest,
+    OptimizationResponse,
+    RoadmapStep,
+    StepType,
+)
 from app.models.quest import Quest
 from app.repositories.quest_repository import QuestRepository, get_quest_repository
 from app.services.hiscores import fetch_player_profile
@@ -48,7 +53,7 @@ async def generate_optimization_plan(
             roadmap=[
                 RoadmapStep(
                     step_number=1,
-                    step_type="complete",
+                    step_type=StepType.COMPLETE,
                     title="Goal Already Completed!",
                     description=f"You have already completed {target_quest.name}.",
                     estimated_hours=0.0,
