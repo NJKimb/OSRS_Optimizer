@@ -9,7 +9,7 @@ class TrainingTier(BaseModel):
     method_name: str
 
 
-class SKillTrainingMethods(BaseModel):
+class SkillTrainingMethods(BaseModel):
     skill: Skill
     main_tiers: list[TrainingTier]
     ironman_tiers: list[TrainingTier]
