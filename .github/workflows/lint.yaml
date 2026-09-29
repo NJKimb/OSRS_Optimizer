@@ -1,4 +1,4 @@
-name: Lint & Format
+name: Lint & Test
 
 on:
   push:
@@ -24,3 +24,23 @@ jobs:
       - name: Run Black Check
         # Checks the API directory; fails if files need formatting
         run: black --check API
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+          cache-dependency-path: API/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r API/requirements.txt
+
+      - name: Run tests
+        working-directory: API
+        run: python -m unittest discover tests -v
