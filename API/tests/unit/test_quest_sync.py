@@ -4,7 +4,7 @@ from fastapi.testclient import TestClient
 from main import app
 from app.core.skills import Skill
 from app.models.quest import Quest
-from app.services.dataloader import QUEST_DB
+from app.repositories.quest_repository import get_quest_repository
 from app.services.wiki_quest_parser import (
     parse_bucket_requirements,
     parse_quest_xp_rewards,
@@ -111,22 +111,23 @@ class TestQuestSync(unittest.TestCase):
         self.assertEqual(quests[1]["quest_points"], 2)
 
     def test_quests_database_integrity(self):
-        """Verifies that all synced quests in QUEST_DB are loaded and valid."""
-        self.assertGreaterEqual(len(QUEST_DB), 190)
-        self.assertIn("Song of the Elves", QUEST_DB)
-        self.assertIn("The Knight's Sword", QUEST_DB)
-        self.assertIn("Cook's Assistant", QUEST_DB)
+        """Verifies that all synced quests in the repository are loaded and valid."""
+        repo = get_quest_repository()
+        self.assertGreaterEqual(repo.count(), 190)
+        self.assertIsNotNone(repo.get("The Knight's Sword"))
+        self.assertIsNotNone(repo.get("Cook's Assistant"))
 
-        sote = QUEST_DB["Song of the Elves"]
+        sote = repo.get("Song of the Elves")
+        self.assertIsNotNone(sote)
         self.assertEqual(sote.name, "Song of the Elves")
         self.assertEqual(sote.difficulty, "Grandmaster")
         self.assertEqual(sote.quest_points, 4)
         self.assertEqual(sote.requirements.skills[Skill.AGILITY], 70)
         self.assertEqual(sote.xp_rewards[Skill.AGILITY], 40000)
 
-        for q_name, q in QUEST_DB.items():
+        for q in repo.all():
             self.assertIsInstance(q, Quest)
-            self.assertEqual(q.name, q_name)
+            self.assertEqual(repo.get(q.name), q)
             self.assertTrue(bool(q.name))
             self.assertTrue(bool(q.difficulty))
             self.assertGreaterEqual(q.quest_points, 0)

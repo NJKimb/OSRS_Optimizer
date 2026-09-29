@@ -10,7 +10,7 @@ import httpx2
 
 from app.core.skills import Skill
 from app.models.quest import Quest, QuestRequirements
-from app.services.dataloader import reload_quests, QUEST_DB
+from app.repositories.quest_repository import get_quest_repository
 
 logger = logging.getLogger(__name__)
 
@@ -239,7 +239,7 @@ def sync_osrs_quests(
     2. The HTML response from `Quest_experience_rewards` (prop="text") for skill XP rewards
     3. Merges and validates via Pydantic Quest models
     4. Saves to quests.json if save=True
-    5. Reloads QUEST_DB in dataloader if reload_db=True
+    5. Reloads the quest repository if reload_db=True
     """
     logger.info("Fetching quest list for quest points from OSRS Wiki...")
     quest_list_html = fetch_wiki_page_content("Quests/List", prop="text")
@@ -262,6 +262,7 @@ def sync_osrs_quests(
         quest_name.lower(): rewards for quest_name, rewards in quest_xp_rewards.items()
     }
     valid_skills = {skill.value for skill in Skill}
+    repo = get_quest_repository()
     validated_quests: list[Quest] = []
     seen_quest_names: set[str] = set()
 
@@ -305,9 +306,10 @@ def sync_osrs_quests(
             if skill_name in valid_skills
         }
 
-        # Look up quest points from Quests/List, fallback to QUEST_DB
+        # Look up quest points from Quests/List, fallback to the existing quest data
+        existing_quest = repo.get(quest_name)
         quest_points = quest_points_by_name.get(quest_name, 0) or (
-            QUEST_DB[quest_name].quest_points if quest_name in QUEST_DB else 0
+            existing_quest.quest_points if existing_quest else 0
         )
 
         requirements = QuestRequirements(
@@ -345,6 +347,6 @@ def sync_osrs_quests(
         )
 
     if reload_db:
-        reload_quests()
+        repo.load()
 
     return validated_quests
