@@ -16,7 +16,7 @@ class OptimizationRequest(BaseModel):
         validation_alias=AliasChoices("quests_status", "completed_quests"),
     )
     custom_xp_rates: dict[Skill, PositiveInt] = Field(default_factory=dict)
-    allow_boosts: bool = True  # Use cheap temporary boosts for boostable requirements
+    allow_boosts: bool = False  # Use cheap temporary boosts for boostable requirements
 
 
 # Breakdown of each skill's deficit & hours:

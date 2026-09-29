@@ -38,7 +38,7 @@ class OptimizationSimulator:
         player_completed_quests: set[str],
         custom_xp_rates: dict[Skill, int] | None = None,
         repo: QuestRepository | None = None,
-        allow_boosts: bool = True,
+        allow_boosts: bool = False,
     ):
         self.player = player
         self.missing_quests = missing_quests
