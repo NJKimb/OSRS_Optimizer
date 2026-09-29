@@ -75,3 +75,23 @@ class TestPlanIntegration(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         data = response.json()
         self.assertNotIn("Waterfall Quest", data["missing_quests"])
+
+    def test_rejects_invalid_username(self):
+        payload = {
+            "username": "this name is way too long",
+            "target_goal": "Cook's Assistant",
+        }
+        response = self.client.post("/api/optimize/plan", json=payload)
+        self.assertEqual(response.status_code, 422)
+
+        response = self.client.get("/api/player/bad$name")
+        self.assertEqual(response.status_code, 422)
+
+    def test_rejects_non_positive_xp_rates(self):
+        payload = {
+            "username": "Zezima",
+            "target_goal": "Cook's Assistant",
+            "custom_xp_rates": {"agility": 0},
+        }
+        response = self.client.post("/api/optimize/plan", json=payload)
+        self.assertEqual(response.status_code, 422)

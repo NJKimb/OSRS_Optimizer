@@ -1,6 +1,11 @@
 from enum import StrEnum
-from pydantic import BaseModel, Field
+from typing import Annotated
+from pydantic import BaseModel, Field, StringConstraints
 from app.core.skills import Skill
+
+# OSRS display names: 1-12 letters, digits, spaces, hyphens or underscores
+USERNAME_PATTERN = r"^[A-Za-z0-9 _-]{1,12}$"
+Username = Annotated[str, StringConstraints(pattern=USERNAME_PATTERN)]
 
 
 class AccountType(StrEnum):
