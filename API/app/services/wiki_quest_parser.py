@@ -117,9 +117,11 @@ def parse_bucket_requirements(requirements_text: str) -> dict[str, Any]:
             r"^\*{1,6}\s*\[\[([^\]|]+)(?:\|[^\]]+)?\]\]", stripped_line
         )
         if bullet_match:
-            quest_candidate = bullet_match.group(1).strip()
+            # Wiki links may use underscores in place of spaces
+            quest_candidate = bullet_match.group(1).replace("_", " ").strip()
             ignored_prefixes = ("File:", "Image:", "Category:", "Quest point")
-            if not any(
+            # Links to page sections (e.g. "Balloon transport system#Grand Tree") aren't quests
+            if "#" not in quest_candidate and not any(
                 quest_candidate.startswith(prefix) for prefix in ignored_prefixes
             ):
                 if in_quest_section or stripped_line.startswith("**"):

@@ -74,6 +74,15 @@ class TestQuestSync(unittest.TestCase):
         self.assertIn("Mourning's End Part II", res["quests"])
         self.assertIn("Druidic Ritual", res["quests"])
 
+    def test_parse_bucket_requirements_cleans_links(self):
+        sample_req = """
+        *Completion of the following quests:
+        **[[Recipe for Disaster/Freeing_King_Awowogei|Recipe for Disaster]]
+        ***[[Balloon transport system#Grand Tree|Balloon flight route]] must be unlocked
+        """
+        res = parse_bucket_requirements(sample_req)
+        self.assertEqual(res["quests"], ["Recipe for Disaster/Freeing King Awowogei"])
+
     def test_parse_quests_list_mock(self):
         sample_html = """
 <table class="wikitable">
