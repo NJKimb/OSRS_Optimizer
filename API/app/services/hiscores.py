@@ -10,8 +10,8 @@ logger = logging.getLogger(__name__)
 HISCORES_BASE_URLS = {
     AccountType.MAIN: "https://secure.runescape.com/m=hiscore_oldschool/index_lite.json",
     AccountType.IRONMAN: "https://secure.runescape.com/m=hiscore_oldschool_ironman/index_lite.json",
-    AccountType.HARDCORE_IRONMAN: "https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.json",
-    AccountType.ULTIMATE_IRONMAN: "https://services.runescape.com/m=hiscore_oldschool_ultimate/index_lite.json",
+    AccountType.HARDCORE_IRONMAN: "https://secure.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.json",
+    AccountType.ULTIMATE_IRONMAN: "https://secure.runescape.com/m=hiscore_oldschool_ultimate/index_lite.json",
 }
 
 _PROFILE_CACHE = cachetools.TTLCache(maxsize=2000, ttl=300)
