@@ -116,15 +116,14 @@ class OptimizationSimulator:
                 needed_training_hours += (required_xp - current_xp) / xp_rate
         return quest_duration_hours, needed_training_hours
 
-    def candidate_sort_key(self, quest: Quest) -> tuple[float, float, str]:
+    def candidate_sort_key(self, quest: Quest) -> tuple[float, str]:
         """
         Calculates sort priority for quest candidates:
-        1. Estimated quest duration (shortest first)
-        2. Required training hours for deficit skills
-        3. Alphabetical quest name for deterministic ordering
+        1. Estimated quest duration + training hours required (shortest first)
+        2. Alphabetical quest name for deterministic ordering
         """
         quest_duration_hours, needed_training_hours = self.estimate_quest_hours(quest)
-        return (quest_duration_hours, needed_training_hours, quest.name)
+        return (needed_training_hours + quest_duration_hours, quest.name)
 
     def qp_filler_sort_key(self, quest: Quest) -> tuple[float, str]:
         """Ranks filler quests by total hours spent per quest point gained."""
