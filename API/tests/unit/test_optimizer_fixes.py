@@ -113,5 +113,55 @@ class TestBoosts(unittest.TestCase):
         self.assertEqual(result["boostable_skills"], ["mining"])
 
 
+class TestSharedSkillRequirement(unittest.TestCase):
+    def setUp(self):
+        self.first_quest = Quest(
+            name="First Quest",
+            quest_points=1,
+            difficulty="Novice",
+            length="Short",
+            requirements=QuestRequirements(skills={Skill.AGILITY: 20}),
+            xp_rewards={Skill.AGILITY: 2_000},
+        )
+        self.second_quest = Quest(
+            name="Second Quest",
+            quest_points=1,
+            difficulty="Novice",
+            length="Short",
+            requirements=QuestRequirements(
+                quests=["First Quest"], skills={Skill.AGILITY: 30}
+            ),
+        )
+
+    def test_higher_requirement_raises_target(self):
+        simulator = OptimizationSimulator(
+            player=make_player(),
+            missing_quests=[self.first_quest, self.second_quest],
+            target_quest=self.second_quest,
+            player_completed_quests=set(),
+        )
+        simulator.run()
+
+        self.assertEqual(
+            [step.title for step in simulator.roadmap],
+            [
+                "Train Agility to level 20",
+                "Complete First Quest",
+                "Train Agility to level 30",
+                "Complete Second Quest",
+            ],
+        )
+        self.assertEqual(simulator.skill_targets[Skill.AGILITY].base_level, 30)
+
+        deficits = {
+            deficit.skill: deficit for deficit in simulator.build_skill_deficits()
+        }
+        agility = deficits[Skill.AGILITY]
+        self.assertEqual(agility.target_level, 30)
+        self.assertEqual(agility.xp_needed, xp_for_level(30))
+        self.assertEqual(agility.quest_xp_rewards, 2_000)
+        self.assertEqual(agility.remaining_xp_to_grind, xp_for_level(30) - 2_000)
+
+
 if __name__ == "__main__":
     unittest.main()

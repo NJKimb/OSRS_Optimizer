@@ -65,6 +65,7 @@ class OptimizationSimulator:
         }
         self.initial_xp: dict[Skill, int] = dict(self.simulated_xp)
         self.hours_per_skill: dict[Skill, float] = {skill: 0.0 for skill in Skill}
+        self.grind_xp_per_skill: dict[Skill, int] = {skill: 0 for skill in Skill}
         self.quest_xp_awarded: dict[Skill, int] = {skill: 0 for skill in Skill}
 
         # Highest base level needed per skill, plus the boost (if any) used to reach it
@@ -229,7 +230,10 @@ class OptimizationSimulator:
             current_xp = self.simulated_xp[skill]
 
             if current_xp < required_xp:
+                # Record XP grind needed for this skill to reach the base level
                 xp_diff = required_xp - current_xp
+                # Update the total XP grind for this skill
+                self.grind_xp_per_skill[skill] += xp_diff
                 xp_rate = get_skill_rate(skill, self.custom_xp_rates)
                 training_hours = round(xp_diff / xp_rate, 2)
                 self.hours_per_skill[skill] += training_hours
@@ -381,8 +385,8 @@ class OptimizationSimulator:
             target_level = target.base_level
             target_xp = xp_for_level(target_level)
             raw_xp_needed = max(0, target_xp - initial_xp)
-            free_quest_xp = self.quest_xp_awarded.get(skill, 0)
-            net_grind_xp = max(0, raw_xp_needed - free_quest_xp)
+            net_grind_xp = self.grind_xp_per_skill[skill]
+            free_quest_xp = raw_xp_needed - net_grind_xp
             training_hours = round(self.hours_per_skill.get(skill, 0.0), 2)
 
             deficits.append(
