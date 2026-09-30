@@ -235,7 +235,7 @@ class OptimizationSimulator:
                 # Update the total XP grind for this skill
                 self.grind_xp_per_skill[skill] += xp_diff
                 xp_rate = get_skill_rate(skill, self.custom_xp_rates)
-                training_hours = round(xp_diff / xp_rate, 2)
+                training_hours = xp_diff / xp_rate
                 self.hours_per_skill[skill] += training_hours
 
                 current_level = xp_to_level(current_xp)
@@ -254,7 +254,7 @@ class OptimizationSimulator:
                             f"(+{xp_diff:,} XP needed for {quest.name}) at ~{xp_rate:,} XP/hr."
                             f"{boost_note}"
                         ),
-                        estimated_hours=training_hours,
+                        estimated_hours=round(training_hours, 2),
                     )
                 )
                 self.step_counter += 1
