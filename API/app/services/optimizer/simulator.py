@@ -1,3 +1,4 @@
+from typing import NamedTuple
 from app.core.skills import Skill, xp_for_level, xp_to_level
 from app.models.plan import RoadmapStep, SkillDeficit, StepType
 from app.models.player import PlayerProfile
@@ -19,6 +20,12 @@ QUEST_ESTIMATED_TIME: dict[str, float] = {
     "long": 1.0,
     "very long": 2.25,
 }
+
+
+class SkillTarget(NamedTuple):
+    base_level: int
+    required_level: int
+    boost: SkillBoost | None
 
 
 class OptimizationSimulator:
@@ -61,7 +68,7 @@ class OptimizationSimulator:
         self.quest_xp_awarded: dict[Skill, int] = {skill: 0 for skill in Skill}
 
         # Highest base level needed per skill, plus the boost (if any) used to reach it
-        self.skill_targets: dict[Skill, tuple[int, int, SkillBoost | None]] = {}
+        self.skill_targets: dict[Skill, SkillTarget] = {}
 
         self.roadmap: list[RoadmapStep] = []
         self.step_counter: int = 1
@@ -210,12 +217,13 @@ class OptimizationSimulator:
         for skill, required_level in quest.requirements.skills.items():
             base_level, boost = self.get_required_base_level(quest, skill)
 
+            # If base requirement is higher than previously targeted, update the target
             previous_target = self.skill_targets.get(skill)
             if previous_target is None or (base_level, required_level) > (
-                previous_target[0],
-                previous_target[1],
+                previous_target.base_level,
+                previous_target.required_level,
             ):
-                self.skill_targets[skill] = (base_level, required_level, boost)
+                self.skill_targets[skill] = SkillTarget(base_level, required_level, boost)
 
             required_xp = xp_for_level(base_level)
             current_xp = self.simulated_xp[skill]
@@ -360,16 +368,17 @@ class OptimizationSimulator:
         """
         if skill_requirements is not None:
             targets = {
-                skill: (level, level, None)
+                skill: SkillTarget(level, level, None)
                 for skill, level in skill_requirements.items()
             }
         else:
             targets = self.skill_targets
 
         deficits: list[SkillDeficit] = []
-        for skill, (target_level, required_level, boost) in targets.items():
+        for skill, target in targets.items():
             initial_xp = self.initial_xp[skill]
             initial_level = xp_to_level(initial_xp)
+            target_level = target.base_level
             target_xp = xp_for_level(target_level)
             raw_xp_needed = max(0, target_xp - initial_xp)
             free_quest_xp = self.quest_xp_awarded.get(skill, 0)
@@ -388,8 +397,8 @@ class OptimizationSimulator:
                     remaining_xp_to_grind=net_grind_xp,
                     estimated_hours=training_hours,
                     boost=(
-                        f"Boost to {required_level} with a {boost.source}"
-                        if boost
+                        f"Boost to {target.required_level} with a {target.boost.source}"
+                        if target.boost
                         else None
                     ),
                 )
