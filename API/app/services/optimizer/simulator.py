@@ -52,7 +52,7 @@ class OptimizationSimulator:
                 player.skills[skill].xp
                 if skill in player.skills
                 # Hit Points starts at level 10 or 1154 experience
-                else (1154 if skill == Skill.HITPOINTS else 0)
+                else (xp_for_level(10) if skill == Skill.HITPOINTS else 0)
             )
             for skill in Skill
         }
