@@ -54,7 +54,6 @@ class TestOptimizationSimulator(unittest.TestCase):
             player=self.player,
             missing_quests=[self.quest1, self.quest2],
             target_quest=self.quest2,
-            target_goal="Quest Two",
             player_completed_quests=set(),
         )
         self.assertEqual(len(simulator.roadmap), 0)

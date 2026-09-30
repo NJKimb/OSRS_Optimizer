@@ -60,7 +60,6 @@ async def generate_optimization_plan(
         player=player,
         missing_quests=missing_quests,
         target_quest=target_quest,
-        target_goal=request.target_goal,
         player_completed_quests=player_completed_quests,
         custom_xp_rates=request.custom_xp_rates,
         repo=repo,

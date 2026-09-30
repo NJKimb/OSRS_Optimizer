@@ -43,7 +43,6 @@ class TestQuestPointFillers(unittest.TestCase):
             player=make_player(),
             missing_quests=get_missing_quests("Dragon Slayer I", set(), repo=repo),
             target_quest=target,
-            target_goal="Dragon Slayer I",
             player_completed_quests=set(),
             repo=repo,
         )
@@ -76,7 +75,6 @@ class TestBoosts(unittest.TestCase):
             player=make_player({Skill.AGILITY: 65, Skill.THIEVING: 50}),
             missing_quests=[self.quest],
             target_quest=self.quest,
-            target_goal=self.quest.name,
             player_completed_quests=set(),
             allow_boosts=allow_boosts,
         )

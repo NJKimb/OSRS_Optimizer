@@ -34,7 +34,6 @@ class OptimizationSimulator:
         player: PlayerProfile,
         missing_quests: list[Quest],
         target_quest: Quest,
-        target_goal: str,
         player_completed_quests: set[str],
         custom_xp_rates: dict[Skill, int] | None = None,
         repo: QuestRepository | None = None,
@@ -43,7 +42,6 @@ class OptimizationSimulator:
         self.player = player
         self.missing_quests = missing_quests
         self.target_quest = target_quest
-        self.target_goal = target_goal
         self.custom_xp_rates = custom_xp_rates
         self.repo = repo if repo is not None else get_quest_repository()
         self.allow_boosts = allow_boosts
@@ -335,10 +333,7 @@ class OptimizationSimulator:
 
         # Apply quest XP rewards ONLY for prerequisite quests, not the final goal itself
         is_target_goal = (
-            quest.id == self.target_quest.id
-            or quest.name.lower() == self.target_quest.name.lower()
-            or quest.id == self.target_goal
-            or quest.name.lower() == self.target_goal.lower()
+            quest.name == self.target_quest.name
         )
         if not is_target_goal:
             for skill, xp_amount in quest.xp_rewards.items():
