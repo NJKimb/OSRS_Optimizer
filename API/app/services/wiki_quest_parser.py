@@ -163,7 +163,7 @@ def parse_quest_xp_rewards(content: str) -> dict[str, dict[str, int]]:
             if not table:
                 continue
             for row in table.find_all("tr", attrs={"data-rowid": True}):
-                quest_name = html.unescape(row["data-rowid"]).strip()
+                quest_name = html.unescape(str(row["data-rowid"])).strip()
                 cells = row.find_all("td")
                 if len(cells) >= 3:
                     xp_text = cells[2].get_text(strip=True).replace(",", "")

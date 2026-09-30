@@ -14,7 +14,7 @@ HISCORES_BASE_URLS = {
     AccountType.ULTIMATE_IRONMAN: "https://secure.runescape.com/m=hiscore_oldschool_ultimate/index_lite.json",
 }
 
-_PROFILE_CACHE = cachetools.TTLCache(maxsize=2000, ttl=300)
+_PROFILE_CACHE = cachetools.TTLCache[str, PlayerProfile](maxsize=2000, ttl=300)
 
 
 async def fetch_player_profile(

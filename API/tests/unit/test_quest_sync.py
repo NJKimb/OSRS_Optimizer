@@ -127,7 +127,7 @@ class TestQuestSync(unittest.TestCase):
         self.assertIsNotNone(repo.get("Cook's Assistant"))
 
         sote = repo.get("Song of the Elves")
-        self.assertIsNotNone(sote)
+        assert sote is not None
         self.assertEqual(sote.name, "Song of the Elves")
         self.assertEqual(sote.difficulty, "Grandmaster")
         self.assertEqual(sote.quest_points, 4)

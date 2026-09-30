@@ -73,11 +73,11 @@ class TestOptimizationSimulator(unittest.TestCase):
 
     def test_already_completed_plan(self):
         """Testing when target quest is already completed returns 0-hour plan."""
-        req = OptimizationRequest(
-            username="TestUser",
-            target_goal="Cook's Assistant",
-            completed_quests=["Cook's Assistant"],
-        )
+        req = OptimizationRequest.model_validate({
+            "username": "TestUser",
+            "target_goal": "Cook's Assistant",
+            "completed_quests": ["Cook's Assistant"],
+        })
         with patch(
             "app.services.optimizer.engine.fetch_player_profile",
             new_callable=AsyncMock,

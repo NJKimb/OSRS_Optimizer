@@ -39,6 +39,7 @@ class TestQuestPointFillers(unittest.TestCase):
     def test_fillers_added_to_reach_qp_requirement(self):
         repo = get_quest_repository()
         target = repo.get("Dragon Slayer I")
+        assert target is not None
         simulator = OptimizationSimulator(
             player=make_player(),
             missing_quests=get_missing_quests("Dragon Slayer I", set(), repo=repo),
