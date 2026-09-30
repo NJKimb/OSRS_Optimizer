@@ -224,7 +224,9 @@ class OptimizationSimulator:
                 previous_target.base_level,
                 previous_target.required_level,
             ):
-                self.skill_targets[skill] = SkillTarget(base_level, required_level, boost)
+                self.skill_targets[skill] = SkillTarget(
+                    base_level, required_level, boost
+                )
 
             required_xp = xp_for_level(base_level)
             current_xp = self.simulated_xp[skill]
@@ -343,9 +345,7 @@ class OptimizationSimulator:
         self.step_counter += 1
 
         # Apply quest XP rewards ONLY for prerequisite quests, not the final goal itself
-        is_target_goal = (
-            quest.name == self.target_quest.name
-        )
+        is_target_goal = quest.name == self.target_quest.name
         if not is_target_goal:
             for skill, xp_amount in quest.xp_rewards.items():
                 self.simulated_xp[skill] += xp_amount
