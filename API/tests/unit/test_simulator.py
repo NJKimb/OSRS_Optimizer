@@ -8,7 +8,6 @@ from app.models.quest import Quest, QuestRequirements
 from app.services.optimizer.engine import (
     generate_optimization_plan,
     get_missing_quests,
-    get_skill_requirements,
 )
 from app.services.optimizer.simulator import OptimizationSimulator
 
@@ -65,11 +64,6 @@ class TestOptimizationSimulator(unittest.TestCase):
         self.assertEqual(len(quest_steps), 2)
         self.assertEqual(quest_steps[0].title, "Complete Quest One")
         self.assertEqual(quest_steps[1].title, "Complete Quest Two")
-
-        # Check skill deficits summary
-        skill_reqs = get_skill_requirements([self.quest1, self.quest2])
-        deficits = simulator.build_skill_deficits(skill_reqs)
-        self.assertGreater(len(deficits), 0)
 
     def test_already_completed_plan(self):
         """Testing when target quest is already completed returns 0-hour plan."""

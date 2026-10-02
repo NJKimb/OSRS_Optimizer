@@ -30,7 +30,7 @@ class SkillTarget(NamedTuple):
 
 class OptimizationSimulator:
     """
-    Simulates quest and skill progression to produce an optimal roadmap.
+    Simulates quest and skill progression to produce a roadmap.
 
     Encapsulates simulation state (simulated XP, completed quests, QP, roadmap steps)
     and eliminates nested closures from the engine.
@@ -43,14 +43,16 @@ class OptimizationSimulator:
         target_quest: Quest,
         player_completed_quests: set[str],
         custom_xp_rates: dict[Skill, int] | None = None,
-        repo: QuestRepository | None = None,
+        quest_repository: QuestRepository | None = None,
         allow_boosts: bool = False,
     ):
         self.player = player
         self.missing_quests = missing_quests
         self.target_quest = target_quest
         self.custom_xp_rates = custom_xp_rates
-        self.repo = repo if repo is not None else get_quest_repository()
+        self.quest_repository = (
+            quest_repository if quest_repository is not None else get_quest_repository()
+        )
         self.allow_boosts = allow_boosts
 
         # Initialize simulated XP and baseline tracking
@@ -90,11 +92,11 @@ class OptimizationSimulator:
         self.qp_filler_reasons: dict[str, Quest] = {}
 
     def estimate_quest_completion_time(self, quest: Quest):
-        return QUEST_ESTIMATED_TIME.get(quest.length.strip().lower(), .5)
+        return QUEST_ESTIMATED_TIME.get(quest.length.strip().lower(), 0.5)
 
     # Get quest points for a given quest, if it doesnt exist return 0
     def _get_quest_qp(self, quest_name: str) -> int:
-        quest = self.repo.get(quest_name)
+        quest = self.quest_repository.get(quest_name)
         return quest.quest_points if quest else 0
 
     def get_required_base_level(
@@ -172,7 +174,7 @@ class OptimizationSimulator:
         """
         fillers = [
             quest
-            for quest in self.repo.all()
+            for quest in self.quest_repository.all()
             if quest.quest_points > 0
             and quest.name.lower() not in self.completed_names
             and quest.name not in self.remaining_quests

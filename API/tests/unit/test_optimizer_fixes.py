@@ -45,7 +45,7 @@ class TestQuestPointFillers(unittest.TestCase):
             missing_quests=get_missing_quests("Dragon Slayer I", set(), repo=repo),
             target_quest=target,
             player_completed_quests=set(),
-            repo=repo,
+            quest_repository=repo,
         )
         simulator.run()
 

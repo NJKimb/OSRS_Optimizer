@@ -62,7 +62,7 @@ async def generate_optimization_plan(
         target_quest=target_quest,
         player_completed_quests=player_completed_quests,
         custom_xp_rates=request.custom_xp_rates,
-        repo=repo,
+        quest_repository=repo,
         allow_boosts=request.allow_boosts,
     )
     simulator.run()
