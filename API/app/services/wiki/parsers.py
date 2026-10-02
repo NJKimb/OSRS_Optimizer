@@ -12,6 +12,19 @@ SKILL_NAME_MAP = {
     "hp": "hitpoints",
 }
 
+# A skill or quest point requirement, e.g. data-skill="Agility" data-level="70"
+SKILL_LEVEL_PATTERN = re.compile(r'data-skill="([^"]+)"\s+data-level="(\d+)"')
+# Quest points written as plain text, e.g. "32 [[Quest points]]"
+QUEST_POINTS_TEXT_PATTERN = re.compile(r"(\d+)\s+\[\[Quest points\]\]", re.IGNORECASE)
+# A bulleted wiki link, e.g. "**[[Druidic Ritual]]" or "*[[Page|label]]", capturing the page
+WIKI_BULLET_LINK_PATTERN = re.compile(r"^\*{1,6}\s*\[\[([^\]|]+)(?:\|[^\]]+)?\]\]")
+# An XP amount that may have a decimal part, e.g. "1000.5"
+XP_AMOUNT_PATTERN = re.compile(r"\d+(?:\.\d+)?")
+
+BOOSTABLE_MARKER = 'title="This requirement is boostable"'
+# Links to these pages are never prerequisite quests
+IGNORED_LINK_PREFIXES = ("File:", "Image:", "Category:", "Quest point")
+
 
 def _to_skill(raw_name: str) -> Skill | None:
     """Maps a wiki skill name (e.g. "Runecrafting") to a Skill, or None if it isn't one."""
@@ -39,8 +52,8 @@ def parse_bucket_requirements(requirements_text: str) -> QuestRequirements:
     # 1. Extract skills and Quest points from data-skill / data-level tags.
     # Each requirement sits on its own line, followed by its boostable annotation.
     for line in requirements_text.splitlines():
-        is_boostable = 'title="This requirement is boostable"' in line
-        for match in re.finditer(r'data-skill="([^"]+)"\s+data-level="(\d+)"', line):
+        is_boostable = BOOSTABLE_MARKER in line
+        for match in SKILL_LEVEL_PATTERN.finditer(line):
             raw_skill = match.group(1)
             level = int(match.group(2))
             if raw_skill.strip().lower() in ("quest points", "quest point"):
@@ -53,9 +66,7 @@ def parse_bucket_requirements(requirements_text: str) -> QuestRequirements:
                     boostable_skills.append(skill)
 
     if required_quest_points == 0:
-        quest_points_match = re.search(
-            r"(\d+)\s+\[\[Quest points\]\]", requirements_text, re.IGNORECASE
-        )
+        quest_points_match = QUEST_POINTS_TEXT_PATTERN.search(requirements_text)
         if quest_points_match:
             required_quest_points = int(quest_points_match.group(1))
 
@@ -69,16 +80,13 @@ def parse_bucket_requirements(requirements_text: str) -> QuestRequirements:
             in_quest_section = True
             continue
 
-        bullet_match = re.match(
-            r"^\*{1,6}\s*\[\[([^\]|]+)(?:\|[^\]]+)?\]\]", stripped_line
-        )
+        bullet_match = WIKI_BULLET_LINK_PATTERN.match(stripped_line)
         if bullet_match:
             # Wiki links may use underscores in place of spaces
             quest_candidate = bullet_match.group(1).replace("_", " ").strip()
-            ignored_prefixes = ("File:", "Image:", "Category:", "Quest point")
             # Links to page sections (e.g. "Balloon transport system#Grand Tree") aren't quests
-            if "#" not in quest_candidate and not any(
-                quest_candidate.startswith(prefix) for prefix in ignored_prefixes
+            if "#" not in quest_candidate and not quest_candidate.startswith(
+                IGNORED_LINK_PREFIXES
             ):
                 if in_quest_section or stripped_line.startswith("**"):
                     if quest_candidate not in prerequisite_quests:
@@ -118,9 +126,9 @@ def parse_quest_xp_rewards(html_text: str) -> dict[str, dict[Skill, int]]:
             if len(cells) < 3:
                 continue
             xp_text = cells[2].get_text(strip=True).replace(",", "")
-            amount_match = re.search(r"(\d+(?:\.\d+)?)", xp_text)
+            amount_match = XP_AMOUNT_PATTERN.search(xp_text)
             if amount_match:
-                xp_amount = int(float(amount_match.group(1)))
+                xp_amount = int(float(amount_match.group(0)))
                 xp_rewards_by_quest.setdefault(quest_name, {})[skill] = xp_amount
 
     return xp_rewards_by_quest
