@@ -45,36 +45,52 @@ def parse_bucket_requirements(requirements_text: str) -> QuestRequirements:
     if not requirements_text or requirements_text.strip().lower() == "none":
         return QuestRequirements()
 
+    skill_requirements, boostable_skills = _parse_skill_requirements(requirements_text)
+    return QuestRequirements(
+        quests=_parse_prerequisite_quests(requirements_text),
+        skills=skill_requirements,
+        boostable_skills=boostable_skills,
+        quest_points=_parse_quest_points(requirements_text),
+    )
+
+
+def _parse_skill_requirements(
+    requirements_text: str,
+) -> tuple[dict[Skill, int], list[Skill]]:
+    """Returns the required level per skill, and which of those skills are boostable."""
     skill_requirements: dict[Skill, int] = {}
     boostable_skills: list[Skill] = []
-    required_quest_points = 0
-
-    # 1. Extract skills and Quest points from data-skill / data-level tags.
-    # Each requirement sits on its own line, followed by its boostable annotation.
+    # Each requirement sits on its own line, followed by its boostable annotation
     for line in requirements_text.splitlines():
         is_boostable = BOOSTABLE_MARKER in line
         for match in SKILL_LEVEL_PATTERN.finditer(line):
-            raw_skill = match.group(1)
-            level = int(match.group(2))
-            if raw_skill.strip().lower() in ("quest points", "quest point"):
-                required_quest_points = max(required_quest_points, level)
+            skill = _to_skill(match.group(1))
+            if skill is None:
                 continue
-            skill = _to_skill(raw_skill)
-            if skill is not None:
-                skill_requirements[skill] = level
-                if is_boostable and skill not in boostable_skills:
-                    boostable_skills.append(skill)
+            skill_requirements[skill] = int(match.group(2))
+            if is_boostable and skill not in boostable_skills:
+                boostable_skills.append(skill)
+    return skill_requirements, boostable_skills
 
+
+def _parse_quest_points(requirements_text: str) -> int:
+    """Returns the required quest points, from a data-skill tag or else plain text."""
+    required_quest_points = 0
+    for match in SKILL_LEVEL_PATTERN.finditer(requirements_text):
+        if match.group(1).strip().lower() in ("quest points", "quest point"):
+            required_quest_points = max(required_quest_points, int(match.group(2)))
     if required_quest_points == 0:
         quest_points_match = QUEST_POINTS_TEXT_PATTERN.search(requirements_text)
         if quest_points_match:
             required_quest_points = int(quest_points_match.group(1))
+    return required_quest_points
 
-    # 2. Extract prerequisite quests
+
+def _parse_prerequisite_quests(requirements_text: str) -> list[str]:
+    """Returns the quests linked from bullet lists of required quests."""
     prerequisite_quests: list[str] = []
-    lines = requirements_text.splitlines()
     in_quest_section = False
-    for line in lines:
+    for line in requirements_text.splitlines():
         stripped_line = line.strip()
         if "completion of the following quest" in stripped_line.lower():
             in_quest_section = True
@@ -93,13 +109,7 @@ def parse_bucket_requirements(requirements_text: str) -> QuestRequirements:
                         prerequisite_quests.append(quest_candidate)
         elif in_quest_section and not stripped_line.startswith("*"):
             in_quest_section = False
-
-    return QuestRequirements(
-        quests=prerequisite_quests,
-        skills=skill_requirements,
-        boostable_skills=boostable_skills,
-        quest_points=required_quest_points,
-    )
+    return prerequisite_quests
 
 
 def parse_quest_xp_rewards(html_text: str) -> dict[str, dict[Skill, int]]:
