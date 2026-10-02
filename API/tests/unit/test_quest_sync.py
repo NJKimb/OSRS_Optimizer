@@ -18,26 +18,6 @@ class TestQuestSync(unittest.TestCase):
     def setUpClass(cls):
         cls.client = TestClient(app)
 
-    def test_parse_quest_xp_rewards_mock(self):
-        sample_wikitext = """
-==Set experience==
-===Agility===
-{| class="wikitable"
-|- data-rowid="Recruitment Drive"
-|[[Recruitment Drive]]
-|Yes||{{+=|agility|1,000.5|echo=2}}
-|-
-|- data-rowid="Waterfall Quest"
-|[[Waterfall Quest]]
-|Yes||{{+=|attack|13,750|echo=2}}||{{+=|strength|13,750|echo=2}}
-|}
-        """
-        xp = parse_quest_xp_rewards(sample_wikitext)
-        self.assertIn("Recruitment Drive", xp)
-        self.assertEqual(xp["Recruitment Drive"][Skill.AGILITY], 1000)
-        self.assertIn("Waterfall Quest", xp)
-        self.assertEqual(xp["Waterfall Quest"][Skill.ATTACK], 13750)
-
     def test_parse_quest_xp_rewards_html_mock(self):
         sample_html = """
         <h2>Agility</h2>

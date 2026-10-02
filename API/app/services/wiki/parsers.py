@@ -94,53 +94,34 @@ def parse_bucket_requirements(requirements_text: str) -> QuestRequirements:
     )
 
 
-def parse_quest_xp_rewards(content: str) -> dict[str, dict[Skill, int]]:
+def parse_quest_xp_rewards(html_text: str) -> dict[str, dict[Skill, int]]:
     """
-    Parses `Quest experience rewards` content to extract all skill experience rewards.
-    Supports both parsed HTML (prop="text") and raw wikitext (prop="wikitext").
+    Parses the `Quest experience rewards` HTML, which has one table per skill.
     Returns {quest_name: {skill: xp_amount}}.
     """
+    soup = BeautifulSoup(html_text, "html.parser")
     xp_rewards_by_quest: dict[str, dict[Skill, int]] = {}
 
-    # Check if content is HTML
-    if "<table" in content:
-        soup = BeautifulSoup(content, "html.parser")
-
-        for skill in Skill:
-            heading = soup.find(
-                lambda tag: tag.name in ["h3", "h2"]
-                and tag.get_text(strip=True).lower().startswith(skill.value)
-            )
-            if not heading:
-                continue
-            table = heading.find_next("table", class_="wikitable")
-            if not table:
-                continue
-            for row in table.find_all("tr", attrs={"data-rowid": True}):
-                quest_name = html.unescape(str(row["data-rowid"])).strip()
-                cells = row.find_all("td")
-                if len(cells) >= 3:
-                    xp_text = cells[2].get_text(strip=True).replace(",", "")
-                    amount_match = re.search(r"(\d+(?:\.\d+)?)", xp_text)
-                    if amount_match:
-                        xp_amount = int(float(amount_match.group(1)))
-                        if quest_name not in xp_rewards_by_quest:
-                            xp_rewards_by_quest[quest_name] = {}
-                        xp_rewards_by_quest[quest_name][skill] = xp_amount
-    else:
-        # Fallback for wikitext format
-        matches = re.findall(
-            r'data-rowid="([^"]+)"[\s\S]*?\{\{\+=\|([a-z]+)\|([0-9.,]+)', content
+    for skill in Skill:
+        heading = soup.find(
+            lambda tag: tag.name in ["h3", "h2"]
+            and tag.get_text(strip=True).lower().startswith(skill.value)
         )
-        for raw_quest_name, raw_skill, raw_amount in matches:
-            xp_amount = int(float(raw_amount.replace(",", "")))
-            quest_name = html.unescape(raw_quest_name).strip()
-            reward_skill = _to_skill(raw_skill)
-            if reward_skill is None:
+        if not heading:
+            continue
+        table = heading.find_next("table", class_="wikitable")
+        if not table:
+            continue
+        for row in table.find_all("tr", attrs={"data-rowid": True}):
+            quest_name = html.unescape(str(row["data-rowid"])).strip()
+            cells = row.find_all("td")
+            if len(cells) < 3:
                 continue
-            if quest_name not in xp_rewards_by_quest:
-                xp_rewards_by_quest[quest_name] = {}
-            xp_rewards_by_quest[quest_name][reward_skill] = xp_amount
+            xp_text = cells[2].get_text(strip=True).replace(",", "")
+            amount_match = re.search(r"(\d+(?:\.\d+)?)", xp_text)
+            if amount_match:
+                xp_amount = int(float(amount_match.group(1)))
+                xp_rewards_by_quest.setdefault(quest_name, {})[skill] = xp_amount
 
     return xp_rewards_by_quest
 
