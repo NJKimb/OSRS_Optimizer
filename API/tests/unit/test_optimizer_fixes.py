@@ -110,8 +110,8 @@ class TestBoosts(unittest.TestCase):
             '<sup>[<span title="This requirement is not boostable">not boostable</span>]</sup>'
         )
         result = parse_bucket_requirements(sample_req)
-        self.assertEqual(result["skills"], {"mining": 10, "agility": 70})
-        self.assertEqual(result["boostable_skills"], ["mining"])
+        self.assertEqual(result.skills, {Skill.MINING: 10, Skill.AGILITY: 70})
+        self.assertEqual(result.boostable_skills, [Skill.MINING])
 
 
 class TestSharedSkillRequirement(unittest.TestCase):

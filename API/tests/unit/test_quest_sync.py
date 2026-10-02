@@ -34,9 +34,9 @@ class TestQuestSync(unittest.TestCase):
         """
         xp = parse_quest_xp_rewards(sample_wikitext)
         self.assertIn("Recruitment Drive", xp)
-        self.assertEqual(xp["Recruitment Drive"]["agility"], 1000)
+        self.assertEqual(xp["Recruitment Drive"][Skill.AGILITY], 1000)
         self.assertIn("Waterfall Quest", xp)
-        self.assertEqual(xp["Waterfall Quest"]["attack"], 13750)
+        self.assertEqual(xp["Waterfall Quest"][Skill.ATTACK], 13750)
 
     def test_parse_quest_xp_rewards_html_mock(self):
         sample_html = """
@@ -55,9 +55,9 @@ class TestQuestSync(unittest.TestCase):
         """
         xp = parse_quest_xp_rewards(sample_html)
         self.assertIn("Recruitment Drive", xp)
-        self.assertEqual(xp["Recruitment Drive"]["agility"], 1000)
+        self.assertEqual(xp["Recruitment Drive"][Skill.AGILITY], 1000)
         self.assertIn("Waterfall Quest", xp)
-        self.assertEqual(xp["Waterfall Quest"]["attack"], 13750)
+        self.assertEqual(xp["Waterfall Quest"][Skill.ATTACK], 13750)
 
     def test_parse_bucket_requirements(self):
         sample_req = """
@@ -69,10 +69,10 @@ class TestQuestSync(unittest.TestCase):
         **[[Druidic Ritual]]
         """
         res = parse_bucket_requirements(sample_req)
-        self.assertEqual(res["skills"]["agility"], 70)
-        self.assertEqual(res["quest_points"], 32)
-        self.assertIn("Mourning's End Part II", res["quests"])
-        self.assertIn("Druidic Ritual", res["quests"])
+        self.assertEqual(res.skills[Skill.AGILITY], 70)
+        self.assertEqual(res.quest_points, 32)
+        self.assertIn("Mourning's End Part II", res.quests)
+        self.assertIn("Druidic Ritual", res.quests)
 
     def test_parse_bucket_requirements_cleans_links(self):
         sample_req = """
@@ -81,7 +81,7 @@ class TestQuestSync(unittest.TestCase):
         ***[[Balloon transport system#Grand Tree|Balloon flight route]] must be unlocked
         """
         res = parse_bucket_requirements(sample_req)
-        self.assertEqual(res["quests"], ["Recipe for Disaster/Freeing King Awowogei"])
+        self.assertEqual(res.quests, ["Recipe for Disaster/Freeing King Awowogei"])
 
     def test_parse_quests_list_mock(self):
         sample_html = """

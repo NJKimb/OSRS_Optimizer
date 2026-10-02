@@ -4,6 +4,7 @@ from typing import Any
 
 from bs4 import BeautifulSoup
 
+from app.models.quest import QuestRequirements
 from app.models.skills import Skill
 
 SKILL_NAME_MAP = {
@@ -12,7 +13,16 @@ SKILL_NAME_MAP = {
 }
 
 
-def parse_bucket_requirements(requirements_text: str) -> dict[str, Any]:
+def _to_skill(raw_name: str) -> Skill | None:
+    """Maps a wiki skill name (e.g. "Runecrafting") to a Skill, or None if it isn't one."""
+    name = raw_name.strip().lower()
+    try:
+        return Skill(SKILL_NAME_MAP.get(name, name))
+    except ValueError:
+        return None
+
+
+def parse_bucket_requirements(requirements_text: str) -> QuestRequirements:
     """
     Parses the `requirements` field from the Bucket quest table:
       - Skill requirements from <span class="scp" data-skill="..." data-level="...">
@@ -20,29 +30,27 @@ def parse_bucket_requirements(requirements_text: str) -> dict[str, Any]:
       - Prerequisite quests from wiki bullet links under quest completion sections
     """
     if not requirements_text or requirements_text.strip().lower() == "none":
-        return {"skills": {}, "boostable_skills": [], "quests": [], "quest_points": 0}
+        return QuestRequirements()
 
-    skill_requirements: dict[str, int] = {}
-    boostable_skills: list[str] = []
+    skill_requirements: dict[Skill, int] = {}
+    boostable_skills: list[Skill] = []
     required_quest_points = 0
-    valid_skills = {skill.value for skill in Skill}
 
     # 1. Extract skills and Quest points from data-skill / data-level tags.
     # Each requirement sits on its own line, followed by its boostable annotation.
     for line in requirements_text.splitlines():
         is_boostable = 'title="This requirement is boostable"' in line
         for match in re.finditer(r'data-skill="([^"]+)"\s+data-level="(\d+)"', line):
-            raw_skill = match.group(1).strip()
+            raw_skill = match.group(1)
             level = int(match.group(2))
-            raw_skill_lower = raw_skill.lower()
-            if raw_skill_lower in ("quest points", "quest point"):
+            if raw_skill.strip().lower() in ("quest points", "quest point"):
                 required_quest_points = max(required_quest_points, level)
                 continue
-            canonical_skill = SKILL_NAME_MAP.get(raw_skill_lower, raw_skill_lower)
-            if canonical_skill in valid_skills:
-                skill_requirements[canonical_skill] = level
-                if is_boostable and canonical_skill not in boostable_skills:
-                    boostable_skills.append(canonical_skill)
+            skill = _to_skill(raw_skill)
+            if skill is not None:
+                skill_requirements[skill] = level
+                if is_boostable and skill not in boostable_skills:
+                    boostable_skills.append(skill)
 
     if required_quest_points == 0:
         quest_points_match = re.search(
@@ -78,32 +86,30 @@ def parse_bucket_requirements(requirements_text: str) -> dict[str, Any]:
         elif in_quest_section and not stripped_line.startswith("*"):
             in_quest_section = False
 
-    return {
-        "skills": skill_requirements,
-        "boostable_skills": boostable_skills,
-        "quests": prerequisite_quests,
-        "quest_points": required_quest_points,
-    }
+    return QuestRequirements(
+        quests=prerequisite_quests,
+        skills=skill_requirements,
+        boostable_skills=boostable_skills,
+        quest_points=required_quest_points,
+    )
 
 
-def parse_quest_xp_rewards(content: str) -> dict[str, dict[str, int]]:
+def parse_quest_xp_rewards(content: str) -> dict[str, dict[Skill, int]]:
     """
     Parses `Quest experience rewards` content to extract all skill experience rewards.
     Supports both parsed HTML (prop="text") and raw wikitext (prop="wikitext").
     Returns {quest_name: {skill: xp_amount}}.
     """
-    valid_skills = {skill.value for skill in Skill}
-    xp_rewards_by_quest: dict[str, dict[str, int]] = {}
+    xp_rewards_by_quest: dict[str, dict[Skill, int]] = {}
 
     # Check if content is HTML
     if "<table" in content:
         soup = BeautifulSoup(content, "html.parser")
-        skill_names = [skill.value for skill in Skill]
 
-        for skill_name in skill_names:
+        for skill in Skill:
             heading = soup.find(
                 lambda tag: tag.name in ["h3", "h2"]
-                and tag.get_text(strip=True).lower().startswith(skill_name)
+                and tag.get_text(strip=True).lower().startswith(skill.value)
             )
             if not heading:
                 continue
@@ -120,7 +126,7 @@ def parse_quest_xp_rewards(content: str) -> dict[str, dict[str, int]]:
                         xp_amount = int(float(amount_match.group(1)))
                         if quest_name not in xp_rewards_by_quest:
                             xp_rewards_by_quest[quest_name] = {}
-                        xp_rewards_by_quest[quest_name][skill_name] = xp_amount
+                        xp_rewards_by_quest[quest_name][skill] = xp_amount
     else:
         # Fallback for wikitext format
         matches = re.findall(
@@ -129,12 +135,12 @@ def parse_quest_xp_rewards(content: str) -> dict[str, dict[str, int]]:
         for raw_quest_name, raw_skill, raw_amount in matches:
             xp_amount = int(float(raw_amount.replace(",", "")))
             quest_name = html.unescape(raw_quest_name).strip()
-            canonical_skill = SKILL_NAME_MAP.get(raw_skill.lower(), raw_skill.lower())
-            if canonical_skill not in valid_skills:
+            reward_skill = _to_skill(raw_skill)
+            if reward_skill is None:
                 continue
             if quest_name not in xp_rewards_by_quest:
                 xp_rewards_by_quest[quest_name] = {}
-            xp_rewards_by_quest[quest_name][canonical_skill] = xp_amount
+            xp_rewards_by_quest[quest_name][reward_skill] = xp_amount
 
     return xp_rewards_by_quest
 

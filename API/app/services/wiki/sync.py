@@ -2,8 +2,7 @@ import json
 import logging
 from pathlib import Path
 
-from app.models.skills import Skill
-from app.models.quest import Quest, QuestRequirements
+from app.models.quest import Quest
 from app.repositories.quest_repository import DEFAULT_DATA_PATH, get_quest_repository
 from app.services.wiki.client import fetch_quest_bucket, fetch_wiki_page_content
 from app.services.wiki.parsers import (
@@ -46,7 +45,6 @@ def sync_osrs_quests(
     quest_xp_rewards_lowercase = {
         quest_name.lower(): rewards for quest_name, rewards in quest_xp_rewards.items()
     }
-    valid_skills = {skill.value for skill in Skill}
     repo = get_quest_repository()
     validated_quests: list[Quest] = []
     seen_quest_names: set[str] = set()
@@ -61,8 +59,6 @@ def sync_osrs_quests(
 
         raw_difficulty = quest_item.get("official_difficulty")
         raw_length = quest_item.get("official_length")
-        raw_requirements = quest_item.get("requirements", "")
-        requirements_data = parse_bucket_requirements(raw_requirements)
 
         # Skip entries that aren't full official quests (e.g. miniquests or unreleased pitches)
         if not raw_difficulty or not raw_length:
@@ -74,38 +70,16 @@ def sync_osrs_quests(
         difficulty = str(raw_difficulty).strip()
         length = str(raw_length).strip().lower()
 
-        typed_skill_requirements: dict[Skill, int] = {
-            Skill(skill_name): level
-            for skill_name, level in requirements_data["skills"].items()
-            if skill_name in valid_skills
-        }
-
-        quest_xp = (
+        xp_rewards = (
             quest_xp_rewards.get(quest_name)
             or quest_xp_rewards_lowercase.get(quest_name.lower())
             or {}
         )
-        typed_xp_rewards: dict[Skill, int] = {
-            Skill(skill_name): xp_amount
-            for skill_name, xp_amount in quest_xp.items()
-            if skill_name in valid_skills
-        }
 
         # Look up quest points from Quests/List, fallback to the existing quest data
         existing_quest = repo.get(quest_name)
         quest_points = quest_points_by_name.get(quest_name, 0) or (
             existing_quest.quest_points if existing_quest else 0
-        )
-
-        requirements = QuestRequirements(
-            quests=requirements_data["quests"],
-            skills=typed_skill_requirements,
-            boostable_skills=[
-                Skill(skill_name)
-                for skill_name in requirements_data["boostable_skills"]
-                if skill_name in valid_skills
-            ],
-            quest_points=requirements_data["quest_points"],
         )
 
         quest = Quest(
@@ -114,8 +88,8 @@ def sync_osrs_quests(
             quest_points=quest_points,
             length=length,
             difficulty=difficulty,
-            requirements=requirements,
-            xp_rewards=typed_xp_rewards,
+            requirements=parse_bucket_requirements(quest_item.get("requirements", "")),
+            xp_rewards=xp_rewards,
         )
         validated_quests.append(quest)
 
