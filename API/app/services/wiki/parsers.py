@@ -1,6 +1,5 @@
 import html
 import re
-from typing import Any
 
 from bs4 import BeautifulSoup
 
@@ -152,15 +151,13 @@ def parse_quest_xp_rewards(html_text: str) -> dict[str, dict[Skill, int]]:
     return xp_rewards_by_quest
 
 
-def parse_quests_list(html_text: str) -> list[dict[str, Any]]:
+def parse_quest_points(html_text: str) -> dict[str, int]:
     """
-    Parses the `Quests/List` HTML table into quest name, difficulty, and quest points.
-    Skips miniquests and duplicate rows. Used by the sync as the source of quest points,
-    which the Bucket API query doesn't include.
+    Parses the `Quests/List` HTML table into {quest_name: quest_points}, skipping
+    miniquests. The sync's source of quest points, since the Bucket API query lacks them.
     """
     soup = BeautifulSoup(html_text, "html.parser")
-    parsed_quests = []
-    seen_quest_names = set()
+    quest_points_by_name: dict[str, int] = {}
 
     for row in soup.find_all("tr", attrs={"data-rowid": True}):
         if row.find_previous(id="Miniquests"):
@@ -171,24 +168,9 @@ def parse_quests_list(html_text: str) -> list[dict[str, Any]]:
             continue
 
         quest_name = cells[1]
-        difficulty = cells[2]
-        try:
-            quest_points_match = re.search(r"\d+", cells[4])
-            quest_points = int(quest_points_match.group(0)) if quest_points_match else 0
-        except Exception:
-            quest_points = 0
+        quest_points_match = re.search(r"\d+", cells[4])
+        quest_points = int(quest_points_match.group(0)) if quest_points_match else 0
+        # Keep the first row when a quest is listed more than once
+        quest_points_by_name.setdefault(quest_name, quest_points)
 
-        if quest_name in seen_quest_names:
-            continue
-        seen_quest_names.add(quest_name)
-
-        parsed_quests.append(
-            {
-                "id": quest_name,
-                "name": quest_name,
-                "difficulty": difficulty,
-                "quest_points": quest_points,
-            }
-        )
-
-    return parsed_quests
+    return quest_points_by_name

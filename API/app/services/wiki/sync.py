@@ -7,8 +7,8 @@ from app.repositories.quest_repository import DEFAULT_DATA_PATH, get_quest_repos
 from app.services.wiki.client import fetch_quest_bucket, fetch_wiki_page_content
 from app.services.wiki.parsers import (
     parse_bucket_requirements,
+    parse_quest_points,
     parse_quest_xp_rewards,
-    parse_quests_list,
 )
 
 logger = logging.getLogger(__name__)
@@ -19,18 +19,16 @@ def sync_osrs_quests(
 ) -> list[Quest]:
     """
     Performs automated synchronization of all OSRS quests using:
-    1. The Wiki Bucket API (JSON response from bucket('quest')) for quest metadata and requirements
-    2. The HTML response from `Quest_experience_rewards` (prop="text") for skill XP rewards
-    3. Merges and validates via Pydantic Quest models
-    4. Saves to quests.json if save=True
-    5. Reloads the quest repository if reload_db=True
+    1. The HTML response from `Quests/List` (prop="text") for quest points
+    2. The Wiki Bucket API (JSON response from bucket('quest')) for quest metadata and requirements
+    3. The HTML response from `Quest_experience_rewards` (prop="text") for skill XP rewards
+    4. Merges and validates via Pydantic Quest models
+    5. Saves to quests.json if save=True
+    6. Reloads the quest repository if reload_db=True
     """
     logger.info("Fetching quest list for quest points from OSRS Wiki...")
     quest_list_html = fetch_wiki_page_content("Quests/List", prop="text")
-    base_quests = parse_quests_list(quest_list_html)
-    quest_points_by_name = {
-        quest["name"]: quest["quest_points"] for quest in base_quests
-    }
+    quest_points_by_name = parse_quest_points(quest_list_html)
 
     logger.info("Fetching quests from OSRS Wiki Bucket API...")
     bucket_data = fetch_quest_bucket()

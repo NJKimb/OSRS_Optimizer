@@ -7,8 +7,8 @@ from app.models.quest import Quest
 from app.repositories.quest_repository import get_quest_repository
 from app.services.wiki.parsers import (
     parse_bucket_requirements,
+    parse_quest_points,
     parse_quest_xp_rewards,
-    parse_quests_list,
 )
 from app.services.optimizer.engine import get_missing_quests
 
@@ -63,7 +63,7 @@ class TestQuestSync(unittest.TestCase):
         res = parse_bucket_requirements(sample_req)
         self.assertEqual(res.quests, ["Recipe for Disaster/Freeing King Awowogei"])
 
-    def test_parse_quests_list_mock(self):
+    def test_parse_quest_points_mock(self):
         sample_html = """
 <table class="wikitable">
 <tr data-rowid="Cook's Assistant">
@@ -90,14 +90,8 @@ class TestQuestSync(unittest.TestCase):
 <td>0</td>
 </tr>
         """
-        quests = parse_quests_list(sample_html)
-        self.assertEqual(len(quests), 2)
-        self.assertEqual(quests[0]["name"], "Cook's Assistant")
-        self.assertEqual(quests[0]["difficulty"], "Novice")
-        self.assertEqual(quests[0]["quest_points"], 1)
-        self.assertEqual(quests[1]["name"], "Dragon Slayer I")
-        self.assertEqual(quests[1]["difficulty"], "Experienced")
-        self.assertEqual(quests[1]["quest_points"], 2)
+        quest_points = parse_quest_points(sample_html)
+        self.assertEqual(quest_points, {"Cook's Assistant": 1, "Dragon Slayer I": 2})
 
     def test_quests_database_integrity(self):
         """Verifies that all synced quests in the repository are loaded and valid."""
