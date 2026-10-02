@@ -44,35 +44,32 @@ def parse_bucket_requirements(requirements_text: str) -> QuestRequirements:
     if not requirements_text or requirements_text.strip().lower() == "none":
         return QuestRequirements()
 
+    skill_requirements, boostable_skills = _parse_skill_requirements(requirements_text)
     return QuestRequirements(
         quests=_parse_prerequisite_quests(requirements_text),
-        skills=_parse_skill_requirements(requirements_text),
-        boostable_skills=_parse_boostable_skills(requirements_text),
+        skills=skill_requirements,
+        boostable_skills=boostable_skills,
         quest_points=_parse_quest_points(requirements_text),
     )
 
 
-def _parse_skill_requirements(requirements_text: str) -> dict[Skill, int]:
-    """Returns the required level per skill."""
+def _parse_skill_requirements(
+    requirements_text: str,
+) -> tuple[dict[Skill, int], list[Skill]]:
+    """Returns the required level per skill, and which of those skills are boostable."""
     skill_requirements: dict[Skill, int] = {}
-    for match in SKILL_LEVEL_PATTERN.finditer(requirements_text):
-        skill = _to_skill(match.group(1))
-        if skill is not None:
-            skill_requirements[skill] = int(match.group(2))
-    return skill_requirements
-
-
-def _parse_boostable_skills(requirements_text: str) -> list[Skill]:
-    """Returns the skills whose requirement the wiki marks as boostable."""
     boostable_skills: list[Skill] = []
     # Each requirement sits on its own line, followed by its boostable annotation
     for line in requirements_text.splitlines():
-        if BOOSTABLE_MARKER not in line:
-            continue
-        for skill in _parse_skill_requirements(line):
-            if skill not in boostable_skills:
+        is_boostable = BOOSTABLE_MARKER in line
+        for match in SKILL_LEVEL_PATTERN.finditer(line):
+            skill = _to_skill(match.group(1))
+            if skill is None:
+                continue
+            skill_requirements[skill] = int(match.group(2))
+            if is_boostable and skill not in boostable_skills:
                 boostable_skills.append(skill)
-    return boostable_skills
+    return skill_requirements, boostable_skills
 
 
 def _parse_quest_points(requirements_text: str) -> int:
