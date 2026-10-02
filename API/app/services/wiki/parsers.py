@@ -97,19 +97,27 @@ def _parse_prerequisite_quests(requirements_text: str) -> list[str]:
             continue
 
         bullet_match = WIKI_BULLET_LINK_PATTERN.match(stripped_line)
-        if bullet_match:
-            # Wiki links may use underscores in place of spaces
-            quest_candidate = bullet_match.group(1).replace("_", " ").strip()
-            # Links to page sections (e.g. "Balloon transport system#Grand Tree") aren't quests
-            if "#" not in quest_candidate and not quest_candidate.startswith(
-                IGNORED_LINK_PREFIXES
-            ):
-                if in_quest_section or stripped_line.startswith("**"):
-                    if quest_candidate not in prerequisite_quests:
-                        prerequisite_quests.append(quest_candidate)
-        elif in_quest_section and not stripped_line.startswith("*"):
-            in_quest_section = False
+        if not bullet_match:
+            # Any non-bullet line ends the list of required quests
+            if not stripped_line.startswith("*"):
+                in_quest_section = False
+            continue
+
+        # Outside a required quests list, only nested (**) bullets count as quests
+        if not in_quest_section and not stripped_line.startswith("**"):
+            continue
+
+        # Wiki links may use underscores in place of spaces
+        quest_name = bullet_match.group(1).replace("_", " ").strip()
+        if _is_quest_link(quest_name) and quest_name not in prerequisite_quests:
+            prerequisite_quests.append(quest_name)
     return prerequisite_quests
+
+
+def _is_quest_link(page_name: str) -> bool:
+    """Returns False for links to files, categories and page sections."""
+    # Links to page sections (e.g. "Balloon transport system#Grand Tree") aren't quests
+    return "#" not in page_name and not page_name.startswith(IGNORED_LINK_PREFIXES)
 
 
 def parse_quest_xp_rewards(html_text: str) -> dict[str, dict[Skill, int]]:
