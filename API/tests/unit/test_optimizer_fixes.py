@@ -1,13 +1,13 @@
 import unittest
 
-from app.core.skills import MAX_LEVEL, XP_TABLE, Skill, xp_for_level
+from app.models.skills import MAX_LEVEL, XP_TABLE, Skill, xp_for_level
 from app.models.player import AccountType, PlayerProfile, SkillDetail
 from app.models.quest import Quest, QuestRequirements
 from app.repositories.quest_repository import get_quest_repository
 from app.services.optimizer.engine import get_missing_quests
-from app.services.optimizer.methods import get_min_base_level, get_skill_boost
+from app.services.optimizer.skill_boosts import get_min_base_level, get_skill_boost
 from app.services.optimizer.simulator import OptimizationSimulator
-from app.services.wiki_quest_parser import parse_bucket_requirements
+from app.services.wiki.parsers import parse_bucket_requirements
 
 
 def make_player(skills: dict[Skill, int] | None = None) -> PlayerProfile:

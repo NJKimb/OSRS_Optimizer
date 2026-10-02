@@ -10,8 +10,8 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from app.core.skills import Skill
-from app.services import wiki_quest_parser
+from app.models.skills import Skill
+from app.services.wiki import sync
 from app.services.optimizer.simulator import QUEST_ESTIMATED_TIME
 
 FIXTURES_DIR = Path(__file__).resolve().parents[1] / "fixtures" / "wiki"
@@ -36,16 +36,19 @@ class TestSyncWithWikiFixtures(unittest.TestCase):
         responses = {
             ("Quests/List", "text"): read_gzip("quests_list.html.gz"),
             ("Quest_experience_rewards", "text"): read_gzip("quest_xp_rewards.html.gz"),
-            ("", None): json.loads(read_gzip("quest_bucket.json.gz")),
         }
+        bucket = json.loads(read_gzip("quest_bucket.json.gz"))
 
-        def fake_fetch(page_title: str = "", prop: str | None = None):
+        def fake_fetch(page_title: str, prop: str):
             return responses[(page_title, prop)]
 
-        with patch.object(wiki_quest_parser, "fetch_wiki_page_content", fake_fetch):
-            # Silence the parser's expected "Skipping ..." warnings
-            with patch.object(wiki_quest_parser.logger, "warning"):
-                quests = wiki_quest_parser.sync_osrs_quests(save=False, reload_db=False)
+        with (
+            patch.object(sync, "fetch_wiki_page_content", fake_fetch),
+            patch.object(sync, "fetch_quest_bucket", lambda: bucket),
+            # Silence the sync's expected "Skipping ..." warnings
+            patch.object(sync.logger, "warning"),
+        ):
+            quests = sync.sync_osrs_quests(save=False, reload_db=False)
         cls.quests = {quest.name: quest for quest in quests}
 
     def test_quest_count(self):

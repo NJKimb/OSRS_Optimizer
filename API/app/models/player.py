@@ -1,7 +1,7 @@
 from enum import StrEnum
 from typing import Annotated
 from pydantic import BaseModel, Field, StringConstraints
-from app.core.skills import Skill
+from app.models.skills import Skill
 
 # OSRS display names: 1-12 letters, digits, spaces, hyphens or underscores
 USERNAME_PATTERN = r"^[A-Za-z0-9 _-]{1,12}$"

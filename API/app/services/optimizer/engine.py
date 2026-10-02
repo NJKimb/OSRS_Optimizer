@@ -1,5 +1,5 @@
 from fastapi import HTTPException
-from app.core.skills import Skill
+from app.models.skills import Skill
 from app.models.plan import (
     OptimizationRequest,
     OptimizationResponse,
@@ -123,13 +123,3 @@ def get_missing_quests(
         target_goal, completed_lower, visited, missing_quests, repo
     )
     return missing_quests
-
-
-def get_skill_requirements(missing_quests: list[Quest]) -> dict[Skill, int]:
-    """Finds the maximum required level for each skill across all missing quests."""
-    skill_requirements: dict[Skill, int] = {}
-    for quest in missing_quests:
-        for skill, required_level in quest.requirements.skills.items():
-            if required_level > skill_requirements.get(skill, 0):
-                skill_requirements[skill] = required_level
-    return skill_requirements

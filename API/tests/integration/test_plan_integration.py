@@ -4,7 +4,7 @@ from unittest.mock import AsyncMock, patch
 from fastapi.testclient import TestClient
 
 from main import app
-from app.core.skills import Skill
+from app.models.skills import Skill
 from app.models.player import AccountType, PlayerProfile, SkillDetail
 
 

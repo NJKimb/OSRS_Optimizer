@@ -2,7 +2,7 @@ from enum import StrEnum
 from typing import Any
 from app.models.player import AccountType, Username
 from pydantic import AliasChoices, BaseModel, Field, PositiveInt
-from app.core.skills import Skill
+from app.models.skills import Skill
 
 
 # What the frontend sends:

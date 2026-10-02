@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from app.core.skills import Skill
+from app.models.skills import Skill
 
 
 class TrainingTier(BaseModel):

@@ -2,15 +2,15 @@ import unittest
 from fastapi.testclient import TestClient
 
 from main import app
-from app.core.skills import Skill
+from app.models.skills import Skill
 from app.models.quest import Quest
 from app.repositories.quest_repository import get_quest_repository
-from app.services.wiki_quest_parser import (
+from app.services.wiki.parsers import (
     parse_bucket_requirements,
     parse_quest_xp_rewards,
     parse_quests_list,
 )
-from app.services.optimizer.engine import get_missing_quests, get_skill_requirements
+from app.services.optimizer.engine import get_missing_quests
 
 
 class TestQuestSync(unittest.TestCase):
@@ -147,10 +147,6 @@ class TestQuestSync(unittest.TestCase):
         self.assertGreater(len(missing_quests), 5)
         self.assertTrue(any(q.name == "Mourning's End Part II" for q in missing_quests))
         self.assertEqual(missing_quests[-1].name, "Song of the Elves")
-
-        req_skills = get_skill_requirements(missing_quests)
-        self.assertEqual(req_skills[Skill.AGILITY], 70)
-        self.assertEqual(req_skills[Skill.MINING], 70)
 
     def test_api_quests_endpoints(self):
         """Tests the /api/quests FastAPI endpoints."""

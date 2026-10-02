@@ -1,15 +1,15 @@
 from typing import NamedTuple
-from app.core.skills import Skill, xp_for_level, xp_to_level
+from app.models.skills import Skill, xp_for_level, xp_to_level
 from app.models.plan import RoadmapStep, SkillDeficit, StepType
 from app.models.player import PlayerProfile
 from app.models.quest import Quest
 from app.repositories.quest_repository import QuestRepository, get_quest_repository
-from app.services.optimizer.methods import (
+from app.services.optimizer.skill_boosts import (
     SkillBoost,
     get_min_base_level,
     get_skill_boost,
-    get_skill_rate,
 )
+from app.services.optimizer.skill_methods import get_skill_rate
 
 # Estimated time (in hours) to complete official quest lengths
 QUEST_ESTIMATED_TIME: dict[str, float] = {
@@ -89,6 +89,9 @@ class OptimizationSimulator:
         # mapped to the quest whose QP requirement they help unlock
         self.qp_filler_reasons: dict[str, Quest] = {}
 
+    def estimate_quest_completion_time(self, quest: Quest):
+        return QUEST_ESTIMATED_TIME.get(quest.length.strip().lower(), .5)
+
     # Get quest points for a given quest, if it doesnt exist return 0
     def _get_quest_qp(self, quest_name: str) -> int:
         quest = self.repo.get(quest_name)
@@ -111,9 +114,7 @@ class OptimizationSimulator:
 
     def estimate_quest_hours(self, quest: Quest) -> tuple[float, float]:
         """Returns (quest duration hours, training hours needed to meet its skill requirements)."""
-        quest_duration_hours = QUEST_ESTIMATED_TIME.get(
-            quest.length.strip().lower(), 0.5
-        )
+        quest_duration_hours = self.estimate_quest_completion_time(quest)
         needed_training_hours = 0.0
         for skill in quest.requirements.skills:
             base_level, _ = self.get_required_base_level(quest, skill)
@@ -337,9 +338,7 @@ class OptimizationSimulator:
                 step_type=StepType.QUEST,
                 title=f"Complete {quest.name}",
                 description=quest_description,
-                estimated_hours=QUEST_ESTIMATED_TIME.get(
-                    quest.length.strip().lower(), 0.5
-                ),
+                estimated_hours=self.estimate_quest_completion_time(quest),
             )
         )
         self.step_counter += 1
@@ -349,7 +348,6 @@ class OptimizationSimulator:
         if not is_target_goal:
             for skill, xp_amount in quest.xp_rewards.items():
                 self.simulated_xp[skill] += xp_amount
-                self.quest_xp_awarded[skill] += xp_amount
 
         self.completed_names.add(quest.name.lower())
         self.current_qp += quest.quest_points

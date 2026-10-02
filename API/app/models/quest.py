@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from app.core.skills import Skill
+from app.models.skills import Skill
 
 
 class QuestRequirements(BaseModel):

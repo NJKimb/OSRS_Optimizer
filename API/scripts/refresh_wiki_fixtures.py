@@ -8,7 +8,7 @@ import gzip
 import json
 from pathlib import Path
 
-from app.services.wiki_quest_parser import fetch_wiki_page_content
+from app.services.wiki.client import fetch_quest_bucket, fetch_wiki_page_content
 
 FIXTURES_DIR = Path(__file__).resolve().parents[1] / "tests" / "fixtures" / "wiki"
 
@@ -21,7 +21,7 @@ def write_gzip(file_name: str, content: str) -> None:
 def main():
     FIXTURES_DIR.mkdir(parents=True, exist_ok=True)
     write_gzip("quests_list.html.gz", fetch_wiki_page_content("Quests/List", "text"))
-    write_gzip("quest_bucket.json.gz", json.dumps(fetch_wiki_page_content()))
+    write_gzip("quest_bucket.json.gz", json.dumps(fetch_quest_bucket()))
     write_gzip(
         "quest_xp_rewards.html.gz",
         fetch_wiki_page_content("Quest_experience_rewards", "text"),

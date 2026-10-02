@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import AsyncMock, patch
 
-from app.core.skills import Skill
+from app.models.skills import Skill
 from app.models.plan import OptimizationRequest
 from app.models.player import AccountType, PlayerProfile, SkillDetail
 from app.models.quest import Quest, QuestRequirements

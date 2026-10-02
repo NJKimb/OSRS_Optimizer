@@ -15,7 +15,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger("sync_quests")
 
-from app.services.wiki_quest_parser import sync_osrs_quests
+from app.services.wiki.sync import sync_osrs_quests
 
 
 def main():

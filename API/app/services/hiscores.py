@@ -3,7 +3,7 @@ from app.models.player import AccountType, SkillDetail, PlayerProfile
 import httpx2
 import logging
 from fastapi import HTTPException
-from app.core.skills import Skill
+from app.models.skills import Skill
 
 logger = logging.getLogger(__name__)
 
