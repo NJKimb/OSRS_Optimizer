@@ -3,6 +3,8 @@ import logging
 from enum import StrEnum
 from typing import Any
 
+from app.models.quest import normalize_name
+
 logger = logging.getLogger(__name__)
 
 
@@ -27,10 +29,9 @@ RFD_NAME_MAP: dict[str, str] = {
 }
 
 
-def normalize_quest_name(name: str) -> str:
-    """Returns canonical quest name if an alias exists, otherwise returns original name."""
-    cleaned = name.strip()
-    return RFD_NAME_MAP.get(cleaned.lower(), cleaned)
+def resolve_exporter_alias(name: str) -> str:
+    """Returns the wiki quest name if the exporter uses an alias, otherwise the trimmed input."""
+    return RFD_NAME_MAP.get(normalize_name(name), name.strip())
 
 
 def parse_player_quest_status(quests: Any) -> set[str]:
@@ -65,7 +66,7 @@ def parse_player_quest_status(quests: Any) -> set[str]:
                     else status_value
                 )
                 if state and str(state).strip().upper() == QuestStates.FINISHED:
-                    finished_quests.add(normalize_quest_name(str(quest_name)))
+                    finished_quests.add(resolve_exporter_alias(str(quest_name)))
             logger.info(
                 f"Extracted {len(finished_quests)} finished quests from flat dict."
             )
@@ -73,7 +74,7 @@ def parse_player_quest_status(quests: Any) -> set[str]:
     elif isinstance(quests, list):
         quest_entries = quests
     elif isinstance(quests, set):
-        return {normalize_quest_name(str(quest_name)) for quest_name in quests}
+        return {resolve_exporter_alias(str(quest_name)) for quest_name in quests}
     else:
         return set()
 
@@ -84,9 +85,9 @@ def parse_player_quest_status(quests: Any) -> set[str]:
             if state and str(state).strip().upper() == QuestStates.FINISHED:
                 quest_name = quest_entry.get("name")
                 if quest_name:
-                    finished_quests.add(normalize_quest_name(str(quest_name)))
+                    finished_quests.add(resolve_exporter_alias(str(quest_name)))
         elif isinstance(quest_entry, str):
-            finished_quests.add(normalize_quest_name(quest_entry))
+            finished_quests.add(resolve_exporter_alias(quest_entry))
 
     logger.info(f"Extracted {len(finished_quests)} finished quests from request.")
     return finished_quests

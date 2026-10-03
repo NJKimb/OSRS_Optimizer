@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from app.models.quest import Quest
+from app.models.quest import Quest, normalize_name
 
 DEFAULT_DATA_PATH = Path(__file__).resolve().parents[2] / "data" / "quests.json"
 
@@ -20,18 +20,24 @@ class QuestRepository:
         self._quests = {
             quest_data["id"]: Quest(**quest_data) for quest_data in quest_records
         }
-        self._by_normalized_name.clear()
+        self._by_normalized_name = {
+            quest.normalized_name: quest for quest in self._quests.values()
+        }
+        # Store prerequisites under their canonical names, so callers can
+        # compare them to Quest.name directly
         for quest in self._quests.values():
-            clean_name = quest.name.strip().lower()
-            self._by_normalized_name[clean_name] = quest
-            self._by_normalized_name[clean_name.replace(" ", "_")] = quest
+            quest.requirements.quests = [
+                self.canonical_name(prereq) for prereq in quest.requirements.quests
+            ]
 
     def get(self, name_or_id: str) -> Quest | None:
-        """O(1) lookup supporting exact name, lowercase, or slug format."""
-        normalized = name_or_id.strip().lower()
-        return self._by_normalized_name.get(normalized) or self._by_normalized_name.get(
-            normalized.replace(" ", "_")
-        )
+        """O(1) lookup supporting exact name, any casing, or slug format."""
+        return self._by_normalized_name.get(normalize_name(name_or_id))
+
+    def canonical_name(self, name: str) -> str:
+        """Returns the quest's official name, or the trimmed input if it's unknown."""
+        quest = self.get(name)
+        return quest.name if quest else name.strip()
 
     def search(
         self, query: str | None = None, difficulty: str | None = None
@@ -42,9 +48,9 @@ class QuestRepository:
         """
         results = list(self._quests.values())
         if query:
-            normalized_query = query.strip().lower()
+            normalized_query = normalize_name(query)
             results = [
-                quest for quest in results if normalized_query in quest.name.lower()
+                quest for quest in results if normalized_query in quest.normalized_name
             ]
         if difficulty:
             normalized_difficulty = difficulty.strip().lower()

@@ -84,7 +84,7 @@ async def generate_optimization_plan(
 
 def _collect_prerequisites_dfs(
     quest_name: str,
-    completed_lower: set[str],
+    completed: set[str],
     visited: set[str],
     collected: list[Quest],
     repo: QuestRepository,
@@ -92,16 +92,16 @@ def _collect_prerequisites_dfs(
     """Recursive helper function for post-order DFS prerequisite collection."""
     quest = repo.get(quest_name)
     # Compare by canonical name so slugs like "cook's_assistant" match completed quests
-    normalized_quest_name = (quest.name if quest else quest_name).strip().lower()
-    if normalized_quest_name in completed_lower or normalized_quest_name in visited:
+    canonical_name = quest.name if quest else quest_name.strip()
+    if canonical_name in completed or canonical_name in visited:
         return
-    visited.add(normalized_quest_name)
+    visited.add(canonical_name)
 
     if not quest:
         return
 
     for prereq in quest.requirements.quests:
-        _collect_prerequisites_dfs(prereq, completed_lower, visited, collected, repo)
+        _collect_prerequisites_dfs(prereq, completed, visited, collected, repo)
 
     collected.append(quest)
 
@@ -114,12 +114,10 @@ def get_missing_quests(
     """Recursively resolves missing prerequisites for the target goal via post-order DFS."""
     if repo is None:
         repo = get_quest_repository()
-    completed_lower = {
-        completed_name.strip().lower() for completed_name in completed_quests
+    completed = {
+        repo.canonical_name(completed_name) for completed_name in completed_quests
     }
     visited: set[str] = set()
     missing_quests: list[Quest] = []
-    _collect_prerequisites_dfs(
-        target_goal, completed_lower, visited, missing_quests, repo
-    )
+    _collect_prerequisites_dfs(target_goal, completed, visited, missing_quests, repo)
     return missing_quests

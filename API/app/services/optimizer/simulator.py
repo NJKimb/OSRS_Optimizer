@@ -79,8 +79,10 @@ class OptimizationSimulator:
         self.remaining_quests: dict[str, Quest] = {
             quest.name: quest for quest in missing_quests
         }
+        # Canonical quest names, so the rest of the simulator can compare to Quest.name
         self.completed_names: set[str] = {
-            quest_name.lower() for quest_name in player_completed_quests
+            self.quest_repository.canonical_name(quest_name)
+            for quest_name in player_completed_quests
         }
         self.current_qp: int = sum(
             self._get_quest_qp(quest_name) for quest_name in player_completed_quests
@@ -158,8 +160,7 @@ class OptimizationSimulator:
             quest
             for quest in self.remaining_quests.values()
             if all(
-                prereq.lower() in self.completed_names
-                for prereq in quest.requirements.quests
+                prereq in self.completed_names for prereq in quest.requirements.quests
             )
         ]
         if not ready:
@@ -176,12 +177,11 @@ class OptimizationSimulator:
             quest
             for quest in self.quest_repository.all()
             if quest.quest_points > 0
-            and quest.name.lower() not in self.completed_names
+            and quest.name not in self.completed_names
             and quest.name not in self.remaining_quests
             and self.current_qp >= quest.requirements.quest_points
             and all(
-                prereq.lower() in self.completed_names
-                for prereq in quest.requirements.quests
+                prereq in self.completed_names for prereq in quest.requirements.quests
             )
         ]
         if not fillers:
@@ -302,19 +302,13 @@ class OptimizationSimulator:
             candidate_quest
             for candidate_quest in self.missing_quests
             if candidate_quest.name != quest.name
-            and any(
-                prereq_name.lower() == quest.name.lower()
-                for prereq_name in candidate_quest.requirements.quests
-            )
+            and quest.name in candidate_quest.requirements.quests
         ]
         direct_dependents = [
             dependent_quest.name
             for dependent_quest in downstream
             if not any(
-                any(
-                    prereq_name.lower() == other_quest.name.lower()
-                    for prereq_name in dependent_quest.requirements.quests
-                )
+                other_quest.name in dependent_quest.requirements.quests
                 for other_quest in downstream
                 if other_quest.name != dependent_quest.name
             )
@@ -322,7 +316,7 @@ class OptimizationSimulator:
 
         if direct_dependents:
             parts.append(f"Prerequisite for {', '.join(direct_dependents)}")
-        elif quest.name.lower() != self.target_quest.name.lower():
+        elif quest.name != self.target_quest.name:
             parts.append(f"Prerequisite for {self.target_quest.name}")
 
         return (
@@ -351,7 +345,7 @@ class OptimizationSimulator:
             for skill, xp_amount in quest.xp_rewards.items():
                 self.simulated_xp[skill] += xp_amount
 
-        self.completed_names.add(quest.name.lower())
+        self.completed_names.add(quest.name)
         self.current_qp += quest.quest_points
         self.ordered_completed_quests.append(quest)
         del self.remaining_quests[quest.name]

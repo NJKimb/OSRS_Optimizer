@@ -2,7 +2,7 @@ import json
 import logging
 from pathlib import Path
 
-from app.models.quest import Quest
+from app.models.quest import Quest, normalize_name
 from app.repositories.quest_repository import DEFAULT_DATA_PATH, get_quest_repository
 from app.services.wiki.client import fetch_quest_bucket, fetch_wiki_page_content
 from app.services.wiki.parsers import (
@@ -40,8 +40,9 @@ def sync_osrs_quests(
     quest_xp_rewards = parse_quest_xp_rewards(quest_xp_html)
     logger.info(f"Parsed XP rewards for {len(quest_xp_rewards)} quests.")
 
-    quest_xp_rewards_lowercase = {
-        quest_name.lower(): rewards for quest_name, rewards in quest_xp_rewards.items()
+    quest_xp_rewards_by_normalized_name = {
+        normalize_name(quest_name): rewards
+        for quest_name, rewards in quest_xp_rewards.items()
     }
     repo = get_quest_repository()
     validated_quests: list[Quest] = []
@@ -70,7 +71,7 @@ def sync_osrs_quests(
 
         xp_rewards = (
             quest_xp_rewards.get(quest_name)
-            or quest_xp_rewards_lowercase.get(quest_name.lower())
+            or quest_xp_rewards_by_normalized_name.get(normalize_name(quest_name))
             or {}
         )
 
