@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from app.models.quest import Quest
 from app.repositories.quest_repository import QuestRepository, get_quest_repository
+from app.services.optimizer.engine import get_missing_quests
 
 router = APIRouter(prefix="/api/quests", tags=["Quests"])
 
@@ -29,3 +30,13 @@ def get_quest(
     if not quest:
         raise HTTPException(status_code=404, detail=f"Quest '{quest_name}' not found.")
     return quest
+
+
+@router.get("/{quest_name:path}/prerequisites", response_model=list[Quest])
+def get_quest_prerequisites_endpoint(
+    quest_name: str, repo: QuestRepository = Depends(get_quest_repository)
+):
+    quest = repo.get(quest_name)
+    if not quest:
+        raise HTTPException(status_code=404, detail=f"Quest '{quest_name}' not found.")
+    return get_missing_quests(quest.name, set(), repo)[:-1]
