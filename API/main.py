@@ -4,11 +4,7 @@ from app.routers.player import router as player_router
 from app.routers.optimizer import router as optimizer_router
 from fastapi.middleware.cors import CORSMiddleware
 
-origins = [
-    "http://localhost:5173",
-    "http://localhost",
-    "http://localhost:8080",
-]
+from config import get_settings
 
 app = FastAPI(
     title="OSRS Account Optimizer API",
@@ -16,12 +12,13 @@ app = FastAPI(
     version="1.0.0",
 )
 
+settings = get_settings()
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=settings.cors_origins,
+    allow_methods=["GET", "POST"],
+    allow_headers=["Content-Type"],
 )
 
 app.include_router(quests_router)
