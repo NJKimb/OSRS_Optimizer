@@ -1,18 +1,14 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-
-type Health = {
-  "status": string
-}
+import { getHealth, type Health } from './api';
 
 function App() {
   const [data, setData] = useState<Health | null>(null)
 
   useEffect(() => {
     const fetchData = async () => {
-      const reponse = await fetch("/api/health");
-      const newData = await reponse.json();
-      setData(newData);
+      const health = await getHealth();
+      setData(health);
     };
   
     fetchData()

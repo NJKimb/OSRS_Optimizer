@@ -3,6 +3,7 @@
 # ===============================
 .env
 .env.*
+!Client/.env.development
 !.env.example
 .venv/
 */.venv/
