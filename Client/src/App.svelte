@@ -1,17 +1,15 @@
 <script lang="ts">
   import './App.css'
-  import { getHealth, type Health } from './api'
+  import { getHealth} from './api'
 
-  let data = $state<Health | null>(null)
+  let healthPromise = getHealth()
 
-  $effect(() => {
-    getHealth().then((health) => {
-      console.log(health)
-      data = health
-    })
-  })
 </script>
 
-{#if data}
-  <div class="App">{data.status}</div>
-{/if}
+{#await healthPromise}
+    <div>Checking</div>
+  {:then}
+    <div>Healthy</div>
+  {:catch error}
+    <div>{error}</div>
+{/await}
