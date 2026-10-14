@@ -17,18 +17,24 @@ class QuestRepository:
         with open(self.data_path, "r", encoding="utf-8") as quest_file:
             quest_records = json.load(quest_file)
 
-        self._quests = {
-            quest_data["id"]: Quest(**quest_data) for quest_data in quest_records
-        }
-        self._by_normalized_name = {
-            quest.normalized_name: quest for quest in self._quests.values()
-        }
-        # Store prerequisites under their canonical names, so callers can
-        # compare them to Quest.name directly
+        # Create a dictionary of quest objects
+        self._quests = {}
+        for quest_data in quest_records:
+            self._quests[quest_data["id"]] = Quest(**quest_data)
+
+        # Store normalzied names to ensure consistency for name normalization
+        self._by_normalized_name = {}
         for quest in self._quests.values():
-            quest.requirements.quests = [
-                self.canonical_name(prereq) for prereq in quest.requirements.quests
-            ]
+            self._by_normalized_name[quest.normalized_name] = quest
+
+        # Replace a quests list of prerequisites with canonical names,
+        # which may differ from the names listed on the wiki
+        for quest in self._quests.values():
+            cleaned = []
+            for prereq in quest.requirements.quests:
+                cleaned.append(self.canonical_name(prereq))
+            quest.requirements.quests = cleaned
+
 
     def get(self, name_or_id: str) -> Quest | None:
         """O(1) lookup supporting exact name, any casing, or slug format."""
