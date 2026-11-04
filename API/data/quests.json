@@ -147,7 +147,10 @@
       "boostable_skills": [],
       "quest_points": 0
     },
-    "xp_rewards": {}
+    "xp_rewards": {
+      "crafting": 500,
+      "smithing": 500
+    }
   },
   {
     "id": "Doric's Quest",
@@ -243,7 +246,9 @@
       "boostable_skills": [],
       "quest_points": 0
     },
-    "xp_rewards": {}
+    "xp_rewards": {
+      "cooking": 800
+    }
   },
   {
     "id": "Dragon Slayer I",
@@ -296,7 +301,10 @@
       ],
       "quest_points": 0
     },
-    "xp_rewards": {}
+    "xp_rewards": {
+      "woodcutting": 1500,
+      "crafting": 1500
+    }
   },
   {
     "id": "Witch's House",
@@ -326,7 +334,9 @@
       "boostable_skills": [],
       "quest_points": 0
     },
-    "xp_rewards": {}
+    "xp_rewards": {
+      "firemaking": 1000
+    }
   },
   {
     "id": "Heroes' Quest",
@@ -410,7 +420,11 @@
       ],
       "quest_points": 0
     },
-    "xp_rewards": {}
+    "xp_rewards": {
+      "crafting": 2000,
+      "smithing": 2000,
+      "mining": 2000
+    }
   },
   {
     "id": "Fishing Contest",
@@ -500,7 +514,9 @@
       "boostable_skills": [],
       "quest_points": 0
     },
-    "xp_rewards": {}
+    "xp_rewards": {
+      "firemaking": 1000
+    }
   },
   {
     "id": "Holy Grail",
@@ -584,7 +600,9 @@
       "boostable_skills": [],
       "quest_points": 0
     },
-    "xp_rewards": {}
+    "xp_rewards": {
+      "hunter": 1000
+    }
   },
   {
     "id": "Plague City",
@@ -904,7 +922,9 @@
       "boostable_skills": [],
       "quest_points": 0
     },
-    "xp_rewards": {}
+    "xp_rewards": {
+      "runecraft": 500
+    }
   },
   {
     "id": "Death Plateau",
@@ -1100,7 +1120,9 @@
       ],
       "quest_points": 0
     },
-    "xp_rewards": {}
+    "xp_rewards": {
+      "agility": 2000
+    }
   },
   {
     "id": "Shades of Mort'ton",
@@ -1195,7 +1217,12 @@
       "boostable_skills": [],
       "quest_points": 0
     },
-    "xp_rewards": {}
+    "xp_rewards": {
+      "woodcutting": 1000,
+      "fishing": 1000,
+      "mining": 1000,
+      "farming": 1000
+    }
   },
   {
     "id": "Monkey Madness I",
@@ -3078,7 +3105,6 @@
         "Lunar Diplomacy",
         "The Fremennik Trials",
         "Lost City",
-        "Rune Mysteries",
         "Shilo Village",
         "Jungle Potion",
         "The Hand in the Sand",
@@ -3089,6 +3115,7 @@
         "Goblin Diplomacy",
         "Temple of the Eye",
         "Enter the Abyss",
+        "Rune Mysteries",
         "Tears of Guthix",
         "Nature Spirit",
         "A Tail of Two Cats",
@@ -3757,7 +3784,9 @@
       "boostable_skills": [],
       "quest_points": 0
     },
-    "xp_rewards": {}
+    "xp_rewards": {
+      "firemaking": 1200
+    }
   },
   {
     "id": "A Taste of Hope",
@@ -3804,7 +3833,9 @@
       "boostable_skills": [],
       "quest_points": 0
     },
-    "xp_rewards": {}
+    "xp_rewards": {
+      "mining": 1500
+    }
   },
   {
     "id": "Making Friends with My Arm",
@@ -4178,7 +4209,7 @@
   {
     "id": "Daddy's Home",
     "name": "Daddy's Home",
-    "quest_points": 0,
+    "quest_points": 1,
     "difficulty": "Novice",
     "length": "short",
     "requirements": {
@@ -4237,7 +4268,9 @@
       "boostable_skills": [],
       "quest_points": 16
     },
-    "xp_rewards": {}
+    "xp_rewards": {
+      "mining": 1200
+    }
   },
   {
     "id": "A Night at the Theatre",
@@ -5133,5 +5166,39 @@
       "quest_points": 0
     },
     "xp_rewards": {}
+  },
+  {
+    "id": "Mudfoot's Big Adventure",
+    "name": "Mudfoot's Big Adventure",
+    "quest_points": 1,
+    "difficulty": "Novice",
+    "length": "very short",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "boostable_skills": [],
+      "quest_points": 0
+    },
+    "xp_rewards": {}
+  },
+  {
+    "id": "The Writing's on the Wall",
+    "name": "The Writing's on the Wall",
+    "quest_points": 1,
+    "difficulty": "Intermediate",
+    "length": "short",
+    "requirements": {
+      "quests": [],
+      "skills": {
+        "agility": 22,
+        "thieving": 20
+      },
+      "boostable_skills": [],
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "agility": 2500,
+      "thieving": 2500
+    }
   }
 ]
