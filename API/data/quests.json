@@ -5200,5 +5200,42 @@
       "agility": 2500,
       "thieving": 2500
     }
+  },
+  {
+    "id": "A Shell of a Friend",
+    "name": "A Shell of a Friend",
+    "quest_points": 2,
+    "difficulty": "Intermediate",
+    "length": "very short",
+    "requirements": {
+      "quests": [],
+      "skills": {
+        "herblore": 16,
+        "construction": 15
+      },
+      "boostable_skills": [],
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "herblore": 2500,
+      "construction": 2500
+    }
+  },
+  {
+    "id": "The Birds and the Wasps",
+    "name": "The Birds and the Wasps",
+    "quest_points": 1,
+    "difficulty": "Novice",
+    "length": "short",
+    "requirements": {
+      "quests": [],
+      "skills": {},
+      "boostable_skills": [],
+      "quest_points": 0
+    },
+    "xp_rewards": {
+      "fletching": 250,
+      "hunter": 1000
+    }
   }
 ]
